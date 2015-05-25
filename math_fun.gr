@@ -1,0 +1,48 @@
+[
+	"c_rt_lib::init_iter",
+	"c_rt_lib::get_key_iter",
+	"c_rt_lib::next_iter",
+	"c_rt_lib::is_end_hash",
+	"c_rt_lib::hash_get_value",
+	"c_rt_lib::get_ref_hash",
+	"c_rt_lib::set_ref_hash",
+	"c_rt_lib::get_ref_arr",
+	"c_rt_lib::set_ref_arr",
+	"c_rt_lib::array_len",
+	
+	"c_rt_lib::ov_none_new",
+	"c_rt_lib::ov_arg_new",
+	"c_rt_lib::ov_has_value",
+	"c_rt_lib::ov_get_element",
+	"c_rt_lib::ov_get_value",
+	"c_rt_lib::ov_is",
+	"c_rt_lib::ov_as",
+	
+	"c_std_lib::array_sort",
+	"c_std_lib::array_len",
+	"c_std_lib::array_pop",
+	"c_std_lib::array_push",
+	"c_std_lib::array_sub",
+	
+	"c_std_lib::string_compare",
+	"c_std_lib::string_chr",
+	"c_std_lib::string_ord",
+	"c_std_lib::string_length",
+	"c_std_lib::string_index",
+	"c_std_lib::string_sub",
+	"c_std_lib::string_replace",
+	"c_std_lib::escape_characters",
+	
+	"c_std_lib::fast_substr",
+	
+	"c_std_lib::hash_get_value",
+	"c_std_lib::hash_has_key",
+	"c_std_lib::hash_set_value",
+	"c_std_lib::hash_delete",
+	"c_std_lib::hash_size",
+	
+	"c_std_lib::is_array",
+	"c_std_lib::is_hash",
+	"c_std_lib::is_sim",
+	"c_std_lib::is_variant",
+]
