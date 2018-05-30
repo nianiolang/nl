@@ -9,6 +9,9 @@
 	"c_rt_lib::get_ref_arr",
 	"c_rt_lib::set_ref_arr",
 	"c_rt_lib::array_len",
+	"c_rt_lib::array_push",
+	"c_rt_lib::hash_set_value",
+
 	
 	"c_rt_lib::ov_none_new",
 	"c_rt_lib::ov_arg_new",

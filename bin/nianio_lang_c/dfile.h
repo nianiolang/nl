@@ -4,10 +4,11 @@
  */
 #pragma once
 #include "c_rt_lib.h"
-ImmT dfile0fsave(ImmT ___nl__0,ImmT ___nl__1);
-ImmT dfile0fsave0ptr(int _num, ImmT *_tab);
-ImmT dfile0fload(ImmT ___nl__0);
-ImmT dfile0fload0ptr(int _num, ImmT *_tab);
+void dfile0__const__init();
+ImmT dfile0deep_eq(ImmT ___nl__0,ImmT ___nl__1);
+ImmT dfile0deep_eq0ptr(int _num, ImmT *_tab);
+ImmT dfile0rs(ImmT ___nl__0,ImmT ___nl__1);
+ImmT dfile0rs0ptr(int _num, ImmT *_tab);
 ImmT dfile0ssave(ImmT ___nl__0);
 ImmT dfile0ssave0ptr(int _num, ImmT *_tab);
 ImmT dfile0debug(ImmT ___nl__0);

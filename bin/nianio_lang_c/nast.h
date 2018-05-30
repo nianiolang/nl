@@ -4,6 +4,9 @@
  */
 #pragma once
 #include "c_rt_lib.h"
+void nast0__const__init();
+ImmT nast0intepreter_evaluate_max_steps();
+ImmT nast0intepreter_evaluate_max_steps0ptr(int _num, ImmT *_tab);
 ImmT nast0bool_t();
 ImmT nast0bool_t0ptr(int _num, ImmT *_tab);
 ImmT nast0op_assoc_t();
@@ -52,6 +55,8 @@ ImmT nast0ternary_op_t();
 ImmT nast0ternary_op_t0ptr(int _num, ImmT *_tab);
 ImmT nast0value_t();
 ImmT nast0value_t0ptr(int _num, ImmT *_tab);
+ImmT nast0value_only_t();
+ImmT nast0value_only_t0ptr(int _num, ImmT *_tab);
 ImmT nast0match_t();
 ImmT nast0match_t0ptr(int _num, ImmT *_tab);
 ImmT nast0variant_decl_t();
@@ -78,5 +83,15 @@ ImmT nast0debug_t();
 ImmT nast0debug_t0ptr(int _num, ImmT *_tab);
 ImmT nast0empty_debug();
 ImmT nast0empty_debug0ptr(int _num, ImmT *_tab);
+ImmT nast0cast_to_value(ImmT ___nl__0);
+ImmT nast0cast_to_value0ptr(int _num, ImmT *_tab);
 ImmT nast0cmd_t();
 ImmT nast0cmd_t0ptr(int _num, ImmT *_tab);
+ImmT nast0die_t();
+ImmT nast0die_t0ptr(int _num, ImmT *_tab);
+ImmT nast0block_t();
+ImmT nast0block_t0ptr(int _num, ImmT *_tab);
+ImmT nast0if_mod_t();
+ImmT nast0if_mod_t0ptr(int _num, ImmT *_tab);
+ImmT nast0unless_mod_t();
+ImmT nast0unless_mod_t0ptr(int _num, ImmT *_tab);

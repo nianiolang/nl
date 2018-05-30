@@ -9,7 +9,6 @@
 #line 1 "ov.nl"
 
 static ImmT *__const__f = NULL;
-void ov_priv0__const__init();
 ImmT ov_priv0__const__sim(int __nr);
 ImmT ov_priv0__const__sing(int __nr);
 
@@ -20,19 +19,18 @@ c_rt_lib0func_num_args(_num, 1, "ov0mk");
 return ov0mk(_tab[0]);}
 ImmT ov0mk(ImmT ___nl__0) {
 c_rt_lib0arg_val(___nl__0);
-ov_priv0__const__init();
 ImmT ___nl__1 = NULL;
-#line 8
+#line 9
 c_rt_lib0move(&___nl__1, c_rt_lib0ov_none_new(___nl__0));
-#line 8
+#line 9
 c_rt_lib0clear(&___nl__0);
-#line 8
+#line 9
 return ___nl__1;
-#line 8
+#line 9
 c_rt_lib0clear(&___nl__1);
-#line 8
+#line 9
 c_rt_lib0clear(&___nl__0);
-#line 8
+#line 9
 return NULL;
 }
 
@@ -42,23 +40,22 @@ return ov0mk_val(_tab[0], _tab[1]);}
 ImmT ov0mk_val(ImmT ___nl__0,ImmT ___nl__1) {
 c_rt_lib0arg_val(___nl__0);
 c_rt_lib0arg_val(___nl__1);
-ov_priv0__const__init();
 ImmT ___nl__2 = NULL;
-#line 12
+#line 13
 c_rt_lib0move(&___nl__2, c_rt_lib0ov_arg_new(___nl__0, ___nl__1));
-#line 12
+#line 13
 c_rt_lib0clear(&___nl__0);
-#line 12
+#line 13
 c_rt_lib0clear(&___nl__1);
-#line 12
+#line 13
 return ___nl__2;
-#line 12
+#line 13
 c_rt_lib0clear(&___nl__2);
-#line 12
+#line 13
 c_rt_lib0clear(&___nl__0);
-#line 12
+#line 13
 c_rt_lib0clear(&___nl__1);
-#line 12
+#line 13
 return NULL;
 }
 
@@ -67,19 +64,18 @@ c_rt_lib0func_num_args(_num, 1, "ov0has_value");
 return ov0has_value(_tab[0]);}
 ImmT ov0has_value(ImmT ___nl__0) {
 c_rt_lib0arg_val(___nl__0);
-ov_priv0__const__init();
 ImmT ___nl__1 = NULL;
-#line 16
+#line 17
 c_rt_lib0move(&___nl__1, c_rt_lib0ov_has_value(___nl__0));
-#line 16
+#line 17
 c_rt_lib0clear(&___nl__0);
-#line 16
+#line 17
 return ___nl__1;
-#line 16
+#line 17
 c_rt_lib0clear(&___nl__1);
-#line 16
+#line 17
 c_rt_lib0clear(&___nl__0);
-#line 16
+#line 17
 return NULL;
 }
 
@@ -88,19 +84,18 @@ c_rt_lib0func_num_args(_num, 1, "ov0get_element");
 return ov0get_element(_tab[0]);}
 ImmT ov0get_element(ImmT ___nl__0) {
 c_rt_lib0arg_val(___nl__0);
-ov_priv0__const__init();
 ImmT ___nl__1 = NULL;
-#line 20
+#line 21
 c_rt_lib0move(&___nl__1, c_rt_lib0ov_get_element(___nl__0));
-#line 20
+#line 21
 c_rt_lib0clear(&___nl__0);
-#line 20
+#line 21
 return ___nl__1;
-#line 20
+#line 21
 c_rt_lib0clear(&___nl__1);
-#line 20
+#line 21
 c_rt_lib0clear(&___nl__0);
-#line 20
+#line 21
 return NULL;
 }
 
@@ -109,19 +104,18 @@ c_rt_lib0func_num_args(_num, 1, "ov0get_value");
 return ov0get_value(_tab[0]);}
 ImmT ov0get_value(ImmT ___nl__0) {
 c_rt_lib0arg_val(___nl__0);
-ov_priv0__const__init();
 ImmT ___nl__1 = NULL;
-#line 24
+#line 25
 c_rt_lib0move(&___nl__1, c_rt_lib0ov_get_value(___nl__0));
-#line 24
+#line 25
 c_rt_lib0clear(&___nl__0);
-#line 24
+#line 25
 return ___nl__1;
-#line 24
+#line 25
 c_rt_lib0clear(&___nl__1);
-#line 24
+#line 25
 c_rt_lib0clear(&___nl__0);
-#line 24
+#line 25
 return NULL;
 }
 
@@ -131,23 +125,22 @@ return ov0is(_tab[0], _tab[1]);}
 ImmT ov0is(ImmT ___nl__0,ImmT ___nl__1) {
 c_rt_lib0arg_val(___nl__0);
 c_rt_lib0arg_val(___nl__1);
-ov_priv0__const__init();
 ImmT ___nl__2 = NULL;
-#line 28
+#line 29
 c_rt_lib0move(&___nl__2, c_rt_lib0ov_is(___nl__0, ___nl__1));
-#line 28
+#line 29
 c_rt_lib0clear(&___nl__0);
-#line 28
+#line 29
 c_rt_lib0clear(&___nl__1);
-#line 28
+#line 29
 return ___nl__2;
-#line 28
+#line 29
 c_rt_lib0clear(&___nl__2);
-#line 28
+#line 29
 c_rt_lib0clear(&___nl__0);
-#line 28
+#line 29
 c_rt_lib0clear(&___nl__1);
-#line 28
+#line 29
 return NULL;
 }
 
@@ -157,38 +150,37 @@ return ov0as(_tab[0], _tab[1]);}
 ImmT ov0as(ImmT ___nl__0,ImmT ___nl__1) {
 c_rt_lib0arg_val(___nl__0);
 c_rt_lib0arg_val(___nl__1);
-ov_priv0__const__init();
 ImmT ___nl__2 = NULL;
-#line 32
+#line 33
 c_rt_lib0move(&___nl__2, c_rt_lib0ov_as(___nl__0, ___nl__1));
-#line 32
+#line 33
 c_rt_lib0clear(&___nl__0);
-#line 32
+#line 33
 c_rt_lib0clear(&___nl__1);
-#line 32
+#line 33
 return ___nl__2;
-#line 32
+#line 33
 c_rt_lib0clear(&___nl__2);
-#line 32
+#line 33
 c_rt_lib0clear(&___nl__0);
-#line 32
+#line 33
 c_rt_lib0clear(&___nl__1);
-#line 32
+#line 33
 return NULL;
 }
 
 
 static ImmT ___const__[1];
 static int ___const_init__ = 1;
-void ov_priv0__const__init(){
-if(___const_init__) {
+void ov0__const__init(){
+if(!___const_init__) nl_die();
 ___const_init__ = 0;
 __const__f = &___const__[0];
 
 
 for(int i=0;i<0;++i) ___const__[i] = NULL;
 c_rt_lib0register_const(___const__, 0);
-}}
+}
 ImmT ov_priv0__const__sim(int __nr) {
 ImmT ret = NULL;
 c_rt_lib0copy(&ret, ___const__[__nr]);

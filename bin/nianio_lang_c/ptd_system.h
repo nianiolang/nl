@@ -4,14 +4,15 @@
  */
 #pragma once
 #include "c_rt_lib.h"
+void ptd_system0__const__init();
 ImmT ptd_system0is_known(ImmT ___nl__0);
 ImmT ptd_system0is_known0ptr(int _num, ImmT *_tab);
 ImmT ptd_system0is_equal(ImmT ___nl__0,ImmT ___nl__1);
 ImmT ptd_system0is_equal0ptr(int _num, ImmT *_tab);
 ImmT ptd_system0is_try_ensure_type(ImmT ___nl__0,ImmT * ___ref___1,ImmT * ___ref___2);
 ImmT ptd_system0is_try_ensure_type0ptr(int _num, ImmT *_tab);
-ImmT ptd_system0get_try_ensure_ok_type(ImmT ___nl__0,ImmT * ___ref___1,ImmT * ___ref___2);
-ImmT ptd_system0get_try_ensure_ok_type0ptr(int _num, ImmT *_tab);
+ImmT ptd_system0try_get_ensure_sub_types(ImmT ___nl__0,ImmT * ___ref___1,ImmT * ___ref___2);
+ImmT ptd_system0try_get_ensure_sub_types0ptr(int _num, ImmT *_tab);
 ImmT ptd_system0is_condition_type(ImmT ___nl__0,ImmT * ___ref___1,ImmT * ___ref___2);
 ImmT ptd_system0is_condition_type0ptr(int _num, ImmT *_tab);
 ImmT ptd_system0is_accepted(ImmT ___nl__0,ImmT ___nl__1,ImmT * ___ref___2,ImmT * ___ref___3);

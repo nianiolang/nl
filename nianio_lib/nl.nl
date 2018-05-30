@@ -25,3 +25,7 @@ def nl::print(str) {
 	c_std_lib::print(str);
 }
 
+def nl::debug_die(arg) {
+	arg;
+	die;
+}

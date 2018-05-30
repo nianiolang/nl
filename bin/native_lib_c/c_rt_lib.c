@@ -4,14 +4,27 @@
  *  Stamp: PLE 2013-01-03
  */
 
+#define _POSIX_SOURCE
 #include <stdarg.h>
 #include </usr/include/stdio.h>
 #include </usr/include/stdlib.h>
 #include </usr/include/string.h>
 #include </usr/include/math.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include </usr/include/unistd.h>
+#include </usr/include/time.h>
+#include </usr/include/signal.h>
+#include <sys/prctl.h>
+#include <sys/time.h>
 
 #include "c_rt_lib.h"
 #include "c_global_const.h"
+#include "c_nl_config_header.h"
+
+#ifndef PR_SET_PTRACER
+#define PR_SET_PTRACER 0x59616d61
+#endif
 
 #define ___TYPE_STRING 1
 #define ___TYPE_INT 2
@@ -50,6 +63,8 @@ int IS_HASH(ImmT x) 	{return ((NlData*)x)->type == ___TYPE_HASH;}
 #define MIN_HASH_CELL_ON_ELEM 2
 
 
+char *(*die_additional_info)() = NULL;
+char *(*logs_dir_f)() = NULL;
 long long _mem_sum = 0;
 long long _free_sum = 0;
 
@@ -79,11 +94,56 @@ ImmT priv_to_nl_native(int i);
 NlArray *priv_arr_to_change(ImmT *arrI);
 void inc_ref(ImmT dI);
 void dec_ref(ImmT dI);
+void dec_ref_adv(ImmT dI, int with_struct);
 ImmT c_rt_lib0array_new_alloc();
 ImmT c_rt_lib0hash_new_alloc();
 ImmT set_to_hash(NlHash* hash, ImmT key, ImmT val);
 
-void c_rt_lib0init(){
+void nl_die_signal() {
+	nl_die_internal("signal received");
+}
+
+static void c_rt_lib_priv_register_signal_handler(int signal) {
+	struct sigaction action;
+	sigemptyset(&action.sa_mask);
+	action.sa_handler = nl_die_signal;
+	action.sa_flags = 0;
+	if (sigaction(signal, &action, 0)) {
+		fprintf(stderr, "Cannot register signal handler\n");
+		nl_die();
+	}
+}
+
+char *nothing_f() {
+	return "";
+}
+
+char *standard_logs_dir_f() {
+	return "nl_logs";
+}
+
+char *c_rt_lib0get_die_additional_info() {
+	if (die_additional_info != NULL) {
+		return (*die_additional_info)();
+	} else {
+		return "";
+	}
+}
+
+char *get_logs_dir() {
+	if (logs_dir_f != NULL) {
+		return (*logs_dir_f)();
+	} else {
+		return "";
+	}
+}
+
+
+void c_rt_lib0init(int catch_signals) {
+	c_rt_lib0init_advanced(catch_signals, &nothing_f, &standard_logs_dir_f);
+}
+
+void c_rt_lib0init_advanced(int catch_signals, char * (*die_f)(), char * (*logs_f)()) {
 	_global_const_offset_ = sizeof(NlInt);
 	if (sizeof(NlFloat) > _global_const_offset_)
 		_global_const_offset_ = sizeof(NlFloat);
@@ -101,9 +161,16 @@ void c_rt_lib0init(){
 	t[0] = '\0';
 	_empty_str = c_rt_lib0string_new_alloc(t,0,1);
 	___global_const_init();
+	if (catch_signals) {
+		c_rt_lib_priv_register_signal_handler(SIGSEGV);
+	}
+
+	die_additional_info = die_f;
+	logs_dir_f = logs_f;
 }
-void c_rt_lib0register_const(ImmT *a,int size){
-	if(_consts_capacity<_consts_size+2){
+
+void c_rt_lib0register_const(ImmT *a, int size) {
+	if (_consts_capacity<_consts_size + 2) {
 		_consts_capacity=_consts_capacity*2+2;
 		_consts = (ImmT **)realloc(_consts, sizeof(ImmT) * _consts_capacity);
 		_consts_s = (int *)realloc(_consts_s, sizeof(int) * _consts_capacity);
@@ -147,14 +214,8 @@ void c_rt_lib0finish(){
 	if (_global_const_begin_ != NULL) {
 		ImmT const_element = _global_const_begin_;
 		while (const_element < _global_const_end_) {
-			char type = ((NlData *)const_element)->type;
-			if (((NlData *)const_element)->refs == 1) {
-				++_deleted[(unsigned)type];
-				if (type == ___TYPE_STRING) {
-					free_mem(((NlString *)const_element)->s, ((NlString*)const_element)->capacity);
-				}
-				const_element += _global_const_offset_;
-			}
+			dec_ref_adv(const_element, 0);
+			const_element += _global_const_offset_;
 		}
 	}
 	free_mem(_global_const_begin_, _global_const_end_ - _global_const_begin_);
@@ -172,13 +233,16 @@ void c_rt_lib0func_num_args(int a, int b, const char *s){
 		nl_die_internal("In dynamic call of function: %s, given: %d arguments, expected: %d", s, a, b);
 }
 ImmT c_rt_lib0exec(ImmT ___nl__func, ImmT *___ref___arrI){
-	if(!IS_FUNC(___nl__func))
-		nl_die_internal("can call only function: %s", NAME(___nl__func));
+	if(!IS_HASH(___nl__func) && !IS_ARRHASH(___nl__func))
+		nl_die_internal("function struct must by a hash", NAME(___nl__func));
+	NlFunction *func = (NlFunction*)c_rt_lib0hash_get_value_dec(___nl__func, c_rt_lib0string_new("name"));
+	if(!IS_FUNC(func))
+		nl_die_internal("can call only function: %s", NAME(func));
 	if(!IS_ARR(*___ref___arrI))
 		nl_die_internal("expected array: %s", NAME(*___ref___arrI));
 	NlArray *arr = priv_arr_to_change(___ref___arrI);
-	NlFunction *ret = (NlFunction *)___nl__func;
-	ImmT (*f)(int n, ImmT *arg) = ret->f;
+	ImmT (*f)(int n, ImmT *arg) = func->f;
+	dec_ref((ImmT*)func);
 	return (*f)(arr->size, arr->arr);
 }
 ImmT c_rt_lib0func_new(ImmT (*f)(int, ImmT*), ImmT module, ImmT name){
@@ -187,18 +251,28 @@ ImmT c_rt_lib0func_new(ImmT (*f)(int, ImmT*), ImmT module, ImmT name){
 	ret->module = (NlString*)module;
 	ret->name = (NlString*)name;
 	ret->f = f;
-	return ret;
+	inc_ref(module);
+	return c_rt_lib0hash_mk_dec(2, c_rt_lib0string_new("module"), module, c_rt_lib0string_new("name"),  ret);
 }
 int eq_int_string(NlInt* a, NlString* b){
-	int i = a->i;
+	INT i = a->i;
 	int len = b->length;
 	if(len==0) return 0;
 	char* tab = b->s;
 	if(i==0&&tab[0]!='0') return 0;
-	int num = atoi(tab);
+	INT num = atoll(tab);
 	if(num!=i) return 0;
 	int l = i<0;
-	i = abs(i);
+	i = llabs(i);
+	l+=i>=1000000000000000000;
+	l+=i>=100000000000000000;
+	l+=i>=10000000000000000;
+	l+=i>=1000000000000000;
+	l+=i>=100000000000000;
+	l+=i>=10000000000000;
+	l+=i>=1000000000000;
+	l+=i>=100000000000;
+	l+=i>=10000000000;
 	l+=i>=1000000000;
 	l+=i>=100000000;
 	l+=i>=10000000;
@@ -226,6 +300,24 @@ int eq_float_string(NlFloat* a, NlString* b){
 	return strncmp(b->s, tab, b->length);
 }
 
+int compare_bytes(const void* left, int size_left, const void* right, int size_right){
+	int min_size = size_left < size_right ? size_left : size_right;
+	int memcmp_res = memcmp(left, right, min_size);
+
+	if(memcmp_res) return memcmp_res;
+	else if(size_left < size_right) return -1;
+	else if(size_left > size_right) return 1;
+	else return 0;
+}
+
+int compare_string_with_cstr(NlString* left, const char* cstr){
+	return compare_bytes(left->s, left->length, cstr, strlen(cstr));
+}
+
+int compare_strings(NlString* left, NlString* right){
+	return compare_bytes(left->s, left->length, right->s, right->length);
+}
+
 int nl_compare_internal(ImmT left, ImmT right) {
 	if (_global_const_begin_ != NULL && left >= _global_const_begin_ && left < _global_const_end_ 
 			&& right >= _global_const_begin_ && right < _global_const_end_) {
@@ -249,7 +341,7 @@ int nl_compare_internal(ImmT left, ImmT right) {
 		return 0;
 	}
 	if (((NlData *)left)->type == ___TYPE_STRING) {
-		return strcmp(((NlString *)left)->s, ((NlString *)right)->s) == 0;
+		return compare_strings((NlString *)left, (NlString *)right) == 0;
 	} else if (((NlData *)left)->type == ___TYPE_INT) {
 		return (((NlInt *)left)->i == ((NlInt *)right)->i);
 	} else if (((NlData *)left)->type == ___TYPE_FLOAT) {
@@ -538,11 +630,12 @@ ImmT c_rt_lib0hash_get_value_dec(ImmT ___nl__hashI, ImmT ___nl__keyI) {
 	dec_ref(___nl__keyI);
 	return ret;
 }
-void c_rt_lib0hash_set_value_dec(ImmT *___ref___hashI, ImmT ___nl__keyI, ImmT ___nl__val) {
+ImmT c_rt_lib0hash_set_value_dec(ImmT *___ref___hashI, ImmT ___nl__keyI, ImmT ___nl__val) {
 	c_rt_lib0hash_set_value(___ref___hashI, ___nl__keyI, ___nl__val);
 	dec_ref(___nl__keyI);
+	return NULL;
 }
-void c_rt_lib0hash_set_value(ImmT *___ref___hashI, ImmT ___nl__keyI, ImmT ___nl__val) {
+ImmT c_rt_lib0hash_set_value(ImmT *___ref___hashI, ImmT ___nl__keyI, ImmT ___nl__val) {
 	ImmT hash = *___ref___hashI;
 	if(IS_ARRHASH(hash) && ((NlArrHash *)hash)->size == MAX_ARR_HASH_SIZE){
 		hash = arr_hash_to_hash(hash);
@@ -555,6 +648,7 @@ void c_rt_lib0hash_set_value(ImmT *___ref___hashI, ImmT ___nl__keyI, ImmT ___nl_
 	else if(IS_HASH(hash))	prev = set_to_hash((NlHash*) hash, ___nl__keyI, ___nl__val);
 	else	nl_die_internal("Hash expected %s;", NAME(hash));
 	c_rt_lib0clear(&prev);
+	return NULL;
 }
 ImmT c_rt_lib0hash_size(ImmT ___nl__hashI) {
 	return c_rt_lib0int_new(((NlArrHash *)___nl__hashI)->size);
@@ -651,6 +745,15 @@ ImmT c_rt_lib0ov_mk_none(ImmT ___nl__name) {
 	return ret;
 }
 
+ImmT c_rt_lib0mk_ov(const char * var, ImmT val){
+	ImmT str = c_rt_lib0string_new(var);
+	ImmT ret = c_rt_lib0ov_arg_new(str, val);
+	c_rt_lib0clear(&str);
+	c_rt_lib0clear(&val);
+	return ret;
+}
+
+
 ImmT c_rt_lib0ov_is(ImmT ___nl__variant, ImmT ___nl__is_val) {
 	if(!IS_OV(___nl__variant) && !IS_OV_NONE(___nl__variant))
 		nl_die_internal("expected variant: %s", NAME(___nl__variant));
@@ -701,21 +804,21 @@ ImmT c_rt_lib0ov_has_value(ImmT ___nl__variant) {
 	return priv_to_nl_native(IS_OV(___nl__variant));
 }
 
-void gdb_die(const char *msg){
-	exit(1);
-}
+void gdb_die(const char *msg);
+
 ImmT nl_die_internal(const char *format, ...) {
 	char buffer[DIETABS];
 	va_list args;
 	va_start(args, format);
 	vfprintf(stderr, format, args);
 	va_end(args);
+	fprintf(stderr, "\n");
 	va_start(args, format);
 	vsnprintf(buffer, DIETABS, format, args);
 	va_end(args);
 	fflush(stdout);
 	gdb_die(buffer);
-	return NULL;
+	exit(1);
 }
 
 ImmT nl_die() {
@@ -743,17 +846,22 @@ ImmT c_rt_lib0string_new_alloc(char *ss, int length, int capacity) {
 	return (ImmT)s;
 }
 ImmT c_rt_lib0string_new(const char *ss){
-	int len = strlen(ss);
-	if(len==0){
+	return c_rt_lib0string_new_from_bytes(ss, strlen(ss));
+}
+
+ImmT c_rt_lib0string_new_from_bytes(const void *mem_loc, int bytes_count) {
+	if(bytes_count == 0) {
 		inc_ref(_empty_str);
 		return _empty_str;
 	}
+
 	NlString *s = (NlString *)alloc_mem(sizeof(NlString));
 	nl_data_init(s, ___TYPE_STRING);
-	s->length = len;
+	s->length = bytes_count;
 	s->capacity = s->length+1;
 	s->s = (char*)alloc_mem(sizeof(char)*(s->capacity));
-	memcpy(s->s, ss, sizeof(char) * s->capacity);
+	memcpy(s->s, mem_loc, bytes_count);
+	s->s[bytes_count] = '\0';
 	return (ImmT)s;
 }
 
@@ -767,10 +875,8 @@ void c_rt_lib0string_new_to_memory(const char *ss, ImmT memory) {
 }
 
 ImmT c_rt_lib0string_chr(ImmT ___nl__sI) {
-	char ss[2];
-	ss[0] = (char) getIntFromImm(___nl__sI);
-	ss[1] = '\0';
-	return c_rt_lib0string_new(ss);
+	const char c = (char) getIntFromImm(___nl__sI);
+	return c_rt_lib0string_new_from_bytes(&c, 1);
 }
 
 ImmT c_rt_lib0string_ord(ImmT ___nl__sI1) {
@@ -818,12 +924,9 @@ NlString* toStringIfSim(ImmT sim){
 		inc_ref(sim);
 		return (NlString*)sim;
 	} else if(IS_FUNC(sim)){
-		ImmT ret = c_rt_lib0string_new("::");
-		ImmT ret2 = c_rt_lib0concat_new(((NlFunction *)sim)->module, ret);
-		dec_ref(ret);
-		ret2 = c_rt_lib0concat_add(ret2, ((NlFunction *)sim)->name);
-		dec_ref(ret2);
-		return (NlString*)ret2;
+		NlString* ret = ((NlFunction *)sim)->name;
+		inc_ref((ImmT*)ret);
+		return ret;
 	} else
 		nl_die_internal("can not converted to string %s;", NAME(sim));
 	return NULL;
@@ -834,7 +937,7 @@ INT getIntFromImm(ImmT num){
 	else if(IS_FLOAT(num))
 		return ((NlFloat *)num)->f;
 	else if(IS_STRING(num))
-		return atoi(((NlString*)num)->s);
+		return atoll(((NlString*)num)->s);
 	else
 		nl_die_internal("can not converted to int %s;", NAME(num));
 	return 0;
@@ -873,8 +976,8 @@ int getNumberFromImm(ImmT num, FLOAT* f, INT* i){
 				nl_die_internal("can not converted string to number '%s';", ((NlString*)num)->s);
 			}
 		}
-		*i = atoi(str);
-		*f = atoi(str);
+		*i = atoll(str);
+		*f = atoll(str);
 		return 0;
 	}else
 		nl_die_internal("can not converted to number %s;", NAME(num));
@@ -1040,6 +1143,13 @@ void c_rt_lib0float_new_to_memory(FLOAT f, ImmT memory) {
 	NlFloat *ret = (NlFloat *)memory;
 	nl_data_init(ret, ___TYPE_FLOAT);
 	ret->f = f;
+}
+
+ImmT c_rt_lib0float_round(ImmT f) {
+	FLOAT number = getFloatFromImm(f);
+	number = round(number);
+	if (number == 0) number = 0;
+	return c_rt_lib0float_new(number);
 }
 
 ImmT c_rt_lib0array_get(ImmT ___nl__arrI, ImmT ___nl__indexI) {
@@ -1257,12 +1367,12 @@ ImmT c_rt_lib0get_true(){
 int c_rt_lib0check_true_native(ImmT ___nl__arg) {
 	if(___nl__arg == _true) return 1;
 	if(___nl__arg == _false) return 0;
-	char *name = ((NlOv*)___nl__arg)->name->s;
-	if (strcmp(name, "TRUE") == 0) {
+	if (compare_string_with_cstr(((NlOv*)___nl__arg)->name, "TRUE") == 0) {
 		return 1;
-	} else if (strcmp(name, "FALSE") == 0) {
+	} else if (compare_string_with_cstr(((NlOv*)___nl__arg)->name, "FALSE") == 0) {
 		return 0;
 	}
+	char *name = ((NlOv*)___nl__arg)->name->s;
 	nl_die_internal("bad variant in boolean check: %s", name);
 	return 0;
 }
@@ -1337,7 +1447,7 @@ ImmT c_rt_lib0print(ImmT ___nl__arg) {
 		sPrintFloat(tab, ((NlFloat *)___nl__arg)->f);
 		printf("%s", tab);
 	} else if (IS_FUNC(d)) {
-		printf("%s::%s", ((NlFunction*)___nl__arg)->name->s, ((NlFunction*)___nl__arg)->module->s);
+		printf("%s", ((NlFunction*)___nl__arg)->name->s);
 	} else {
 		printf("ADDR:(%p)", ___nl__arg);
 	}
@@ -1499,6 +1609,10 @@ void inc_ref(ImmT dI) {
 }
 
 void dec_ref(ImmT dI) {
+	dec_ref_adv(dI, 1);
+}
+
+void dec_ref_adv(ImmT dI, int with_struct) {
 	NlData *d = (NlData *)dI;
 	checktype(dI);
 	--d->refs;
@@ -1507,26 +1621,26 @@ void dec_ref(ImmT dI) {
 		if (type == ___TYPE_ARR) {
 			NlArray *arr = (NlArray *)d;
 			REP(i, arr->size) {
-				dec_ref(arr->arr[i]);
+				dec_ref_adv(arr->arr[i], with_struct);
 			}
 			free_mem(arr->arr, sizeof(ImmT)*arr->capacity);
-			free_mem(dI, sizeof(NlArray));
+			if(with_struct) free_mem(dI, sizeof(NlArray));
 		} else if (type == ___TYPE_INT) {
-			free_mem(dI, sizeof(NlInt));
+			if(with_struct) free_mem(dI, sizeof(NlInt));
 		} else if (type == ___TYPE_FLOAT) {
-			free_mem(dI, sizeof(NlFloat));
+			if(with_struct) free_mem(dI, sizeof(NlFloat));
 		} else if (type == ___TYPE_STRING) {
 			free_mem(((NlString *)d)->s, ((NlString*)dI)->capacity);
-			free_mem(dI, sizeof(NlString));
+			if(with_struct) free_mem(dI, sizeof(NlString));
 		} else if (type == ___TYPE_ARRHASH) {
 			NlArrHash *hash = (NlArrHash *)d;
 			REP(i, hash->size) {
-				dec_ref(hash->values[i]);
-				dec_ref(hash->keys[i]);
+				dec_ref_adv(hash->values[i], with_struct);
+				dec_ref_adv(hash->keys[i], with_struct);
 			}
 			free_mem(hash->values, sizeof(ImmT)*hash->capacity);
 			free_mem(hash->keys, sizeof(ImmT)*hash->capacity);
-			free_mem(dI, sizeof(NlArrHash));
+			if(with_struct) free_mem(dI, sizeof(NlArrHash));
 		} else if (type == ___TYPE_HASH) {
 			NlHash *hash = (NlHash *)d;
 			REP (i, hash->capacity) {
@@ -1535,21 +1649,21 @@ void dec_ref(ImmT dI) {
 				}
 			}
 			free_mem(hash->tab, sizeof(NlHashNode) * hash->capacity);
-			free_mem(hash, sizeof(NlHash));
+			if(with_struct) free_mem(hash, sizeof(NlHash));
 		} else if (type == ___TYPE_OV_NONE) {
 			NlOvNone *ov = (NlOvNone *)d;
-			dec_ref((ImmT)ov->name);
-			free_mem(dI, sizeof(NlOvNone));
+			dec_ref_adv((ImmT)ov->name, with_struct);
+			if(with_struct) free_mem(dI, sizeof(NlOvNone));
 		} else if (type == ___TYPE_OV) {
 			NlOv *ov = (NlOv *)d;
-			dec_ref((ImmT)ov->name);
-			dec_ref(ov->value);
-			free_mem(dI, sizeof(NlOv));
+			dec_ref_adv((ImmT)ov->name, with_struct);
+			dec_ref_adv(ov->value, with_struct);
+			if(with_struct) free_mem(dI, sizeof(NlOv));
 		} else if (type == ___TYPE_FUNC) {
 			NlFunction *func = (NlFunction *)d;
-			dec_ref((ImmT)func->name);
-			dec_ref((ImmT)func->module);
-			free_mem(dI, sizeof(NlFunction));
+			dec_ref_adv((ImmT)func->name, with_struct);
+			dec_ref_adv((ImmT)func->module, with_struct);
+			if(with_struct) free_mem(dI, sizeof(NlFunction));
 		} else {
 			nl_die_internal("unimplementing deleting type");
 		}
@@ -1557,3 +1671,54 @@ void dec_ref(ImmT dI) {
 	}
 }
 
+void gdb_die(const char *msg){
+	int dying_pid = getpid();
+	int token_pipe[2];
+	if (pipe(token_pipe)) {
+		exit(1);
+	}
+
+	int child_pid = fork();
+	if (child_pid < 0) {
+		fprintf(stderr, "Cannot fork\n");
+		exit(1);
+	} else if (child_pid == 0) {
+		close(token_pipe[1]);
+		char t[10];
+		if (read(token_pipe[0], t, 1) != 1) {
+			perror("cannot read pipe");
+			exit(1);
+		}
+		close(token_pipe[0]);
+		
+		char cmd[10024], cpath[1000], gdbpath[1000], time_part[1000];
+		cpath[0] = '\0';
+		gdbpath[0] = '\0';
+		time_part[0] = '\0';
+
+		struct tm *ti;
+		struct timeval te;
+		gettimeofday(&te, NULL);
+		ti = localtime(&te.tv_sec);
+		sprintf(time_part, "%04d%02d%02d_%02d%02d%02d%03d", ti->tm_year+1900, ti->tm_mon+1, ti->tm_mday, ti->tm_hour, ti->tm_min, ti->tm_sec, (int)te.tv_usec / 1000);
+		char *logs_dir = get_logs_dir();
+		sprintf(cpath, "%s/stacktrace_%s_%d_c.csv", logs_dir, time_part, dying_pid);
+		sprintf(gdbpath, "%s/stacktrace_%s_%d_gdb.csv", logs_dir, time_part, dying_pid);
+		sprintf(cmd, "mkdir -p \"%s\" | \
+			gdb -p %d --batch -ex \"set width 0\" -ex \"set logging file %s\" -ex \"set logging on \" -ex backtrace \
+			-ex \"set logging off\" -ex \"call gdb_save_stacktrace(\\\"%s\\\", \\\"%s\\\")\" -ex quit \
+			> /dev/null 2> /dev/null", 
+			logs_dir, dying_pid, gdbpath, gdbpath, cpath);
+		const char* argv[] = {"bash", "-c", cmd, 0};
+		execve("/bin/bash", (char**)argv, 0);
+		fprintf(stderr, "Cannot exec bash\n");
+		exit(1);
+	} else {
+		close(token_pipe[0]);
+		prctl(PR_SET_PTRACER, child_pid, 0, 0, 0);
+		write(token_pipe[1], "t", 1);
+		close(token_pipe[1]);
+		waitpid(child_pid, 0, 0);
+		exit(1);
+	}
+}

@@ -4,6 +4,7 @@
  */
 #pragma once
 #include "c_rt_lib.h"
+void compiler0__const__init();
 ImmT compiler0parse_check_t();
 ImmT compiler0parse_check_t0ptr(int _num, ImmT *_tab);
 ImmT compiler0errors_hash_t();

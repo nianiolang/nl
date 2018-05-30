@@ -18,15 +18,15 @@ label_3:
 #line 10
 $memory_2 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_2));
 #line 10
-if (c_rt_lib::check_true($memory_2)) {goto label_2;}
+if (c_rt_lib::check_true($memory_2)) {goto label_9;}
 #line 10
 $memory_3 = [];
 #line 10
 die(dfile::ssave($memory_3));
 #line 10
-goto label_2;
+goto label_9;
 #line 10
-label_2:
+label_9:
 #line 10
 undef($memory_2);
 #line 10

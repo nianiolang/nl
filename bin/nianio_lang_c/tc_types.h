@@ -4,6 +4,7 @@
  */
 #pragma once
 #include "c_rt_lib.h"
+void tc_types0__const__init();
 ImmT tc_types0get_bin_op_def(ImmT ___nl__0);
 ImmT tc_types0get_bin_op_def0ptr(int _num, ImmT *_tab);
 ImmT tc_types0errors_t();
@@ -30,10 +31,6 @@ ImmT tc_types0def_fun_t();
 ImmT tc_types0def_fun_t0ptr(int _num, ImmT *_tab);
 ImmT tc_types0vars_t();
 ImmT tc_types0vars_t0ptr(int _num, ImmT *_tab);
-ImmT tc_types0check_error_t();
-ImmT tc_types0check_error_t0ptr(int _num, ImmT *_tab);
-ImmT tc_types0check_errors_t();
-ImmT tc_types0check_errors_t0ptr(int _num, ImmT *_tab);
 ImmT tc_types0type();
 ImmT tc_types0type0ptr(int _num, ImmT *_tab);
 ImmT tc_types0value_src();
@@ -50,3 +47,5 @@ ImmT tc_types0check_info();
 ImmT tc_types0check_info0ptr(int _num, ImmT *_tab);
 ImmT tc_types0special_functions();
 ImmT tc_types0special_functions0ptr(int _num, ImmT *_tab);
+ImmT tc_types0get_default_type();
+ImmT tc_types0get_default_type0ptr(int _num, ImmT *_tab);

@@ -124,6 +124,21 @@ sub c_rt_lib::hash_get_value($$) {
 	return $ret;
 }
 
+sub c_rt_lib::hash_set_value($$$) {
+	return c_rt_lib::set_ref_hash($_[0], $_[1], $_[2]);
+}
+
+sub c_rt_lib::array_push($$) {
+	if (c_rt_lib::get_refcount($_[0]) == 1) {
+		push @{$_[0]}, $_[1];
+	} else {
+		my $nh = [@{$_[0]}];
+		push @{$_[0]}, $_[1];
+		$_[0] = $nh;
+	}
+}
+
+
 sub c_rt_lib::init_iter($) {
 	my ($hash) = @_;
 	my $hash_keys = {k=>[keys %{ $hash }],p=>0};

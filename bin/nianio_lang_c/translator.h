@@ -4,6 +4,7 @@
  */
 #pragma once
 #include "c_rt_lib.h"
+void translator0__const__init();
 ImmT translator0function_logic_t();
 ImmT translator0function_logic_t0ptr(int _num, ImmT *_tab);
 ImmT translator0loop();

@@ -2,6 +2,7 @@
 # (c) Atinea Sp. z o.o.
 ###
 
+
 use nassert;
 
 def test_mod::test() {

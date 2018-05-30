@@ -2,6 +2,7 @@
 # (c) Atinea Sp. z o.o.
 ###
 
+
 use nassert;
 
 def test_num::test() {
@@ -23,9 +24,9 @@ def test_num::test() {
 	var t = -254.35;
 	nassert::a(t, '-254.35');
 	h += t;
-	t = h+e+c+'-16424242.2351145';
+	t = h + e + c + '-16424242.2351145';
 	a = t - 351449.8548855;
-	if(a>0.001 || a<-0.001){
+	if (a > 0.001 || a < -0.001) {
 		nassert::a(a, '~0');
 	}
 }

@@ -4,6 +4,7 @@
  */
 #pragma once
 #include "c_rt_lib.h"
+void flow_graph0__const__init();
 ImmT flow_graph0block_t();
 ImmT flow_graph0block_t0ptr(int _num, ImmT *_tab);
 ImmT flow_graph0reg_use_t();

@@ -3,7 +3,6 @@
 ###
 
 
-use ov;
 use string;
 use ptd;
 use array;
@@ -21,8 +20,8 @@ def get_sep() : @wprinter::pretty_t {
 	return {len => 1, el => :sep};
 }
 
-def wprinter::state_t(){
-	return ptd::rec({out=>ptd::sim()});
+def wprinter::state_t() {
+	return ptd::rec({out => ptd::sim()});
 }
 
 def is_to_long(len : ptd::sim()) : @boolean_t::type {
@@ -56,11 +55,9 @@ def wprinter::pretty_t() {
 				})
 		});
 }
+
 def wprinter::str_arr_t() {
-	return ptd::rec({
-			arr => ptd::arr(ptd::sim()),
-			last => ptd::var({end => ptd::none(), new_line => ptd::none()})
-		});
+	return ptd::rec({arr => ptd::arr(ptd::sim()), last => ptd::var({end => ptd::none(), new_line => ptd::none()})});
 }
 
 def wprinter::pretty_arr_t() {
@@ -92,11 +89,11 @@ def wprinter::build_pretty_op_l(arr : @wprinter::pretty_arr_t) : @wprinter::pret
 }
 
 def wprinter::build_pretty_bind(a : @wprinter::pretty_t, b : @wprinter::pretty_t) : @wprinter::pretty_t {
-	return {len => a->len+b->len, el => :bind({first => a, second => b})};
+	return {len => a->len + b->len, el => :bind({first => a, second => b})};
 }
 
-def wprinter::build_pretty_arr_decl(arr : @wprinter::pretty_arr_t, start : ptd::sim(), end : ptd::sim()) : @
-		wprinter::pretty_t {
+def wprinter::build_pretty_arr_decl(arr : @wprinter::pretty_arr_t, start : ptd::sim(), end : ptd::sim()) : 
+	@wprinter::pretty_t {
 	return {
 			len => count_len(arr) + string::length(start) + string::length(end),
 			el => :arr_decl({arr => arr, start => start, end => end})
@@ -107,7 +104,10 @@ def wprinter::build_sim(str : ptd::sim()) : @wprinter::pretty_t {
 	return {len => string::length(str), el => :sim(str)};
 }
 
-def wprinter::build_str_arr(str_arr : ptd::arr(ptd::sim()), last : ptd::var({end => ptd::none(), new_line => ptd::none()})) : @wprinter::pretty_t {
+def wprinter::build_str_arr(str_arr : ptd::arr(ptd::sim()), last : ptd::var({
+		end => ptd::none(),
+		new_line => ptd::none()
+	})) : @wprinter::pretty_t {
 	match (last) case :end {
 		return wprinter::build_sim(str_arr[0]) if array::len(str_arr) == 1;
 	} case :new_line {
@@ -121,7 +121,8 @@ def print_sim_arr(ref state : @wprinter::state_t, arr : @wprinter::pretty_arr_t)
 	}
 }
 
-def print_str_arr(ref state : @wprinter::state_t, elem : @wprinter::str_arr_t, pref : ptd::sim(), ind : ptd::sim()) : ptd::sim() {
+def print_str_arr(ref state : @wprinter::state_t, elem : @wprinter::str_arr_t, pref : ptd::sim(), ind : ptd::sim()) : 
+		ptd::sim() {
 	var ret_pref = pref;
 	var str_arr = elem->arr;
 	if (is_to_long(pref + string::length(str_arr[0]))) {
@@ -129,7 +130,6 @@ def print_str_arr(ref state : @wprinter::state_t, elem : @wprinter::str_arr_t, p
 		state_print(ref state, pind(ind));
 		ret_pref = get_tab_size() * ind;
 	}
-
 	var i = 0;
 	fora var str (str_arr) {
 		state_print(ref state, str);
@@ -138,7 +138,6 @@ def print_str_arr(ref state : @wprinter::state_t, elem : @wprinter::str_arr_t, p
 			state_print(ref state, string::lf() . pind(ind));
 			ret_pref = get_tab_size() * ind;
 		}
-
 		++i;
 	}
 	match (elem->last) case :new_line {
@@ -172,15 +171,15 @@ def wprinter::print_t(ref state : @wprinter::state_t, wise_s : @wprinter::pretty
 	print_t_rec(ref state, wise_s, ind * get_tab_size(), ind);
 }
 
-def flush_list(ref state : @wprinter::state_t, list : @wprinter::pretty_arr_t, pref : ptd::sim(), len : ptd::sim(), ind : ptd::sim(), first 
-	: @boolean_t::type) : ptd::sim() {
+def flush_list(ref state : @wprinter::state_t, list : @wprinter::pretty_arr_t, pref : ptd::sim(), len : ptd::sim(), ind 
+	: ptd::sim(), first : @boolean_t::type) : ptd::sim() {
 	if (!is_to_long(len)) {
 		fora var e (list) {
 			print_sim_rec(ref state, e);
 		}
 		return len;
 	} else {
-		if(!(list[array::len(list)-1]->el is :str_arr)){
+		if (!(list[array::len(list) - 1]->el is :str_arr)) {
 			if ((ind + 1) * get_tab_size() < pref && !first) {
 				state_print(ref state, string::lf() . pind(ind + 1));
 				pref = (ind + 1) * get_tab_size();
@@ -191,30 +190,29 @@ def flush_list(ref state : @wprinter::state_t, list : @wprinter::pretty_arr_t, p
 		}
 		return pref;
 	}
-
 }
 
-def print_arr_in_lines(ref state : @wprinter::state_t, arr : @wprinter::pretty_arr_t, ind : ptd::sim(), pref : ptd::sim()) : ptd::sim() {
+def print_arr_in_lines(ref state : @wprinter::state_t, arr : @wprinter::pretty_arr_t, ind : ptd::sim(), pref : ptd::sim()) 
+	: ptd::sim() {
 	fora var el (arr) {
-		if (ov::is(el->el, 'sep')) {
+		if (el->el is :sep) {
 			state_print(ref state, string::lf() . pind(ind));
 			pref = ind * get_tab_size();
 			continue;
 		}
-
 		pref = print_t_rec(ref state, el, pref, ind);
 	}
 	return pref;
 }
 
-def process_list(ref state : @wprinter::state_t, arr : @wprinter::pretty_arr_t, is_op_list : @boolean_t::type, pref : ptd::sim(), ind : 
-		ptd::sim()) : ptd::sim() {
+def process_list(ref state : @wprinter::state_t, arr : @wprinter::pretty_arr_t, is_op_list : @boolean_t::type, pref : 
+		ptd::sim(), ind : ptd::sim()) : ptd::sim() {
 	var els : @wprinter::pretty_arr_t = [];
 	var els_len : ptd::sim() = 0;
 	var first : @boolean_t::type = true;
 	rep var i (array::len(arr)) {
 		var elem : @wprinter::pretty_t = arr[i];
-		if (ov::is(elem->el, 'sep')) {
+		if (elem->el is :sep) {
 			pref = flush_list(ref state, els, pref, els_len + pref, ind - (is_op_list ? 1 : 0), first || !is_op_list);
 			first = false;
 			state_print(ref state, ' ');
@@ -225,23 +223,21 @@ def process_list(ref state : @wprinter::state_t, arr : @wprinter::pretty_arr_t, 
 			array::push(ref els, elem);
 			els_len += elem->len;
 		}
-
 	}
 	pref = flush_list(ref state, els, pref, els_len + pref, ind - (is_op_list ? 1 : 0), first || !is_op_list)
-		if
-		array::len(els) > 0;
+		if array::len(els) > 0;
 	return pref;
 }
 
-def print_t_rec(ref state : @wprinter::state_t, wise_s : @wprinter::pretty_t, pref : ptd::sim(), ind : ptd::sim()) : ptd::sim() {
+def print_t_rec(ref state : @wprinter::state_t, wise_s : @wprinter::pretty_t, pref : ptd::sim(), ind : ptd::sim()) : 
+		ptd::sim() {
 	if (!is_to_long(wise_s->len + pref)) {
 		print_sim_rec(ref state, wise_s);
 		pref += wise_s->len;
 		return pref;
 	}
-
 	match (wise_s->el) case :sim(var sim_val) {
-		if(sim_val eq ',' || sim_val eq ')'){
+		if (sim_val eq ',' || sim_val eq ')') {
 			state_print(ref state, sim_val);
 			return pref + wise_s->len;
 		}

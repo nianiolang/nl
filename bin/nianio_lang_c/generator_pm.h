@@ -4,6 +4,7 @@
  */
 #pragma once
 #include "c_rt_lib.h"
+void generator_pm0__const__init();
 ImmT generator_pm0fun_args_t();
 ImmT generator_pm0fun_args_t0ptr(int _num, ImmT *_tab);
 ImmT generator_pm0state_t();

@@ -53,52 +53,6 @@ ImmT c_std_lib0array_sub(ImmT ___nl__array, ImmT ___nl__begin, ImmT ___nl__lengt
 	return _out;
 }
 
-ImmT c_std_lib0array_sort(ImmT ___nl__arrI, ImmT ___nl__func) {
-	ImmT ret = c_rt_lib0array_new();
-	NlArray *old = (NlArray *)___nl__arrI;
-	INT len = old->size;
-	INT i,j,p,k,d,q;
-	if(len == 0) return ret;
-	ImmT arg = c_rt_lib0array_new();
-	c_rt_lib0array_push(&arg, ___nl__arrI);
-	c_rt_lib0array_push(&arg, ___nl__arrI);
-	ImmT *tab = old->arr;
-	ImmT *args = ((NlArray *)arg)->arr;
-	for(i=0;i<len;++i)
-		c_rt_lib0array_push(&ret, tab[i]);
-	tab = ((NlArray *)ret)->arr;
-	ImmT* tmp = (ImmT*)alloc_mem(sizeof(ImmT)*len);
-	ImmT var = c_rt_lib0string_new("ref");
-	___nl__func = c_rt_lib0ov_as(___nl__func, var);
-	c_rt_lib0clear(&var);
-	
-	for(d=1;d<len;d*=2){
-		for(p=0;p<len;++p) tmp[p]=tab[p];
-		for(p=0;p+d<len;p+=d){
-			i=p; j=p+d; q=p;
-			p += d; k = p+d;
-			if(k > len) k = len;
-			while (i<p && j < k) {
-				args[0] = tmp[i];
-				args[1] = tmp[j];
-				ImmT con = c_rt_lib0exec(___nl__func, &arg);
-				if (c_rt_lib0check_true_native(con))
-					tab[q++]=tmp[i++];
-				else
-					tab[q++]=tmp[j++];
-				c_rt_lib0clear(&con);
-			}
-			while (i<p) tab[q++]=tmp[i++];
-		}
-	}
-	args[0] = ___nl__arrI;
-	args[1] = ___nl__arrI;
-	free_mem(tmp, sizeof(ImmT)*len);
-	c_rt_lib0clear(&___nl__func);
-	c_rt_lib0clear(&arg);
-	return ret;
-}
-
 ImmT c_std_lib0array_push(ImmT *___ref___arr, ImmT ___nl__el) {
 	c_rt_lib0array_push(___ref___arr, ___nl__el);
 	return NULL;
@@ -276,13 +230,141 @@ ImmT c_std_lib0string_replace(ImmT ___nl__str, ImmT ___nl__old, ImmT ___nl__new_
 	c_rt_lib0clear((void**)&nI);
 	return c_rt_lib0string_new_alloc(_out, l, _len);
 }
+
+static char hex(char a) {
+	if (a < 10)
+		return '0' + a;
+	return 'a' + a - 10;
+}
+
+ImmT c_std_lib0string_escape2hex31(ImmT ___nl__str) {
+	NlString *sI = toStringIfSim(___nl__str);
+	int counter = 0;
+	for (int i = 0; i < sI->length; ++i)
+		counter += (sI->s[i] >= 0) & (sI->s[i] < 32);
+	if (counter == 0)
+		return (ImmT)sI;
+	int len = sI->length + 3 * counter;
+	char *result = (char*)alloc_mem(len * sizeof(char));
+	int j = 0;
+	for (int i = 0; i < sI->length; ++i) {
+		if (sI->s[i] >= 0 && sI->s[i] < 32) {
+			result[j] = '\\';
+			result[j + 1] = 'x';
+			result[j + 2] = hex(sI->s[i] / 16);
+			result[j + 3] = hex(sI->s[i] % 16);
+			j += 4;
+		} else {
+			result[j] = sI->s[i];
+			++j;
+		}
+	}
+	return c_rt_lib0string_new_alloc(result, len, len);
+}
+
 ImmT c_std_lib0string_compare(ImmT ___nl__a, ImmT ___nl__b) {
 	NlString *sI = toStringIfSim(___nl__a);
 	NlString *oI = toStringIfSim(___nl__b);
-	int ret = strcmp(sI->s, oI->s);
+	int ret = compare_strings(sI, oI);
 	c_rt_lib0clear((void**)&sI);
 	c_rt_lib0clear((void**)&oI);
 	return c_rt_lib0int_new(ret);
+}
+
+unsigned get_char_utf8(unsigned char *utf8, int *poz){
+	unsigned k1 = utf8[(*poz)++];
+	if(k1<0x80) return k1;
+	unsigned k2 = utf8[(*poz)++];
+	if(k1<0xC0){
+		nl_die();
+	}
+	if(k1<0xE0){
+		return (k1 - 0xC0) * 64 + k2 - 0x80;
+	}
+	unsigned k3 = utf8[(*poz)++];
+	if(k1<0xF0){
+		return ((k1 - 0xE0) * 64 + k2 - 0x80) * 64 + k3 - 0x80;
+	}
+	unsigned k4 = utf8[(*poz)++];
+	if(k1<0xF8){
+		return (((k1 - 0xF0) * 64 + k2 - 0x80) * 64 + k3 - 0x80) * 64 + k4 - 0x80;
+	}
+	nl_die();
+	return 0;
+}
+
+void set_char_utf8(unsigned char *utf8, int *poz, unsigned val){
+	if(val<0x80){
+		utf8[(*poz)++] = val;
+		return;
+	}
+	if(val<0x800){
+		utf8[(*poz)++] = val / 64 + 0xC0;
+		utf8[(*poz)++] = val % 64 + 0x80;
+		return;
+	}
+	if(val<0x10000){
+		utf8[(*poz)++] = val / 64 / 64 + 0xE0;
+		utf8[(*poz)++] = val / 64 % 64 + 0x80;
+		utf8[(*poz)++] = val % 64 + 0x80;
+		return;
+	}
+	nl_die();
+}
+
+INT get_char_utf16(unsigned char *utf16, int *poz, int is_le){
+	unsigned val = utf16[(*poz)++];
+	if(is_le)
+		val = val + utf16[(*poz)++] * 256;
+	else 
+		val = val * 256 + utf16[(*poz)++];
+	if(val >= 0xD800 && val <= 0xDFFF)
+		return -1;
+	return (INT) val;
+}
+
+void set_char_utf16(unsigned char *utf16, int *poz, unsigned val){
+	if(val<0x10000){
+		utf16[(*poz)++] = val % 256;
+		utf16[(*poz)++] = val / 256 % 256;
+	} else {
+		nl_die();
+	}
+}
+
+ImmT c_std_lib0string_encode_utf16(ImmT ___nl__str) {
+	NlString *sI = toStringIfSim(___nl__str);
+	int size = sizeof(unsigned char) * (sI->length*2 + 3);
+	unsigned char *utf16 = (unsigned char *)alloc_mem(size);
+	int set = 0;
+	for(int get = 0; get < sI->length;){
+		unsigned v = get_char_utf8((unsigned char *)sI->s, &get);
+		set_char_utf16(utf16, &set, v);
+	}
+	utf16[set] = 0x0;
+	utf16[set+1] = 0x0;
+	c_rt_lib0clear((ImmT*)&sI);
+	return c_rt_lib0string_new_alloc((char*)utf16, set, size);
+}
+
+ImmT c_std_lib0string_decode_utf16(ImmT ___nl__str, ImmT ___nl__a) {
+	NlString *sI = toStringIfSim(___nl__str);
+	int le = c_rt_lib0check_true_native(___nl__a);
+	int size = sizeof(unsigned char) * (2 * sI->length + 1);
+	unsigned char *utf8 = (unsigned char *)alloc_mem(size);
+	int set = 0;
+	for(int get = 0; get + 1 < sI->length;){
+		INT v = get_char_utf16((unsigned char *)sI->s, &get, le);
+		if (v != -1) {
+			set_char_utf8(utf8, &set, (unsigned) v);
+		} else {
+			c_rt_lib0clear((ImmT*)&sI);
+			return c_rt_lib0ov_arg_new(c_rt_lib0string_new("err"), c_rt_lib0string_new("Could not decode string"));
+		}
+	}
+	utf8[set] = '\0';
+	c_rt_lib0clear((ImmT*)&sI);
+	return c_rt_lib0ov_arg_new(c_rt_lib0string_new("ok"), c_rt_lib0string_new_alloc((char*)utf8, set, size));
 }
 
 ImmT c_std_lib0is_array(ImmT ___nl__imm) {

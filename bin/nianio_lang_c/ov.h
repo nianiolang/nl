@@ -4,6 +4,7 @@
  */
 #pragma once
 #include "c_rt_lib.h"
+void ov0__const__init();
 ImmT ov0mk(ImmT ___nl__0);
 ImmT ov0mk0ptr(int _num, ImmT *_tab);
 ImmT ov0mk_val(ImmT ___nl__0,ImmT ___nl__1);

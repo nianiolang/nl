@@ -6,6 +6,7 @@ sub nl::is_hash;
 sub nl::is_sim;
 sub nl::is_variant;
 sub nl::print;
+sub nl::debug_die;
 
 return 1;
 
@@ -14,17 +15,17 @@ my $memory_0;my $memory_1;$memory_0 = $_[0];
 #line 9
 $memory_1 = c_std_lib::is_array($memory_0);
 #line 9
-if (c_rt_lib::check_true($memory_1)) {goto label_2;}
+if (c_rt_lib::check_true($memory_1)) {goto label_4;}
 #line 9
 $memory_1 = c_rt_lib::to_nl(0);
 #line 9
-goto label_1;
+goto label_6;
 #line 9
-label_2:
+label_4:
 #line 9
 $memory_1 = c_rt_lib::to_nl(1);
 #line 9
-label_1:
+label_6:
 #line 9
 undef($memory_0);
 #line 9
@@ -42,17 +43,17 @@ my $memory_0;my $memory_1;$memory_0 = $_[0];
 #line 13
 $memory_1 = c_std_lib::is_hash($memory_0);
 #line 13
-if (c_rt_lib::check_true($memory_1)) {goto label_2;}
+if (c_rt_lib::check_true($memory_1)) {goto label_4;}
 #line 13
 $memory_1 = c_rt_lib::to_nl(0);
 #line 13
-goto label_1;
+goto label_6;
 #line 13
-label_2:
+label_4:
 #line 13
 $memory_1 = c_rt_lib::to_nl(1);
 #line 13
-label_1:
+label_6:
 #line 13
 undef($memory_0);
 #line 13
@@ -70,17 +71,17 @@ my $memory_0;my $memory_1;$memory_0 = $_[0];
 #line 17
 $memory_1 = c_std_lib::is_sim($memory_0);
 #line 17
-if (c_rt_lib::check_true($memory_1)) {goto label_2;}
+if (c_rt_lib::check_true($memory_1)) {goto label_4;}
 #line 17
 $memory_1 = c_rt_lib::to_nl(0);
 #line 17
-goto label_1;
+goto label_6;
 #line 17
-label_2:
+label_4:
 #line 17
 $memory_1 = c_rt_lib::to_nl(1);
 #line 17
-label_1:
+label_6:
 #line 17
 undef($memory_0);
 #line 17
@@ -98,17 +99,17 @@ my $memory_0;my $memory_1;$memory_0 = $_[0];
 #line 21
 $memory_1 = c_std_lib::is_variant($memory_0);
 #line 21
-if (c_rt_lib::check_true($memory_1)) {goto label_2;}
+if (c_rt_lib::check_true($memory_1)) {goto label_4;}
 #line 21
 $memory_1 = c_rt_lib::to_nl(0);
 #line 21
-goto label_1;
+goto label_6;
 #line 21
-label_2:
+label_4:
 #line 21
 $memory_1 = c_rt_lib::to_nl(1);
 #line 21
-label_1:
+label_6:
 #line 21
 undef($memory_0);
 #line 21
@@ -128,5 +129,19 @@ c_std_lib::print($memory_0);
 #line 25
 undef($memory_0);
 #line 25
+return;
+}
+
+sub nl::debug_die($) {
+my $memory_0;my $memory_1;$memory_0 = $_[0];
+#line 30
+$memory_1 = [];
+#line 30
+die(dfile::ssave($memory_1));
+#line 30
+undef($memory_1);
+#line 30
+undef($memory_0);
+#line 30
 return;
 }

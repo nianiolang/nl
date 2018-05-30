@@ -4,6 +4,7 @@
  */
 #pragma once
 #include "c_rt_lib.h"
+void wprinter0__const__init();
 ImmT wprinter0state_t();
 ImmT wprinter0state_t0ptr(int _num, ImmT *_tab);
 ImmT wprinter0arr_kind_t();

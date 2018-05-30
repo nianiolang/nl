@@ -11,38 +11,41 @@ use boolean_t;
 def test_type::test() {
 	var a : @test_type::typ2 = funkcja(:a('nothing'));
 	var b : @test_type::typ1 = a;
-	var c = {a=>[]};
+	var c = {a => []};
 	array::push(ref c->a, a);
 	hash::set_value(ref c, 'a', [a]);
 	var d = :stolik;
 	d = :a('nic');
-	var e = {g=>''};
-	if(true){
+	var e = {g => ''};
+	if (true) {
 		e->h = '';
-	}else{
+	} else {
 		e->h = 's';
 	}
-	if(false){
+	if (false) {
 		d = :a('nic');
-	}else{
+	} else {
 		d = :d(e);
 	}
-	if(true){
-		d = :b({a=>'ss',c=>'ff'});
+	if (true) {
+		d = :b({a => 'ss', c => 'ff'});
 	} else {
 		d = :kotek;
 		die;
 	}
 	funkcja(d);
 }
+
 def cos() : @test_type::typ2 {
 	return :h('');
 }
+
 def f(a : @test_type::rekord) : ptd::rec({g => ptd::sim(), h => @test_type::typ2}) {
 	var b = a;
 	b->h = cos();
 	return b;
 }
+
 def test_type::typ1() {
 	return ptd::var({g => @test_type::typ2, h => ptd::sim()});
 }
@@ -54,11 +57,13 @@ def test_type::typ2() {
 def test_type::rekord() {
 	return ptd::rec({g => ptd::sim(), h => ptd::sim()});
 }
+
 def test_is(arg) : @boolean_t::type {
 	return arg is :h;
 }
-def funkcja(a : ptd::var({a => ptd::sim(), b => ptd::rec({a => ptd::sim(), c => ptd::sim()}), d => @test_type::rekord})
-	) : @test_type::typ2 {
+
+def funkcja(a : ptd::var({a => ptd::sim(), b => ptd::rec({a => ptd::sim(), c => ptd::sim()}), d => @test_type::rekord})) 
+	: @test_type::typ2 {
 	var ret;
 	var emp : @test_type::rekord;
 	match (a) case :a(var t) {

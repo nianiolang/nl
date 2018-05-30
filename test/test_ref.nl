@@ -2,6 +2,7 @@
 # (c) Atinea Sp. z o.o.
 ###
 
+
 use array;
 use enum;
 use nassert;
@@ -31,7 +32,7 @@ def test_ref::test3(ref a1, a2, ref a3, a4, ref a5, a6) {
 }
 
 def test22(ref a, ref b) {
-	loop{
+	loop {
 		a = 10;
 		b = 20;
 		break;
@@ -59,9 +60,8 @@ def test_ref::total_test() {
 	loop {
 		break;
 	}
-
 	if (enum::eq(aaa, :wariant1)) {
 		die;
 	}
-
 }
+

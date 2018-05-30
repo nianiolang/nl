@@ -17,5 +17,8 @@ ImmT c_fe_lib0get_module_files(ImmT dirname);
 ImmT c_fe_lib0get_module_files_rec(ImmT dirname);
 ImmT c_fe_lib0mk_path(ImmT path);
 ImmT c_fe_lib0get_time();
+ImmT c_fe_lib0get_pid();
+ImmT c_fe_lib0time();
+ImmT c_fe_lib0localtime(ImmT arg);
 ImmT c_fe_lib0sleep(ImmT sec);
 ImmT c_fe_lib0exec_cmd(ImmT cmdI);

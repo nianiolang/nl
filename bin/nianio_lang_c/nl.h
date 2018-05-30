@@ -4,6 +4,7 @@
  */
 #pragma once
 #include "c_rt_lib.h"
+void nl0__const__init();
 ImmT nl0is_array(ImmT ___nl__0);
 ImmT nl0is_array0ptr(int _num, ImmT *_tab);
 ImmT nl0is_hash(ImmT ___nl__0);
@@ -14,3 +15,5 @@ ImmT nl0is_variant(ImmT ___nl__0);
 ImmT nl0is_variant0ptr(int _num, ImmT *_tab);
 ImmT nl0print(ImmT ___nl__0);
 ImmT nl0print0ptr(int _num, ImmT *_tab);
+ImmT nl0debug_die(ImmT ___nl__0);
+ImmT nl0debug_die0ptr(int _num, ImmT *_tab);

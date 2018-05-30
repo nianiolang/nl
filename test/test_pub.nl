@@ -2,6 +2,7 @@
 # (c) Atinea Sp. z o.o.
 ###
 
+
 use nassert;
 
 def test_pub::test() {
@@ -21,3 +22,4 @@ def funkcja(arg) {
 	}
 	return 0;
 }
+

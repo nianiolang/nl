@@ -1,7 +1,7 @@
-#####
-# (c) Atinea Sp. z o.o.
-# LGA 18.12.2012
 ###
+# (c) Atinea Sp. z o.o.
+###
+
 
 use array;
 use dfile;
@@ -13,14 +13,11 @@ use ptd;
 use string_utils;
 
 def generator_pm::fun_args_t() {
-	return ptd::arr(ptd::var({val=>ptd::none(), ref=>ptd::none()}));
+	return ptd::arr(ptd::var({val => ptd::none(), ref => ptd::none()}));
 }
-def generator_pm::state_t(){
-	return ptd::rec({
-		perl_file => ptd::sim(),
-		module_name => ptd::sim(),
-		fun_args => @generator_pm::fun_args_t,
-	});
+
+def generator_pm::state_t() {
+	return ptd::rec({perl_file => ptd::sim(), module_name => ptd::sim(), fun_args => @generator_pm::fun_args_t});
 }
 
 def print(ref state : @generator_pm::state_t, s : ptd::sim()) : ptd::void() {
@@ -28,19 +25,15 @@ def print(ref state : @generator_pm::state_t, s : ptd::sim()) : ptd::void() {
 }
 
 def generator_pm::generate(nlasm : @nlasm::result_t) : ptd::sim() {
-	var state : @generator_pm::state_t = {
-		perl_file => '',
-		module_name => nlasm->module_name,
-		fun_args => [],
-	};
-	print(ref state, 'use c_rt_lib;'. string::lf());
+	var state : @generator_pm::state_t = {perl_file => '', module_name => nlasm->module_name, fun_args => []};
+	print(ref state, 'use c_rt_lib;' . string::lf());
 	print_imports(nlasm->imports, ref state);
 	fora var function (nlasm->functions) {
 		print(ref state, 'sub ');
 		print_function_access(function->access, ref state);
 		print(ref state, function->name . ';' . string::lf());
 	}
-	print(ref state, string::lf().'return 1;'. string::lf());
+	print(ref state, string::lf() . 'return 1;' . string::lf());
 	print_functions(nlasm->functions, ref state);
 	return state->perl_file;
 }
@@ -53,14 +46,13 @@ def print_imports(imports : ptd::arr(ptd::sim()), ref state : @generator_pm::sta
 
 def print_functions(functions : ptd::arr(@nlasm::function_t), ref state : @generator_pm::state_t) : ptd::void() {
 	fora var function (functions) {
-		if(is_singleton_use_function(function)){
+		if (is_singleton_use_function(function)) {
 			var fun_name = function->name;
 			var sin_fun = function;
 			sin_fun->name = '__' . fun_name;
 			print_function(sin_fun, ref state);
-			var generator_function_name = get_function_access(sin_fun->access, state->module_name)
-				. sin_fun->name;
-			print(ref state, string::lf().'my $_' . fun_name . ';'.string::lf());
+			var generator_function_name = get_function_access(sin_fun->access, state->module_name) . sin_fun->name;
+			print(ref state, string::lf() . 'my $_' . fun_name . ';' . string::lf());
 			print(ref state, 'sub ');
 			print_function_access(sin_fun->access, ref state);
 			print(ref state, fun_name . '() {' . string::lf());
@@ -76,7 +68,7 @@ def print_functions(functions : ptd::arr(@nlasm::function_t), ref state : @gener
 
 def print_function(function : @nlasm::function_t, ref state : @generator_pm::state_t) : ptd::void() {
 	state->fun_args = function->args_type;
-	print(ref state, string::lf().'sub ');
+	print(ref state, string::lf() . 'sub ');
 	print_function_access(function->access, ref state);
 	print(ref state, function->name . '(');
 	print_args_dollar(array::len(function->args_type), ref state);
@@ -90,33 +82,33 @@ def print_function(function : @nlasm::function_t, ref state : @generator_pm::sta
 	move_register_to_ref_args(ref state);
 	print(ref state, '}' . string::lf());
 }
+
 def is_singleton_use_function(function : @nlasm::function_t) : @boolean_t::type {
-	return false if(array::len(function->args_type) > 0);
+	return false if (array::len(function->args_type) > 0);
 	return true if function->annotation is :math;
 	var was_singleton = false;
 	var dest;
 	fora var cmd (function->commands) {
 		var command = cmd->cmd;
-		if(command is :call){
+		if (command is :call) {
 			var call = command as :call;
-			continue unless(call->fun_name eq 'sigleton_do_not_use_without_approval');
-			continue unless(call->mod eq 'singleton');
+			continue unless (call->fun_name eq 'sigleton_do_not_use_without_approval');
+			continue unless (call->mod eq 'singleton');
 			was_singleton = true;
 			dest = call->dest;
-		} elsif(command is :return){
+		} elsif (command is :return) {
 			return false unless was_singleton;
 			var ret = command as :return;
-			return false unless(ret is :val);
+			return false unless (ret is :val);
 			return ret as :val eq dest;
-		} elsif(command is :prt_lbl) {
-		} elsif(command is :clear) {
+		} elsif (command is :prt_lbl) {
+		} elsif (command is :clear) {
 		} else {
-			return false if(was_singleton);
+			return false if (was_singleton);
 		}
 	}
 	return false;
 }
-
 
 def print_function_access(access : @nlasm::access_t, ref state : @generator_pm::state_t) : ptd::void() {
 	print(ref state, get_function_access(access, state->module_name));
@@ -138,21 +130,23 @@ def print_args_dollar(args_size : ptd::sim(), ref state : @generator_pm::state_t
 
 def move_args_to_register(ref state : @generator_pm::state_t) : ptd::void() {
 	rep var arg_id (array::len(state->fun_args)) {
-		print(ref state, '$memory_' . arg_id . ' = $_['.arg_id.'];');
+		print(ref state, '$memory_' . arg_id . ' = $_[' . arg_id . '];');
 		match (state->fun_args[arg_id]) case :val {
 		} case :ref {
-			print(ref state, 'Scalar::Util::weaken($_['.arg_id.']) if ref($_['.arg_id.']);');
+			print(ref state, 'Scalar::Util::weaken($_[' . arg_id . ']) if ref($_[' . arg_id . ']);');
 		}
 	}
 }
+
 def move_register_to_ref_args(ref state : @generator_pm::state_t) : ptd::void() {
 	rep var arg_id (array::len(state->fun_args)) {
 		match (state->fun_args[arg_id]) case :val {
 		} case :ref {
-			print(ref state, '$_['.arg_id.'] = $memory_' . arg_id . ';');
+			print(ref state, '$_[' . arg_id . '] = $memory_' . arg_id . ';');
 		}
 	}
 }
+
 def print_commands(commands : ptd::arr(@nlasm::cmd_t), ref state : @generator_pm::state_t) : ptd::void() {
 	fora var command (commands) {
 		print_command(command, ref state);
@@ -160,7 +154,7 @@ def print_commands(commands : ptd::arr(@nlasm::cmd_t), ref state : @generator_pm
 }
 
 def print_command(command : @nlasm::cmd_t, ref state : @generator_pm::state_t) : ptd::void() {
-	print(ref state, '#line ' . command->debug->nast_debug->begin->line .string::lf());
+	print(ref state, '#line ' . command->debug->nast_debug->begin->line . string::lf());
 	match (command->cmd) case :arr_decl(var arr_decl) {
 		print_register_to_assign(arr_decl->dest, ref state);
 		print(ref state, '[');
@@ -187,10 +181,7 @@ def print_command(command : @nlasm::cmd_t, ref state : @generator_pm::state_t) :
 		print_call(call, ref state);
 	} case :func(var func) {
 		print_register_to_assign(func->dest, ref state);
-		print(ref state, dfile::ssave({
-				module=>func->module,
-				name=>func->name
-			}) . ';');
+		print(ref state, dfile::ssave({module => func->module, name => func->name}) . ';');
 	} case :una_op(var una_op) {
 		print_una_op(una_op, ref state);
 	} case :bin_op(var bin_op) {
@@ -199,12 +190,12 @@ def print_command(command : @nlasm::cmd_t, ref state : @generator_pm::state_t) :
 		print_register_to_assign(ov_is->dest, ref state);
 		print(ref state, 'c_rt_lib::ov_is(');
 		print_register(ov_is->src, ref state);
-		print(ref state, ', ''' . ov_is->type .''');');
+		print(ref state, ', ''' . ov_is->type . ''');');
 	} case :ov_as(var ov_as) {
 		print_register_to_assign(ov_as->dest, ref state);
 		print(ref state, 'c_rt_lib::ov_as(');
 		print_register(ov_as->src, ref state);
-		print(ref state, ', ''' . ov_as->type .''');');
+		print(ref state, ', ''' . ov_as->type . ''');');
 	} case :return(var return_i) {
 		move_register_to_ref_args(ref state);
 		match (return_i) case :val(var val) {
@@ -222,9 +213,9 @@ def print_command(command : @nlasm::cmd_t, ref state : @generator_pm::state_t) :
 		print_register_to_assign(move->dest, ref state);
 		print_register(move->src, ref state);
 		print(ref state, ';');
-	} case :load_const(var const){
+	} case :load_const(var const) {
 		print_register_to_assign(const->dest, ref state);
-		if(nl::is_sim(const->val) && string_utils::is_integer(const->val.'') && 0+const->val eq const->val){
+		if (nl::is_sim(const->val) && string_utils::is_integer(const->val . '') && 0 + const->val eq const->val) {
 			print(ref state, const->val . ';');
 		} else {
 			print(ref state, dfile::ssave(const->val) . ';');
@@ -240,21 +231,21 @@ def print_command(command : @nlasm::cmd_t, ref state : @generator_pm::state_t) :
 	} case :get_val(var get_val) {
 		print_register_to_assign(get_val->dest, ref state);
 		print_register(get_val->src, ref state);
-		print(ref state, '->{'''. get_val->key. '''};');
+		print(ref state, '->{''' . get_val->key . '''};');
 	} case :set_val(var set_val) {
 		print_set_val(set_val, ref state);
 	} case :ov_mk(var ov_mk) {
 		print_ov_mk(ov_mk, ref state);
 	} case :prt_lbl(var prt_lbl) {
-		print(ref state, prt_lbl . ':');
+		print(ref state, 'label_' . prt_lbl . ':');
 	} case :if_goto(var if_goto) {
 		print(ref state, 'if (c_rt_lib::check_true(');
 		print_register(if_goto->src, ref state);
 		print(ref state, ')) {');
-		print(ref state, 'goto ' . if_goto->dest . ';');
+		print(ref state, 'goto label_' . if_goto->dest . ';');
 		print(ref state, '}');
 	} case :goto(var goto) {
-		print(ref state, 'goto ' . goto . ';');
+		print(ref state, 'goto label_' . goto . ';');
 	} case :clear(var reg) {
 		print(ref state, 'undef(');
 		print_register(reg, ref state);
@@ -271,13 +262,12 @@ def print_call(call : @nlasm::call_t, ref state : @generator_pm::state_t) : ptd:
 		print(ref state, state->module_name . '_priv::');
 	}
 	print(ref state, call->fun_name . '(');
-	
 	var index = 0;
 	fora var arg (call->args) {
 		if (index > 0) {
 			print(ref state, ', ');
 		}
-		match(arg) case :val(var value) {
+		match (arg) case :val(var value) {
 			print_register(value, ref state);
 		} case :ref(var addr) {
 			print_register(addr, ref state);
@@ -287,7 +277,8 @@ def print_call(call : @nlasm::call_t, ref state : @generator_pm::state_t) : ptd:
 	print(ref state, ');');
 }
 
-def print_una_op(una_op : ptd::rec({dest => @nlasm::reg_t,src => @nlasm::reg_t,op => ptd::sim()}), ref state : @generator_pm::state_t) : ptd::void() {
+def print_una_op(una_op : ptd::rec({dest => @nlasm::reg_t, src => @nlasm::reg_t, op => ptd::sim()}), ref state : 
+	@generator_pm::state_t) : ptd::void() {
 	print_register_to_assign(una_op->dest, ref state);
 	print(ref state, 'c_rt_lib::to_nl(') if (una_op->op eq '!');
 	print(ref state, una_op->op);
@@ -297,16 +288,15 @@ def print_una_op(una_op : ptd::rec({dest => @nlasm::reg_t,src => @nlasm::reg_t,o
 	print(ref state, ';');
 }
 
-def print_bin_op(bin_op : ptd::rec({dest => @nlasm::reg_t,left => @nlasm::reg_t,right => @nlasm::reg_t,op => ptd::sim()}), ref state : @generator_pm::state_t) : ptd::void() {
+def print_bin_op(bin_op : ptd::rec({
+		dest => @nlasm::reg_t,
+		left => @nlasm::reg_t,
+		right => @nlasm::reg_t,
+		op => ptd::sim()
+	}), ref state : @generator_pm::state_t) : ptd::void() {
 	print_register_to_assign(bin_op->dest, ref state);
-	if (bin_op->op eq '>=' ||
-		bin_op->op eq '<=' ||
-		bin_op->op eq '<' ||
-		bin_op->op eq '>' ||
-		bin_op->op eq '==' ||
-		bin_op->op eq 'eq' ||
-		bin_op->op eq '!=' ||
-		bin_op->op eq 'ne') {
+	if (bin_op->op eq '>=' || bin_op->op eq '<=' || bin_op->op eq '<' || bin_op->op eq '>' || bin_op->op eq '==' || 
+		bin_op->op eq 'eq' || bin_op->op eq '!=' || bin_op->op eq 'ne') {
 		print(ref state, 'c_rt_lib::to_nl(');
 		print_register(bin_op->left, ref state);
 		print(ref state, ' ' . bin_op->op . ' ');
@@ -320,7 +310,8 @@ def print_bin_op(bin_op : ptd::rec({dest => @nlasm::reg_t,left => @nlasm::reg_t,
 	}
 }
 
-def print_set_at_idx(set_at_idx : ptd::rec({src => @nlasm::reg_t,idx => @nlasm::reg_t,val => @nlasm::reg_t}), ref state : @generator_pm::state_t) : ptd::void() {
+def print_set_at_idx(set_at_idx : ptd::rec({src => @nlasm::reg_t, idx => @nlasm::reg_t, val => @nlasm::reg_t}), ref 
+	state : @generator_pm::state_t) : ptd::void() {
 	print(ref state, ' if (c_rt_lib::get_arrcount(');
 	print_register(set_at_idx->src, ref state);
 	print(ref state, ') > 1) {');
@@ -328,7 +319,6 @@ def print_set_at_idx(set_at_idx : ptd::rec({src => @nlasm::reg_t,idx => @nlasm::
 	print(ref state, '[@{');
 	print_register(set_at_idx->src, ref state);
 	print(ref state, '}];}');
-	
 	print_register(set_at_idx->src, ref state);
 	print(ref state, '->[');
 	print_register(set_at_idx->idx, ref state);
@@ -337,7 +327,8 @@ def print_set_at_idx(set_at_idx : ptd::rec({src => @nlasm::reg_t,idx => @nlasm::
 	print(ref state, ';');
 }
 
-def print_set_val(set_val : ptd::rec({src => @nlasm::reg_t,key => ptd::sim(),val => @nlasm::reg_t}), ref state : @generator_pm::state_t) : ptd::void() {
+def print_set_val(set_val : ptd::rec({src => @nlasm::reg_t, key => ptd::sim(), val => @nlasm::reg_t}), ref state : 
+	@generator_pm::state_t) : ptd::void() {
 	print(ref state, ' if (c_rt_lib::get_hashcount(');
 	print_register(set_val->src, ref state);
 	print(ref state, ') > 1) {');
@@ -346,16 +337,16 @@ def print_set_val(set_val : ptd::rec({src => @nlasm::reg_t,key => ptd::sim(),val
 	print_register(set_val->src, ref state);
 	print(ref state, '}};}');
 	print_register(set_val->src, ref state);
-	print(ref state, '->{'''. set_val->key. '''} = ');
+	print(ref state, '->{''' . set_val->key . '''} = ');
 	print_register(set_val->val, ref state);
 	print(ref state, ';');
 }
 
 def print_ov_mk(ov_mk : @nlasm::ov_mk_t, ref state : @generator_pm::state_t) : ptd::void() {
 	print_register_to_assign(ov_mk->dest, ref state);
-	if(ov_mk->src is :emp && (ov_mk->name eq 'TRUE')){
+	if (ov_mk->src is :emp && (ov_mk->name eq 'TRUE')) {
 		print(ref state, 'c_rt_lib::to_nl(1);');
-	} elsif(ov_mk->src is :emp && (ov_mk->name eq 'FALSE')){
+	} elsif (ov_mk->src is :emp && (ov_mk->name eq 'FALSE')) {
 		print(ref state, 'c_rt_lib::to_nl(0);');
 	} else {
 		match (ov_mk->src) case :arg(var arg) {
@@ -375,5 +366,6 @@ def print_register(register : ptd::sim(), ref state : @generator_pm::state_t) : 
 
 def print_register_to_assign(register : ptd::sim(), ref state : @generator_pm::state_t) : ptd::void() {
 	print_register(register, ref state);
-	print(ref state, ' = ') if(register ne '');
+	print(ref state, ' = ') if (register ne '');
 }
+

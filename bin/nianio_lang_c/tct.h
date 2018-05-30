@@ -4,6 +4,7 @@
  */
 #pragma once
 #include "c_rt_lib.h"
+void tct0__const__init();
 ImmT tct0arr(ImmT ___nl__0);
 ImmT tct0arr0ptr(int _num, ImmT *_tab);
 ImmT tct0rec(ImmT ___nl__0);
@@ -24,7 +25,11 @@ ImmT tct0tct_im();
 ImmT tct0tct_im0ptr(int _num, ImmT *_tab);
 ImmT tct0bool();
 ImmT tct0bool0ptr(int _num, ImmT *_tab);
+ImmT tct0func();
+ImmT tct0func0ptr(int _num, ImmT *_tab);
 ImmT tct0var(ImmT ___nl__0);
 ImmT tct0var0ptr(int _num, ImmT *_tab);
+ImmT tct0try_var_as_case(ImmT ___nl__0,ImmT ___nl__1);
+ImmT tct0try_var_as_case0ptr(int _num, ImmT *_tab);
 ImmT tct0meta_type();
 ImmT tct0meta_type0ptr(int _num, ImmT *_tab);

@@ -8,6 +8,7 @@ use dfile;
 def get_check() {
 	return true;
 }
+
 def get_verbose() {
 	return true;
 }
@@ -19,9 +20,7 @@ def nassert::a(a, b) {
 		} else {
 			die;
 		}
-
 	}
-
 }
 
 def nassert::as(a, b, s) {

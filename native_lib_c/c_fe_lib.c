@@ -16,6 +16,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <sys/time.h>
+#include <time.h>
 
 ImmT c_fe_lib0print(ImmT ___nl__arg) {
 	c_rt_lib0print(___nl__arg);
@@ -178,6 +179,7 @@ ImmT c_fe_lib0mk_path(ImmT ___nl__path) {
 	}
 	return NULL;
 }
+
 ImmT c_fe_lib0get_time() {
 	struct timeval te; 
 	gettimeofday(&te, NULL);
@@ -190,6 +192,42 @@ ImmT c_fe_lib0get_time() {
 	c_rt_lib0clear(&usec);
 	return arr;
 }
+
+ImmT c_fe_lib0time() {
+	return c_rt_lib0int_new(time(NULL));
+}
+
+ImmT c_fe_lib0get_pid() {
+	return c_rt_lib0int_new(getpid());
+}
+
+ImmT c_fe_lib0localtime(ImmT ___nl__sec) {
+	time_t t = (time_t)getIntFromImm(___nl__sec);
+	struct tm *timeinfo;
+	timeinfo = localtime(&t);
+	ImmT arr = c_rt_lib0array_new();
+	ImmT val = c_rt_lib0int_new(timeinfo->tm_sec);
+	c_rt_lib0array_push(&arr, val);
+	c_rt_lib0move(&val, c_rt_lib0int_new(timeinfo->tm_min));
+	c_rt_lib0array_push(&arr, val);
+	c_rt_lib0move(&val, c_rt_lib0int_new(timeinfo->tm_hour));
+	c_rt_lib0array_push(&arr, val);
+	c_rt_lib0move(&val, c_rt_lib0int_new(timeinfo->tm_mday));
+	c_rt_lib0array_push(&arr, val);
+	c_rt_lib0move(&val, c_rt_lib0int_new(timeinfo->tm_mon+1));
+	c_rt_lib0array_push(&arr, val);
+	c_rt_lib0move(&val, c_rt_lib0int_new(timeinfo->tm_year+1900));
+	c_rt_lib0array_push(&arr, val);
+	c_rt_lib0move(&val, c_rt_lib0int_new(timeinfo->tm_wday));
+	c_rt_lib0array_push(&arr, val);
+	c_rt_lib0move(&val, c_rt_lib0int_new(timeinfo->tm_yday));
+	c_rt_lib0array_push(&arr, val);
+	c_rt_lib0move(&val, c_rt_lib0int_new(timeinfo->tm_isdst));
+	c_rt_lib0array_push(&arr, val);
+	c_rt_lib0clear(&val);
+	return arr;
+}
+
 ImmT c_fe_lib0sleep(ImmT ___nl__sec){
 	sleep(getIntFromImm(___nl__sec));
 	return NULL;

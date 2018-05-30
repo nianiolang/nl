@@ -80,11 +80,11 @@ $memory_5 = 1;
 #line 20
 $memory_6 = c_rt_lib::array_len($memory_2);
 #line 20
-label_3:
+label_16:
 #line 20
 $memory_7 = c_rt_lib::to_nl($memory_4 >= $memory_6);
 #line 20
-if (c_rt_lib::check_true($memory_7)) {goto label_1;}
+if (c_rt_lib::check_true($memory_7)) {goto label_27;}
 #line 20
 $memory_3 = $memory_2->[$memory_4];
 #line 20
@@ -100,9 +100,9 @@ undef($memory_8);
 #line 20
 $memory_4 = $memory_4 + $memory_5;
 #line 20
-goto label_3;
+goto label_16;
 #line 20
-label_1:
+label_27:
 #line 20
 undef($memory_2);
 #line 20
@@ -200,11 +200,11 @@ $memory_5 = 1;
 #line 33
 $memory_6 = c_rt_lib::array_len($memory_2);
 #line 33
-label_3:
+label_17:
 #line 33
 $memory_7 = c_rt_lib::to_nl($memory_4 >= $memory_6);
 #line 33
-if (c_rt_lib::check_true($memory_7)) {goto label_1;}
+if (c_rt_lib::check_true($memory_7)) {goto label_35;}
 #line 33
 $memory_3 = $memory_2->[$memory_4];
 #line 34
@@ -234,9 +234,9 @@ undef($memory_8);
 #line 35
 $memory_4 = $memory_4 + $memory_5;
 #line 35
-goto label_3;
+goto label_17;
 #line 35
-label_1:
+label_35:
 #line 35
 undef($memory_2);
 #line 35
@@ -346,11 +346,11 @@ $memory_2 = $memory_0->{'access'};
 #line 53
 $memory_3 = c_rt_lib::ov_is($memory_2, 'pub');
 #line 53
-if (c_rt_lib::check_true($memory_3)) {goto label_2;}
+if (c_rt_lib::check_true($memory_3)) {goto label_9;}
 #line 54
 $memory_3 = c_rt_lib::ov_is($memory_2, 'priv');
 #line 54
-if (c_rt_lib::check_true($memory_3)) {goto label_3;}
+if (c_rt_lib::check_true($memory_3)) {goto label_11;}
 #line 54
 $memory_3 = "NOMATCHALERT";
 #line 54
@@ -358,11 +358,11 @@ $memory_3 = [$memory_3,$memory_2];
 #line 54
 die(dfile::ssave($memory_3));
 #line 53
-label_2:
+label_9:
 #line 54
-goto label_1;
+goto label_16;
 #line 54
-label_3:
+label_11:
 #line 55
 $memory_4 = "_priv";
 #line 55
@@ -370,9 +370,9 @@ $memory_1 = $memory_4;
 #line 55
 undef($memory_4);
 #line 56
-goto label_1;
+goto label_16;
 #line 56
-label_1:
+label_16:
 #line 56
 undef($memory_2);
 #line 56
@@ -412,11 +412,11 @@ $memory_2 = $memory_0->{'access'};
 #line 62
 $memory_3 = c_rt_lib::ov_is($memory_2, 'pub');
 #line 62
-if (c_rt_lib::check_true($memory_3)) {goto label_2;}
+if (c_rt_lib::check_true($memory_3)) {goto label_9;}
 #line 64
 $memory_3 = c_rt_lib::ov_is($memory_2, 'priv');
 #line 64
-if (c_rt_lib::check_true($memory_3)) {goto label_3;}
+if (c_rt_lib::check_true($memory_3)) {goto label_14;}
 #line 64
 $memory_3 = "NOMATCHALERT";
 #line 64
@@ -424,7 +424,7 @@ $memory_3 = [$memory_3,$memory_2];
 #line 64
 die(dfile::ssave($memory_3));
 #line 62
-label_2:
+label_9:
 #line 63
 $memory_4 = "public";
 #line 63
@@ -432,9 +432,9 @@ $memory_1 = $memory_4;
 #line 63
 undef($memory_4);
 #line 64
-goto label_1;
+goto label_19;
 #line 64
-label_3:
+label_14:
 #line 65
 $memory_4 = "private";
 #line 65
@@ -442,9 +442,9 @@ $memory_1 = $memory_4;
 #line 65
 undef($memory_4);
 #line 66
-goto label_1;
+goto label_19;
 #line 66
-label_1:
+label_19:
 #line 66
 undef($memory_2);
 #line 66
@@ -553,48 +553,24 @@ return;
 
 sub generator_java_priv::is_singleton_use_function($) {
 my $memory_0;my $memory_1;my $memory_2;my $memory_3;my $memory_4;my $memory_5;my $memory_6;my $memory_7;my $memory_8;my $memory_9;my $memory_10;my $memory_11;my $memory_12;my $memory_13;$memory_0 = $_[0];
-#line 77
+#line 78
 $memory_2 = $memory_0->{'args_type'};
-#line 77
+#line 78
 $memory_1 = array::len($memory_2);
-#line 77
+#line 78
 undef($memory_2);
-#line 77
+#line 78
 $memory_2 = 0;
-#line 77
+#line 78
 $memory_1 = c_rt_lib::to_nl($memory_1 > $memory_2);
-#line 77
+#line 78
 undef($memory_2);
-#line 77
+#line 78
 $memory_1 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_1));
-#line 77
-if (c_rt_lib::check_true($memory_1)) {goto label_2;}
-#line 77
+#line 78
+if (c_rt_lib::check_true($memory_1)) {goto label_14;}
+#line 78
 $memory_2 = c_rt_lib::to_nl(0);
-#line 77
-undef($memory_0);
-#line 77
-undef($memory_1);
-#line 77
-return $memory_2;
-#line 77
-undef($memory_2);
-#line 77
-goto label_2;
-#line 77
-label_2:
-#line 77
-undef($memory_1);
-#line 78
-$memory_1 = $memory_0->{'annotation'};
-#line 78
-$memory_1 = c_rt_lib::ov_is($memory_1, 'math');
-#line 78
-$memory_1 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_1));
-#line 78
-if (c_rt_lib::check_true($memory_1)) {goto label_4;}
-#line 78
-$memory_2 = c_rt_lib::to_nl(1);
 #line 78
 undef($memory_0);
 #line 78
@@ -604,378 +580,402 @@ return $memory_2;
 #line 78
 undef($memory_2);
 #line 78
-goto label_4;
+goto label_14;
 #line 78
-label_4:
+label_14:
 #line 78
 undef($memory_1);
 #line 79
+$memory_1 = $memory_0->{'annotation'};
+#line 79
+$memory_1 = c_rt_lib::ov_is($memory_1, 'math');
+#line 79
+$memory_1 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_1));
+#line 79
+if (c_rt_lib::check_true($memory_1)) {goto label_26;}
+#line 79
+$memory_2 = c_rt_lib::to_nl(1);
+#line 79
+undef($memory_0);
+#line 79
+undef($memory_1);
+#line 79
+return $memory_2;
+#line 79
+undef($memory_2);
+#line 79
+goto label_26;
+#line 79
+label_26:
+#line 79
+undef($memory_1);
+#line 80
 $memory_1 = c_rt_lib::to_nl(0);
-#line 81
-$memory_3 = $memory_0->{'commands'};
-#line 81
-$memory_5 = 0;
-#line 81
-$memory_6 = 1;
-#line 81
-$memory_7 = c_rt_lib::array_len($memory_3);
-#line 81
-label_7:
-#line 81
-$memory_8 = c_rt_lib::to_nl($memory_5 >= $memory_7);
-#line 81
-if (c_rt_lib::check_true($memory_8)) {goto label_5;}
-#line 81
-$memory_4 = $memory_3->[$memory_5];
 #line 82
+$memory_3 = $memory_0->{'commands'};
+#line 82
+$memory_5 = 0;
+#line 82
+$memory_6 = 1;
+#line 82
+$memory_7 = c_rt_lib::array_len($memory_3);
+#line 82
+label_33:
+#line 82
+$memory_8 = c_rt_lib::to_nl($memory_5 >= $memory_7);
+#line 82
+if (c_rt_lib::check_true($memory_8)) {goto label_195;}
+#line 82
+$memory_4 = $memory_3->[$memory_5];
+#line 83
 $memory_9 = $memory_4->{'cmd'};
-#line 83
+#line 84
 $memory_10 = $memory_9;
-#line 83
+#line 84
 $memory_10 = c_rt_lib::ov_is($memory_10, 'call');
-#line 83
+#line 84
 $memory_10 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_10));
-#line 83
-if (c_rt_lib::check_true($memory_10)) {goto label_9;}
 #line 84
+if (c_rt_lib::check_true($memory_10)) {goto label_82;}
+#line 85
 $memory_11 = $memory_9;
-#line 84
+#line 85
 $memory_11 = c_rt_lib::ov_as($memory_11, 'call');
-#line 85
+#line 86
 $memory_12 = $memory_11->{'fun_name'};
-#line 85
+#line 86
 $memory_13 = "sigleton_do_not_use_without_approval";
-#line 85
+#line 86
 $memory_12 = c_rt_lib::to_nl($memory_12 eq $memory_13);
-#line 85
+#line 86
 undef($memory_13);
-#line 85
+#line 86
 $memory_12 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_12));
-#line 85
+#line 86
 $memory_12 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_12));
-#line 85
-if (c_rt_lib::check_true($memory_12)) {goto label_11;}
-#line 85
+#line 86
+if (c_rt_lib::check_true($memory_12)) {goto label_57;}
+#line 86
 undef($memory_9);
-#line 85
+#line 86
 undef($memory_10);
-#line 85
+#line 86
 undef($memory_11);
-#line 85
-undef($memory_12);
-#line 85
-goto label_6;
-#line 85
-goto label_11;
-#line 85
-label_11:
-#line 85
+#line 86
 undef($memory_12);
 #line 86
+goto label_192;
+#line 86
+goto label_57;
+#line 86
+label_57:
+#line 86
+undef($memory_12);
+#line 87
 $memory_12 = $memory_11->{'mod'};
-#line 86
+#line 87
 $memory_13 = "singleton";
-#line 86
+#line 87
 $memory_12 = c_rt_lib::to_nl($memory_12 eq $memory_13);
-#line 86
+#line 87
 undef($memory_13);
-#line 86
+#line 87
 $memory_12 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_12));
-#line 86
+#line 87
 $memory_12 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_12));
-#line 86
-if (c_rt_lib::check_true($memory_12)) {goto label_13;}
-#line 86
+#line 87
+if (c_rt_lib::check_true($memory_12)) {goto label_72;}
+#line 87
 undef($memory_9);
-#line 86
+#line 87
 undef($memory_10);
-#line 86
+#line 87
 undef($memory_11);
-#line 86
-undef($memory_12);
-#line 86
-goto label_6;
-#line 86
-goto label_13;
-#line 86
-label_13:
-#line 86
+#line 87
 undef($memory_12);
 #line 87
+goto label_192;
+#line 87
+goto label_72;
+#line 87
+label_72:
+#line 87
+undef($memory_12);
+#line 88
 $memory_12 = c_rt_lib::to_nl(1);
-#line 87
+#line 88
 $memory_1 = $memory_12;
-#line 87
-undef($memory_12);
 #line 88
+undef($memory_12);
+#line 89
 $memory_12 = $memory_11->{'dest'};
-#line 88
+#line 89
 $memory_2 = $memory_12;
-#line 88
+#line 89
 undef($memory_12);
-#line 88
+#line 89
 undef($memory_11);
-#line 89
-goto label_8;
-#line 89
-label_9:
-#line 89
+#line 90
+goto label_189;
+#line 90
+label_82:
+#line 90
 $memory_10 = $memory_9;
-#line 89
+#line 90
 $memory_10 = c_rt_lib::ov_is($memory_10, 'return');
-#line 89
+#line 90
 $memory_10 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_10));
-#line 89
-if (c_rt_lib::check_true($memory_10)) {goto label_14;}
 #line 90
+if (c_rt_lib::check_true($memory_10)) {goto label_154;}
+#line 91
 $memory_11 = $memory_1;
-#line 90
+#line 91
 $memory_11 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_11));
-#line 90
+#line 91
 $memory_11 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_11));
-#line 90
-if (c_rt_lib::check_true($memory_11)) {goto label_16;}
-#line 90
+#line 91
+if (c_rt_lib::check_true($memory_11)) {goto label_107;}
+#line 91
 $memory_12 = c_rt_lib::to_nl(0);
-#line 90
+#line 91
 undef($memory_0);
-#line 90
+#line 91
 undef($memory_1);
-#line 90
+#line 91
 undef($memory_2);
-#line 90
+#line 91
 undef($memory_3);
-#line 90
+#line 91
 undef($memory_4);
-#line 90
+#line 91
 undef($memory_5);
-#line 90
+#line 91
 undef($memory_6);
-#line 90
+#line 91
 undef($memory_7);
-#line 90
+#line 91
 undef($memory_8);
-#line 90
+#line 91
 undef($memory_9);
-#line 90
+#line 91
 undef($memory_10);
-#line 90
-undef($memory_11);
-#line 90
-return $memory_12;
-#line 90
-undef($memory_12);
-#line 90
-goto label_16;
-#line 90
-label_16:
-#line 90
+#line 91
 undef($memory_11);
 #line 91
+return $memory_12;
+#line 91
+undef($memory_12);
+#line 91
+goto label_107;
+#line 91
+label_107:
+#line 91
+undef($memory_11);
+#line 92
 $memory_11 = $memory_9;
-#line 91
+#line 92
 $memory_11 = c_rt_lib::ov_as($memory_11, 'return');
-#line 92
+#line 93
 $memory_12 = $memory_11;
-#line 92
+#line 93
 $memory_12 = c_rt_lib::ov_is($memory_12, 'val');
-#line 92
+#line 93
 $memory_12 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_12));
-#line 92
+#line 93
 $memory_12 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_12));
-#line 92
-if (c_rt_lib::check_true($memory_12)) {goto label_18;}
-#line 92
+#line 93
+if (c_rt_lib::check_true($memory_12)) {goto label_133;}
+#line 93
 $memory_13 = c_rt_lib::to_nl(0);
-#line 92
+#line 93
 undef($memory_0);
-#line 92
+#line 93
 undef($memory_1);
-#line 92
+#line 93
 undef($memory_2);
-#line 92
+#line 93
 undef($memory_3);
-#line 92
+#line 93
 undef($memory_4);
-#line 92
+#line 93
 undef($memory_5);
-#line 92
+#line 93
 undef($memory_6);
-#line 92
+#line 93
 undef($memory_7);
-#line 92
+#line 93
 undef($memory_8);
-#line 92
+#line 93
 undef($memory_9);
-#line 92
+#line 93
 undef($memory_10);
-#line 92
+#line 93
 undef($memory_11);
-#line 92
+#line 93
 undef($memory_12);
-#line 92
+#line 93
 return $memory_13;
-#line 92
+#line 93
 undef($memory_13);
-#line 92
-goto label_18;
-#line 92
-label_18:
-#line 92
-undef($memory_12);
 #line 93
+goto label_133;
+#line 93
+label_133:
+#line 93
+undef($memory_12);
+#line 94
 $memory_12 = $memory_11;
-#line 93
+#line 94
 $memory_12 = c_rt_lib::ov_as($memory_12, 'val');
-#line 93
+#line 94
 $memory_12 = c_rt_lib::to_nl($memory_12 eq $memory_2);
-#line 93
+#line 94
 undef($memory_0);
-#line 93
+#line 94
 undef($memory_1);
-#line 93
+#line 94
 undef($memory_2);
-#line 93
+#line 94
 undef($memory_3);
-#line 93
+#line 94
 undef($memory_4);
-#line 93
+#line 94
 undef($memory_5);
-#line 93
+#line 94
 undef($memory_6);
-#line 93
+#line 94
 undef($memory_7);
-#line 93
+#line 94
 undef($memory_8);
-#line 93
+#line 94
 undef($memory_9);
-#line 93
+#line 94
 undef($memory_10);
-#line 93
+#line 94
 undef($memory_11);
-#line 93
+#line 94
 return $memory_12;
-#line 93
+#line 94
 undef($memory_12);
-#line 93
+#line 94
 undef($memory_11);
-#line 94
-goto label_8;
-#line 94
-label_14:
-#line 94
+#line 95
+goto label_189;
+#line 95
+label_154:
+#line 95
 $memory_10 = $memory_9;
-#line 94
+#line 95
 $memory_10 = c_rt_lib::ov_is($memory_10, 'prt_lbl');
-#line 94
+#line 95
 $memory_10 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_10));
-#line 94
-if (c_rt_lib::check_true($memory_10)) {goto label_19;}
 #line 95
-goto label_8;
-#line 95
-label_19:
-#line 95
+if (c_rt_lib::check_true($memory_10)) {goto label_160;}
+#line 96
+goto label_189;
+#line 96
+label_160:
+#line 96
 $memory_10 = $memory_9;
-#line 95
+#line 96
 $memory_10 = c_rt_lib::ov_is($memory_10, 'clear');
-#line 95
+#line 96
 $memory_10 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_10));
-#line 95
-if (c_rt_lib::check_true($memory_10)) {goto label_20;}
 #line 96
-goto label_8;
-#line 96
-label_20:
+if (c_rt_lib::check_true($memory_10)) {goto label_166;}
 #line 97
+goto label_189;
+#line 97
+label_166:
+#line 98
 $memory_11 = $memory_1;
-#line 97
+#line 98
 $memory_11 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_11));
-#line 97
-if (c_rt_lib::check_true($memory_11)) {goto label_22;}
-#line 97
+#line 98
+if (c_rt_lib::check_true($memory_11)) {goto label_186;}
+#line 98
 $memory_12 = c_rt_lib::to_nl(0);
-#line 97
+#line 98
 undef($memory_0);
-#line 97
+#line 98
 undef($memory_1);
-#line 97
+#line 98
 undef($memory_2);
-#line 97
+#line 98
 undef($memory_3);
-#line 97
+#line 98
 undef($memory_4);
-#line 97
+#line 98
 undef($memory_5);
-#line 97
+#line 98
 undef($memory_6);
-#line 97
+#line 98
 undef($memory_7);
-#line 97
+#line 98
 undef($memory_8);
-#line 97
+#line 98
 undef($memory_9);
-#line 97
+#line 98
 undef($memory_10);
-#line 97
+#line 98
 undef($memory_11);
-#line 97
+#line 98
 return $memory_12;
-#line 97
+#line 98
 undef($memory_12);
-#line 97
-goto label_22;
-#line 97
-label_22:
-#line 97
+#line 98
+goto label_186;
+#line 98
+label_186:
+#line 98
 undef($memory_11);
-#line 98
-goto label_8;
-#line 98
-label_8:
-#line 98
+#line 99
+goto label_189;
+#line 99
+label_189:
+#line 99
 undef($memory_10);
-#line 98
+#line 99
 undef($memory_9);
-#line 98
-label_6:
 #line 99
+label_192:
+#line 100
 $memory_5 = $memory_5 + $memory_6;
-#line 99
-goto label_7;
-#line 99
-label_5:
-#line 99
+#line 100
+goto label_33;
+#line 100
+label_195:
+#line 100
 undef($memory_3);
-#line 99
+#line 100
 undef($memory_4);
-#line 99
+#line 100
 undef($memory_5);
-#line 99
+#line 100
 undef($memory_6);
-#line 99
+#line 100
 undef($memory_7);
-#line 99
+#line 100
 undef($memory_8);
-#line 100
+#line 101
 $memory_3 = c_rt_lib::to_nl(0);
-#line 100
+#line 101
 undef($memory_0);
-#line 100
+#line 101
 undef($memory_1);
-#line 100
+#line 101
 undef($memory_2);
-#line 100
+#line 101
 return $memory_3;
-#line 100
+#line 101
 undef($memory_3);
-#line 100
+#line 101
 undef($memory_1);
-#line 100
+#line 101
 undef($memory_2);
-#line 100
+#line 101
 undef($memory_0);
-#line 100
+#line 101
 return;
 }
 
@@ -986,7 +986,7 @@ $memory_2 = generator_java_priv::is_singleton_use_function($memory_0);
 #line 105
 $memory_2 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_2));
 #line 105
-if (c_rt_lib::check_true($memory_2)) {goto label_2;}
+if (c_rt_lib::check_true($memory_2)) {goto label_60;}
 #line 106
 $memory_3 = $memory_0;
 #line 107
@@ -1011,38 +1011,38 @@ $memory_4 = generator_java_priv::get_function_name($memory_3);
 $memory_5 = "value__singleton__";
 #line 109
 $memory_5 = $memory_5 . $memory_4;
-#line 111
+#line 110
 $memory_6 = generator_java_priv::print_function($memory_3, $memory_1);
-#line 113
+#line 111
 $memory_7 = "private static Imm ";
-#line 113
+#line 111
 $memory_7 = $memory_7 . $memory_5;
-#line 113
+#line 111
 $memory_8 = " = null;";
-#line 113
+#line 111
 $memory_7 = $memory_7 . $memory_8;
-#line 113
+#line 111
 undef($memory_8);
-#line 113
+#line 111
 $memory_8 = string::lf();
-#line 113
+#line 111
 $memory_7 = $memory_7 . $memory_8;
-#line 113
+#line 111
 undef($memory_8);
-#line 113
+#line 111
 $memory_8 = generator_java_priv::get_function_declaration($memory_0);
-#line 113
+#line 111
 $memory_7 = $memory_7 . $memory_8;
-#line 113
+#line 111
 undef($memory_8);
-#line 113
+#line 112
 $memory_8 = "() throws Exception {
 	if (";
-#line 113
+#line 112
 $memory_7 = $memory_7 . $memory_8;
-#line 113
+#line 112
 undef($memory_8);
-#line 113
+#line 112
 $memory_7 = $memory_7 . $memory_5;
 #line 113
 $memory_8 = " == null) {
@@ -1053,752 +1053,752 @@ $memory_7 = $memory_7 . $memory_8;
 undef($memory_8);
 #line 113
 $memory_7 = $memory_7 . $memory_5;
-#line 113
+#line 114
 $memory_8 = " = ";
-#line 113
+#line 114
 $memory_7 = $memory_7 . $memory_8;
-#line 113
+#line 114
 undef($memory_8);
-#line 113
+#line 114
 $memory_7 = $memory_7 . $memory_4;
-#line 113
+#line 114
 $memory_8 = "();
 	}
 	return ";
-#line 113
+#line 114
 $memory_7 = $memory_7 . $memory_8;
-#line 113
+#line 114
 undef($memory_8);
-#line 113
+#line 114
 $memory_7 = $memory_7 . $memory_5;
-#line 113
+#line 116
 $memory_8 = ";
 }";
-#line 113
+#line 116
 $memory_7 = $memory_7 . $memory_8;
-#line 113
+#line 116
 undef($memory_8);
-#line 113
+#line 116
 $memory_6 = $memory_6 . $memory_7;
-#line 113
+#line 116
 undef($memory_7);
-#line 120
+#line 118
 undef($memory_0);
-#line 120
+#line 118
 undef($memory_1);
-#line 120
+#line 118
 undef($memory_2);
-#line 120
+#line 118
 undef($memory_3);
-#line 120
+#line 118
 undef($memory_4);
-#line 120
+#line 118
 undef($memory_5);
-#line 120
+#line 118
 return $memory_6;
-#line 120
+#line 118
 undef($memory_3);
-#line 120
+#line 118
 undef($memory_4);
-#line 120
+#line 118
 undef($memory_5);
-#line 120
+#line 118
 undef($memory_6);
-#line 121
-goto label_1;
-#line 121
-label_2:
-#line 122
+#line 119
+goto label_68;
+#line 119
+label_60:
+#line 120
 $memory_3 = generator_java_priv::print_function($memory_0, $memory_1);
-#line 122
+#line 120
 undef($memory_0);
-#line 122
+#line 120
 undef($memory_1);
-#line 122
+#line 120
 undef($memory_2);
-#line 122
+#line 120
 return $memory_3;
-#line 122
+#line 120
 undef($memory_3);
-#line 123
-goto label_1;
-#line 123
-label_1:
-#line 123
+#line 121
+goto label_68;
+#line 121
+label_68:
+#line 121
 undef($memory_2);
-#line 123
+#line 121
 undef($memory_0);
-#line 123
+#line 121
 undef($memory_1);
-#line 123
+#line 121
 return;
 }
 
 sub generator_java_priv::print_function($$) {
 my $memory_0;my $memory_1;my $memory_2;my $memory_3;my $memory_4;my $memory_5;my $memory_6;my $memory_7;my $memory_8;my $memory_9;my $memory_10;$memory_0 = $_[0];$memory_1 = $_[1];
-#line 127
+#line 125
 $memory_2 = string::lf();
-#line 127
+#line 125
 $memory_3 = generator_java_priv::get_function_declaration($memory_0);
-#line 127
+#line 125
 $memory_2 = $memory_2 . $memory_3;
-#line 127
+#line 125
 undef($memory_3);
-#line 127
+#line 125
 $memory_3 = "(";
-#line 127
+#line 125
 $memory_2 = $memory_2 . $memory_3;
-#line 127
+#line 125
 undef($memory_3);
-#line 128
+#line 126
 $memory_4 = $memory_0->{'args_type'};
-#line 128
+#line 126
 $memory_3 = array::len($memory_4);
-#line 128
+#line 126
 undef($memory_4);
-#line 128
+#line 126
 $memory_4 = 0;
-#line 128
+#line 126
 $memory_5 = 1;
-#line 128
-label_3:
-#line 128
-$memory_6 = c_rt_lib::to_nl($memory_4 >= $memory_3);
-#line 128
-if (c_rt_lib::check_true($memory_6)) {goto label_1;}
-#line 129
-$memory_7 = 0;
-#line 129
-$memory_7 = c_rt_lib::to_nl($memory_4 == $memory_7);
-#line 129
-$memory_7 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_7));
-#line 129
-$memory_7 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_7));
-#line 129
-if (c_rt_lib::check_true($memory_7)) {goto label_5;}
-#line 129
-$memory_8 = ", ";
-#line 129
-$memory_2 = $memory_2 . $memory_8;
-#line 129
-undef($memory_8);
-#line 129
-goto label_5;
-#line 129
-label_5:
-#line 129
-undef($memory_7);
-#line 130
-$memory_7 = "ImmRef ___arg__";
-#line 130
-$memory_7 = $memory_7 . $memory_4;
-#line 130
-$memory_2 = $memory_2 . $memory_7;
-#line 130
-undef($memory_7);
-#line 131
-$memory_4 = $memory_4 + $memory_5;
-#line 131
-goto label_3;
-#line 131
-label_1:
-#line 131
-undef($memory_3);
-#line 131
-undef($memory_4);
-#line 131
-undef($memory_5);
-#line 131
-undef($memory_6);
-#line 132
-$memory_3 = ") throws Exception {";
-#line 132
-$memory_4 = string::lf();
-#line 132
-$memory_3 = $memory_3 . $memory_4;
-#line 132
-undef($memory_4);
-#line 132
-$memory_2 = $memory_2 . $memory_3;
-#line 132
-undef($memory_3);
-#line 133
-$memory_4 = $memory_0->{'args_type'};
-#line 133
-$memory_3 = array::len($memory_4);
-#line 133
-undef($memory_4);
-#line 133
-$memory_4 = 0;
-#line 133
-$memory_5 = 1;
-#line 133
-label_8:
-#line 133
-$memory_6 = c_rt_lib::to_nl($memory_4 >= $memory_3);
-#line 133
-if (c_rt_lib::check_true($memory_6)) {goto label_6;}
-#line 134
-$memory_7 = $memory_0->{'args_type'};
-#line 134
-$memory_7 = $memory_7->[$memory_4];
-#line 134
-$memory_8 = c_rt_lib::ov_is($memory_7, 'val');
-#line 134
-if (c_rt_lib::check_true($memory_8)) {goto label_10;}
-#line 136
-$memory_8 = c_rt_lib::ov_is($memory_7, 'ref');
-#line 136
-if (c_rt_lib::check_true($memory_8)) {goto label_11;}
-#line 136
-$memory_8 = "NOMATCHALERT";
-#line 136
-$memory_8 = [$memory_8,$memory_7];
-#line 136
-die(dfile::ssave($memory_8));
-#line 134
-label_10:
-#line 135
-$memory_9 = "ImmRef ___nl__";
-#line 135
-$memory_9 = $memory_9 . $memory_4;
-#line 135
-$memory_10 = " = new ImmRef(___arg__";
-#line 135
-$memory_9 = $memory_9 . $memory_10;
-#line 135
-undef($memory_10);
-#line 135
-$memory_9 = $memory_9 . $memory_4;
-#line 135
-$memory_10 = generator_java_priv::print_getter();
-#line 135
-$memory_9 = $memory_9 . $memory_10;
-#line 135
-undef($memory_10);
-#line 135
-$memory_10 = ");";
-#line 135
-$memory_9 = $memory_9 . $memory_10;
-#line 135
-undef($memory_10);
-#line 135
-$memory_2 = $memory_2 . $memory_9;
-#line 135
-undef($memory_9);
-#line 136
-goto label_9;
-#line 136
-label_11:
-#line 137
-$memory_9 = "ImmRef ___nl__";
-#line 137
-$memory_9 = $memory_9 . $memory_4;
-#line 137
-$memory_10 = " = ___arg__";
-#line 137
-$memory_9 = $memory_9 . $memory_10;
-#line 137
-undef($memory_10);
-#line 137
-$memory_9 = $memory_9 . $memory_4;
-#line 137
-$memory_10 = ";";
-#line 137
-$memory_9 = $memory_9 . $memory_10;
-#line 137
-undef($memory_10);
-#line 137
-$memory_2 = $memory_2 . $memory_9;
-#line 137
-undef($memory_9);
-#line 138
-goto label_9;
-#line 138
-label_9:
-#line 138
-undef($memory_7);
-#line 138
-undef($memory_8);
-#line 139
-$memory_4 = $memory_4 + $memory_5;
-#line 139
-goto label_8;
-#line 139
-label_6:
-#line 139
-undef($memory_3);
-#line 139
-undef($memory_4);
-#line 139
-undef($memory_5);
-#line 139
-undef($memory_6);
-#line 140
-$memory_3 = string::lf();
-#line 140
-$memory_2 = $memory_2 . $memory_3;
-#line 140
-undef($memory_3);
-#line 141
-$memory_4 = $memory_0->{'args_type'};
-#line 141
-$memory_3 = array::len($memory_4);
-#line 141
-undef($memory_4);
-#line 141
-label_13:
-#line 141
-$memory_4 = $memory_0->{'reg_size'};
-#line 141
-$memory_4 = c_rt_lib::to_nl($memory_3 < $memory_4);
-#line 141
-$memory_4 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_4));
-#line 141
-if (c_rt_lib::check_true($memory_4)) {goto label_12;}
-#line 142
-$memory_5 = "ImmRef ___nl__";
-#line 142
-$memory_5 = $memory_5 . $memory_3;
-#line 142
-$memory_6 = " = new ImmRef(null);";
-#line 142
-$memory_5 = $memory_5 . $memory_6;
-#line 142
-undef($memory_6);
-#line 142
-$memory_6 = string::lf();
-#line 142
-$memory_5 = $memory_5 . $memory_6;
-#line 142
-undef($memory_6);
-#line 142
-$memory_2 = $memory_2 . $memory_5;
-#line 142
-undef($memory_5);
-#line 142
-$memory_5 = 1;
-#line 142
-$memory_3 = $memory_3 + $memory_5;
-#line 142
-undef($memory_5);
-#line 143
-goto label_13;
-#line 143
+#line 126
 label_12:
-#line 143
-undef($memory_3);
-#line 143
-undef($memory_4);
-#line 144
-$memory_3 = "Map<ImmString, Imm> ";
-#line 144
-$memory_4 = generator_java_priv::print_hash_name();
-#line 144
-$memory_3 = $memory_3 . $memory_4;
-#line 144
-undef($memory_4);
-#line 144
-$memory_4 = ";";
-#line 144
-$memory_3 = $memory_3 . $memory_4;
-#line 144
-undef($memory_4);
-#line 144
-$memory_4 = string::lf();
-#line 144
-$memory_3 = $memory_3 . $memory_4;
-#line 144
-undef($memory_4);
-#line 144
-$memory_2 = $memory_2 . $memory_3;
-#line 144
-undef($memory_3);
-#line 145
-$memory_3 = "String label = \"\"; while (true) { switch (label) { default: ";
-#line 145
-$memory_4 = string::lf();
-#line 145
-$memory_3 = $memory_3 . $memory_4;
-#line 145
-undef($memory_4);
-#line 145
-$memory_2 = $memory_2 . $memory_3;
-#line 145
-undef($memory_3);
-#line 146
-$memory_3 = $memory_0->{'commands'};
-#line 146
-$memory_5 = 0;
-#line 146
-$memory_6 = 1;
-#line 146
-$memory_7 = c_rt_lib::array_len($memory_3);
-#line 146
-label_17:
-#line 146
-$memory_8 = c_rt_lib::to_nl($memory_5 >= $memory_7);
-#line 146
-if (c_rt_lib::check_true($memory_8)) {goto label_15;}
-#line 146
-$memory_4 = $memory_3->[$memory_5];
-#line 146
-$memory_9 = generator_java_priv::print_command($memory_1, $memory_4);
-#line 146
-$memory_2 = $memory_2 . $memory_9;
-#line 146
-undef($memory_9);
-#line 146
-$memory_5 = $memory_5 + $memory_6;
-#line 146
-goto label_17;
-#line 146
-label_15:
-#line 146
-undef($memory_3);
-#line 146
-undef($memory_4);
-#line 146
-undef($memory_5);
-#line 146
-undef($memory_6);
-#line 146
-undef($memory_7);
-#line 146
+#line 126
+$memory_6 = c_rt_lib::to_nl($memory_4 >= $memory_3);
+#line 126
+if (c_rt_lib::check_true($memory_6)) {goto label_32;}
+#line 127
+$memory_7 = 0;
+#line 127
+$memory_7 = c_rt_lib::to_nl($memory_4 == $memory_7);
+#line 127
+$memory_7 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_7));
+#line 127
+$memory_7 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_7));
+#line 127
+if (c_rt_lib::check_true($memory_7)) {goto label_24;}
+#line 127
+$memory_8 = ", ";
+#line 127
+$memory_2 = $memory_2 . $memory_8;
+#line 127
 undef($memory_8);
-#line 147
-$memory_3 = "}}}";
-#line 147
-$memory_3 = $memory_2 . $memory_3;
-#line 147
-$memory_4 = string::lf();
-#line 147
-$memory_3 = $memory_3 . $memory_4;
-#line 147
-undef($memory_4);
-#line 147
-undef($memory_0);
-#line 147
-undef($memory_1);
-#line 147
-undef($memory_2);
-#line 147
-return $memory_3;
-#line 147
+#line 127
+goto label_24;
+#line 127
+label_24:
+#line 127
+undef($memory_7);
+#line 128
+$memory_7 = "ImmRef ___arg__";
+#line 128
+$memory_7 = $memory_7 . $memory_4;
+#line 128
+$memory_2 = $memory_2 . $memory_7;
+#line 128
+undef($memory_7);
+#line 129
+$memory_4 = $memory_4 + $memory_5;
+#line 129
+goto label_12;
+#line 129
+label_32:
+#line 129
 undef($memory_3);
-#line 147
-undef($memory_2);
-#line 147
+#line 129
+undef($memory_4);
+#line 129
+undef($memory_5);
+#line 129
+undef($memory_6);
+#line 130
+$memory_3 = ") throws Exception {";
+#line 130
+$memory_4 = string::lf();
+#line 130
+$memory_3 = $memory_3 . $memory_4;
+#line 130
+undef($memory_4);
+#line 130
+$memory_2 = $memory_2 . $memory_3;
+#line 130
+undef($memory_3);
+#line 131
+$memory_4 = $memory_0->{'args_type'};
+#line 131
+$memory_3 = array::len($memory_4);
+#line 131
+undef($memory_4);
+#line 131
+$memory_4 = 0;
+#line 131
+$memory_5 = 1;
+#line 131
+label_48:
+#line 131
+$memory_6 = c_rt_lib::to_nl($memory_4 >= $memory_3);
+#line 131
+if (c_rt_lib::check_true($memory_6)) {goto label_94;}
+#line 132
+$memory_7 = $memory_0->{'args_type'};
+#line 132
+$memory_7 = $memory_7->[$memory_4];
+#line 132
+$memory_8 = c_rt_lib::ov_is($memory_7, 'val');
+#line 132
+if (c_rt_lib::check_true($memory_8)) {goto label_60;}
+#line 134
+$memory_8 = c_rt_lib::ov_is($memory_7, 'ref');
+#line 134
+if (c_rt_lib::check_true($memory_8)) {goto label_76;}
+#line 134
+$memory_8 = "NOMATCHALERT";
+#line 134
+$memory_8 = [$memory_8,$memory_7];
+#line 134
+die(dfile::ssave($memory_8));
+#line 132
+label_60:
+#line 133
+$memory_9 = "ImmRef ___nl__";
+#line 133
+$memory_9 = $memory_9 . $memory_4;
+#line 133
+$memory_10 = " = new ImmRef(___arg__";
+#line 133
+$memory_9 = $memory_9 . $memory_10;
+#line 133
+undef($memory_10);
+#line 133
+$memory_9 = $memory_9 . $memory_4;
+#line 133
+$memory_10 = generator_java_priv::print_getter();
+#line 133
+$memory_9 = $memory_9 . $memory_10;
+#line 133
+undef($memory_10);
+#line 133
+$memory_10 = ");";
+#line 133
+$memory_9 = $memory_9 . $memory_10;
+#line 133
+undef($memory_10);
+#line 133
+$memory_2 = $memory_2 . $memory_9;
+#line 133
+undef($memory_9);
+#line 134
+goto label_89;
+#line 134
+label_76:
+#line 135
+$memory_9 = "ImmRef ___nl__";
+#line 135
+$memory_9 = $memory_9 . $memory_4;
+#line 135
+$memory_10 = " = ___arg__";
+#line 135
+$memory_9 = $memory_9 . $memory_10;
+#line 135
+undef($memory_10);
+#line 135
+$memory_9 = $memory_9 . $memory_4;
+#line 135
+$memory_10 = ";";
+#line 135
+$memory_9 = $memory_9 . $memory_10;
+#line 135
+undef($memory_10);
+#line 135
+$memory_2 = $memory_2 . $memory_9;
+#line 135
+undef($memory_9);
+#line 136
+goto label_89;
+#line 136
+label_89:
+#line 136
+undef($memory_7);
+#line 136
+undef($memory_8);
+#line 137
+$memory_4 = $memory_4 + $memory_5;
+#line 137
+goto label_48;
+#line 137
+label_94:
+#line 137
+undef($memory_3);
+#line 137
+undef($memory_4);
+#line 137
+undef($memory_5);
+#line 137
+undef($memory_6);
+#line 138
+$memory_3 = string::lf();
+#line 138
+$memory_2 = $memory_2 . $memory_3;
+#line 138
+undef($memory_3);
+#line 139
+$memory_4 = $memory_0->{'args_type'};
+#line 139
+$memory_3 = array::len($memory_4);
+#line 139
+undef($memory_4);
+#line 139
+label_105:
+#line 139
+$memory_4 = $memory_0->{'reg_size'};
+#line 139
+$memory_4 = c_rt_lib::to_nl($memory_3 < $memory_4);
+#line 139
+$memory_4 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_4));
+#line 139
+if (c_rt_lib::check_true($memory_4)) {goto label_124;}
+#line 140
+$memory_5 = "ImmRef ___nl__";
+#line 140
+$memory_5 = $memory_5 . $memory_3;
+#line 140
+$memory_6 = " = new ImmRef(null);";
+#line 140
+$memory_5 = $memory_5 . $memory_6;
+#line 140
+undef($memory_6);
+#line 140
+$memory_6 = string::lf();
+#line 140
+$memory_5 = $memory_5 . $memory_6;
+#line 140
+undef($memory_6);
+#line 140
+$memory_2 = $memory_2 . $memory_5;
+#line 140
+undef($memory_5);
+#line 139
+$memory_5 = 1;
+#line 139
+$memory_3 = $memory_3 + $memory_5;
+#line 139
+undef($memory_5);
+#line 141
+goto label_105;
+#line 141
+label_124:
+#line 141
+undef($memory_3);
+#line 141
+undef($memory_4);
+#line 142
+$memory_3 = "Map<ImmString, Imm> ";
+#line 142
+$memory_4 = generator_java_priv::print_hash_name();
+#line 142
+$memory_3 = $memory_3 . $memory_4;
+#line 142
+undef($memory_4);
+#line 142
+$memory_4 = ";";
+#line 142
+$memory_3 = $memory_3 . $memory_4;
+#line 142
+undef($memory_4);
+#line 142
+$memory_4 = string::lf();
+#line 142
+$memory_3 = $memory_3 . $memory_4;
+#line 142
+undef($memory_4);
+#line 142
+$memory_2 = $memory_2 . $memory_3;
+#line 142
+undef($memory_3);
+#line 143
+$memory_3 = "String label = \"\"; while (true) { switch (label) { default: ";
+#line 143
+$memory_4 = string::lf();
+#line 143
+$memory_3 = $memory_3 . $memory_4;
+#line 143
+undef($memory_4);
+#line 143
+$memory_2 = $memory_2 . $memory_3;
+#line 143
+undef($memory_3);
+#line 144
+$memory_3 = $memory_0->{'commands'};
+#line 144
+$memory_5 = 0;
+#line 144
+$memory_6 = 1;
+#line 144
+$memory_7 = c_rt_lib::array_len($memory_3);
+#line 144
+label_149:
+#line 144
+$memory_8 = c_rt_lib::to_nl($memory_5 >= $memory_7);
+#line 144
+if (c_rt_lib::check_true($memory_8)) {goto label_158;}
+#line 144
+$memory_4 = $memory_3->[$memory_5];
+#line 144
+$memory_9 = generator_java_priv::print_command($memory_1, $memory_4);
+#line 144
+$memory_2 = $memory_2 . $memory_9;
+#line 144
+undef($memory_9);
+#line 144
+$memory_5 = $memory_5 + $memory_6;
+#line 144
+goto label_149;
+#line 144
+label_158:
+#line 144
+undef($memory_3);
+#line 144
+undef($memory_4);
+#line 144
+undef($memory_5);
+#line 144
+undef($memory_6);
+#line 144
+undef($memory_7);
+#line 144
+undef($memory_8);
+#line 145
+$memory_3 = "}}}";
+#line 145
+$memory_3 = $memory_2 . $memory_3;
+#line 145
+$memory_4 = string::lf();
+#line 145
+$memory_3 = $memory_3 . $memory_4;
+#line 145
+undef($memory_4);
+#line 145
 undef($memory_0);
-#line 147
+#line 145
 undef($memory_1);
-#line 147
+#line 145
+undef($memory_2);
+#line 145
+return $memory_3;
+#line 145
+undef($memory_3);
+#line 145
+undef($memory_2);
+#line 145
+undef($memory_0);
+#line 145
+undef($memory_1);
+#line 145
 return;
 }
 
 sub generator_java_priv::print_command($$) {
 my $memory_0;my $memory_1;my $memory_2;my $memory_3;my $memory_4;my $memory_5;my $memory_6;my $memory_7;my $memory_8;my $memory_9;my $memory_10;my $memory_11;$memory_0 = $_[0];$memory_1 = $_[1];
-#line 152
+#line 150
 $memory_3 = $memory_1->{'cmd'};
-#line 152
+#line 150
 $memory_4 = c_rt_lib::ov_is($memory_3, 'arr_decl');
+#line 150
+if (c_rt_lib::check_true($memory_4)) {goto label_46;}
 #line 152
-if (c_rt_lib::check_true($memory_4)) {goto label_2;}
-#line 154
 $memory_4 = c_rt_lib::ov_is($memory_3, 'hash_decl');
-#line 154
-if (c_rt_lib::check_true($memory_4)) {goto label_3;}
-#line 157
+#line 152
+if (c_rt_lib::check_true($memory_4)) {goto label_62;}
+#line 155
 $memory_4 = c_rt_lib::ov_is($memory_3, 'call');
+#line 155
+if (c_rt_lib::check_true($memory_4)) {goto label_85;}
 #line 157
-if (c_rt_lib::check_true($memory_4)) {goto label_4;}
-#line 159
 $memory_4 = c_rt_lib::ov_is($memory_3, 'func');
-#line 159
-if (c_rt_lib::check_true($memory_4)) {goto label_5;}
-#line 161
+#line 157
+if (c_rt_lib::check_true($memory_4)) {goto label_105;}
+#line 160
 $memory_4 = c_rt_lib::ov_is($memory_3, 'una_op');
-#line 161
-if (c_rt_lib::check_true($memory_4)) {goto label_6;}
-#line 163
+#line 160
+if (c_rt_lib::check_true($memory_4)) {goto label_128;}
+#line 162
 $memory_4 = c_rt_lib::ov_is($memory_3, 'bin_op');
-#line 163
-if (c_rt_lib::check_true($memory_4)) {goto label_7;}
-#line 165
+#line 162
+if (c_rt_lib::check_true($memory_4)) {goto label_135;}
+#line 164
 $memory_4 = c_rt_lib::ov_is($memory_3, 'ov_is');
-#line 165
-if (c_rt_lib::check_true($memory_4)) {goto label_8;}
+#line 164
+if (c_rt_lib::check_true($memory_4)) {goto label_142;}
 #line 167
 $memory_4 = c_rt_lib::ov_is($memory_3, 'ov_as');
 #line 167
-if (c_rt_lib::check_true($memory_4)) {goto label_9;}
-#line 169
+if (c_rt_lib::check_true($memory_4)) {goto label_172;}
+#line 170
 $memory_4 = c_rt_lib::ov_is($memory_3, 'return');
-#line 169
-if (c_rt_lib::check_true($memory_4)) {goto label_10;}
-#line 171
+#line 170
+if (c_rt_lib::check_true($memory_4)) {goto label_202;}
+#line 172
 $memory_4 = c_rt_lib::ov_is($memory_3, 'die');
-#line 171
-if (c_rt_lib::check_true($memory_4)) {goto label_11;}
-#line 173
+#line 172
+if (c_rt_lib::check_true($memory_4)) {goto label_209;}
+#line 174
 $memory_4 = c_rt_lib::ov_is($memory_3, 'move');
-#line 173
-if (c_rt_lib::check_true($memory_4)) {goto label_12;}
-#line 175
+#line 174
+if (c_rt_lib::check_true($memory_4)) {goto label_216;}
+#line 176
 $memory_4 = c_rt_lib::ov_is($memory_3, 'load_const');
-#line 175
-if (c_rt_lib::check_true($memory_4)) {goto label_13;}
-#line 177
+#line 176
+if (c_rt_lib::check_true($memory_4)) {goto label_232;}
+#line 178
 $memory_4 = c_rt_lib::ov_is($memory_3, 'get_frm_idx');
-#line 177
-if (c_rt_lib::check_true($memory_4)) {goto label_14;}
-#line 181
+#line 178
+if (c_rt_lib::check_true($memory_4)) {goto label_252;}
+#line 183
 $memory_4 = c_rt_lib::ov_is($memory_3, 'set_at_idx');
-#line 181
-if (c_rt_lib::check_true($memory_4)) {goto label_15;}
-#line 185
+#line 183
+if (c_rt_lib::check_true($memory_4)) {goto label_298;}
+#line 189
 $memory_4 = c_rt_lib::ov_is($memory_3, 'get_val');
-#line 185
-if (c_rt_lib::check_true($memory_4)) {goto label_16;}
-#line 187
+#line 189
+if (c_rt_lib::check_true($memory_4)) {goto label_368;}
+#line 191
 $memory_4 = c_rt_lib::ov_is($memory_3, 'set_val');
-#line 187
-if (c_rt_lib::check_true($memory_4)) {goto label_17;}
-#line 190
+#line 191
+if (c_rt_lib::check_true($memory_4)) {goto label_382;}
+#line 195
 $memory_4 = c_rt_lib::ov_is($memory_3, 'ov_mk');
-#line 190
-if (c_rt_lib::check_true($memory_4)) {goto label_18;}
-#line 192
+#line 195
+if (c_rt_lib::check_true($memory_4)) {goto label_413;}
+#line 197
 $memory_4 = c_rt_lib::ov_is($memory_3, 'prt_lbl');
-#line 192
-if (c_rt_lib::check_true($memory_4)) {goto label_19;}
-#line 194
+#line 197
+if (c_rt_lib::check_true($memory_4)) {goto label_420;}
+#line 199
 $memory_4 = c_rt_lib::ov_is($memory_3, 'if_goto');
-#line 194
-if (c_rt_lib::check_true($memory_4)) {goto label_20;}
-#line 196
+#line 199
+if (c_rt_lib::check_true($memory_4)) {goto label_431;}
+#line 202
 $memory_4 = c_rt_lib::ov_is($memory_3, 'goto');
-#line 196
-if (c_rt_lib::check_true($memory_4)) {goto label_21;}
-#line 198
+#line 202
+if (c_rt_lib::check_true($memory_4)) {goto label_454;}
+#line 204
 $memory_4 = c_rt_lib::ov_is($memory_3, 'clear');
-#line 198
-if (c_rt_lib::check_true($memory_4)) {goto label_22;}
-#line 198
+#line 204
+if (c_rt_lib::check_true($memory_4)) {goto label_461;}
+#line 204
 $memory_4 = "NOMATCHALERT";
-#line 198
+#line 204
 $memory_4 = [$memory_4,$memory_3];
-#line 198
+#line 204
 die(dfile::ssave($memory_4));
-#line 152
-label_2:
-#line 152
+#line 150
+label_46:
+#line 150
 $memory_5 = c_rt_lib::ov_as($memory_3, 'arr_decl');
-#line 153
+#line 151
 $memory_7 = $memory_5->{'dest'};
-#line 153
+#line 151
 $memory_9 = $memory_5->{'src'};
-#line 153
+#line 151
 $memory_8 = generator_java_priv::print_arr($memory_9);
-#line 153
+#line 151
 undef($memory_9);
-#line 153
+#line 151
 $memory_6 = generator_java_priv::print_register_setter($memory_7, $memory_8);
-#line 153
+#line 151
 undef($memory_8);
-#line 153
+#line 151
 undef($memory_7);
-#line 153
+#line 151
 $memory_7 = ";";
-#line 153
+#line 151
 $memory_6 = $memory_6 . $memory_7;
-#line 153
+#line 151
 undef($memory_7);
-#line 153
+#line 151
 $memory_2 = $memory_6;
-#line 153
+#line 151
 undef($memory_6);
-#line 153
+#line 151
 undef($memory_5);
-#line 154
-goto label_1;
-#line 154
-label_3:
-#line 154
+#line 152
+goto label_473;
+#line 152
+label_62:
+#line 152
 $memory_5 = c_rt_lib::ov_as($memory_3, 'hash_decl');
-#line 155
+#line 153
 $memory_6 = generator_java_priv::print_hash($memory_5);
-#line 155
+#line 153
 $memory_2 = $memory_6;
-#line 155
+#line 153
 undef($memory_6);
-#line 156
+#line 154
 $memory_7 = $memory_5->{'dest'};
-#line 156
+#line 154
 $memory_8 = "new ImmMap(";
-#line 156
+#line 154
 $memory_9 = generator_java_priv::print_hash_name();
-#line 156
+#line 154
 $memory_8 = $memory_8 . $memory_9;
-#line 156
+#line 154
 undef($memory_9);
-#line 156
+#line 154
 $memory_9 = ")";
-#line 156
+#line 154
 $memory_8 = $memory_8 . $memory_9;
-#line 156
+#line 154
 undef($memory_9);
-#line 156
+#line 154
 $memory_6 = generator_java_priv::print_register_setter($memory_7, $memory_8);
-#line 156
+#line 154
 undef($memory_8);
-#line 156
+#line 154
 undef($memory_7);
-#line 156
+#line 154
 $memory_7 = ";";
-#line 156
+#line 154
 $memory_6 = $memory_6 . $memory_7;
-#line 156
+#line 154
 undef($memory_7);
-#line 156
+#line 154
 $memory_2 = $memory_2 . $memory_6;
-#line 156
+#line 154
 undef($memory_6);
-#line 156
+#line 154
 undef($memory_5);
-#line 157
-goto label_1;
-#line 157
-label_4:
-#line 157
+#line 155
+goto label_473;
+#line 155
+label_85:
+#line 155
 $memory_5 = c_rt_lib::ov_as($memory_3, 'call');
-#line 158
+#line 156
 $memory_7 = $memory_5->{'dest'};
-#line 158
+#line 156
 $memory_9 = $memory_5->{'mod'};
-#line 158
+#line 156
 $memory_10 = $memory_5->{'fun_name'};
-#line 158
+#line 156
 $memory_11 = $memory_5->{'args'};
-#line 158
+#line 156
 $memory_8 = generator_java_priv::print_call($memory_0, $memory_9, $memory_10, $memory_11);
-#line 158
+#line 156
 undef($memory_11);
-#line 158
+#line 156
 undef($memory_10);
-#line 158
+#line 156
 undef($memory_9);
-#line 158
+#line 156
 $memory_6 = generator_java_priv::print_register_setter($memory_7, $memory_8);
-#line 158
+#line 156
 undef($memory_8);
-#line 158
+#line 156
 undef($memory_7);
-#line 158
+#line 156
 $memory_7 = ";";
-#line 158
+#line 156
 $memory_6 = $memory_6 . $memory_7;
-#line 158
+#line 156
 undef($memory_7);
-#line 158
+#line 156
 $memory_2 = $memory_6;
-#line 158
+#line 156
 undef($memory_6);
-#line 158
+#line 156
 undef($memory_5);
-#line 159
-goto label_1;
-#line 159
-label_5:
-#line 159
+#line 157
+goto label_473;
+#line 157
+label_105:
+#line 157
 $memory_5 = c_rt_lib::ov_as($memory_3, 'func');
-#line 160
+#line 158
 $memory_7 = $memory_5->{'dest'};
-#line 160
+#line 158
 $memory_10 = $memory_5->{'module'};
-#line 160
+#line 158
 $memory_9 = generator_java_priv::get_class_name($memory_10);
-#line 160
+#line 158
 undef($memory_10);
-#line 160
+#line 158
 $memory_10 = $memory_5->{'name'};
-#line 160
+#line 158
 $memory_11 = "_nl";
-#line 160
+#line 158
 $memory_10 = $memory_10 . $memory_11;
-#line 160
+#line 158
 undef($memory_11);
-#line 160
+#line 158
 $memory_8 = {module => $memory_9,name => $memory_10,};
-#line 160
+#line 158
 undef($memory_9);
-#line 160
+#line 158
 undef($memory_10);
-#line 160
+#line 158
 $memory_6 = generator_java_priv::print_const_hash($memory_7, $memory_8);
-#line 160
+#line 158
 undef($memory_8);
-#line 160
+#line 158
 undef($memory_7);
-#line 160
+#line 159
 $memory_7 = ";";
-#line 160
+#line 159
 $memory_6 = $memory_6 . $memory_7;
-#line 160
+#line 159
 undef($memory_7);
-#line 160
+#line 159
 $memory_2 = $memory_6;
-#line 160
+#line 159
 undef($memory_6);
-#line 160
+#line 159
 undef($memory_5);
-#line 161
-goto label_1;
-#line 161
-label_6:
-#line 161
+#line 160
+goto label_473;
+#line 160
+label_128:
+#line 160
 $memory_5 = c_rt_lib::ov_as($memory_3, 'una_op');
-#line 162
+#line 161
 $memory_6 = generator_java_priv::print_una_op($memory_5);
-#line 162
+#line 161
 $memory_2 = $memory_6;
-#line 162
+#line 161
 undef($memory_6);
-#line 162
+#line 161
 undef($memory_5);
-#line 163
-goto label_1;
-#line 163
-label_7:
-#line 163
+#line 162
+goto label_473;
+#line 162
+label_135:
+#line 162
 $memory_5 = c_rt_lib::ov_as($memory_3, 'bin_op');
-#line 164
+#line 163
 $memory_6 = generator_java_priv::print_bin_op($memory_5);
-#line 164
+#line 163
 $memory_2 = $memory_6;
-#line 164
+#line 163
 undef($memory_6);
-#line 164
+#line 163
 undef($memory_5);
-#line 165
-goto label_1;
-#line 165
-label_8:
-#line 165
+#line 164
+goto label_473;
+#line 164
+label_142:
+#line 164
 $memory_5 = c_rt_lib::ov_as($memory_3, 'ov_is');
-#line 166
+#line 165
 $memory_7 = $memory_5->{'dest'};
-#line 166
+#line 165
 $memory_8 = "c_rt_lib_NL.ov_is_nl(";
-#line 166
+#line 165
 $memory_10 = $memory_5->{'src'};
-#line 166
+#line 165
 $memory_9 = generator_java_priv::print_register($memory_10);
-#line 166
+#line 165
 undef($memory_10);
-#line 166
+#line 165
 $memory_8 = $memory_8 . $memory_9;
-#line 166
+#line 165
 undef($memory_9);
 #line 166
 $memory_9 = ", new ImmRef(new ImmString(\"";
@@ -1841,9 +1841,9 @@ undef($memory_6);
 #line 166
 undef($memory_5);
 #line 167
-goto label_1;
+goto label_473;
 #line 167
-label_9:
+label_172:
 #line 167
 $memory_5 = c_rt_lib::ov_as($memory_3, 'ov_as');
 #line 168
@@ -1860,1191 +1860,1191 @@ undef($memory_10);
 $memory_8 = $memory_8 . $memory_9;
 #line 168
 undef($memory_9);
-#line 168
+#line 169
 $memory_9 = ", new ImmRef(new ImmString(\"";
-#line 168
+#line 169
 $memory_8 = $memory_8 . $memory_9;
-#line 168
+#line 169
 undef($memory_9);
-#line 168
+#line 169
 $memory_10 = $memory_5->{'type'};
-#line 168
+#line 169
 $memory_9 = generator_java_priv::escape_string($memory_10);
-#line 168
+#line 169
 undef($memory_10);
-#line 168
+#line 169
 $memory_8 = $memory_8 . $memory_9;
-#line 168
+#line 169
 undef($memory_9);
-#line 168
+#line 169
 $memory_9 = "\")))";
-#line 168
+#line 169
 $memory_8 = $memory_8 . $memory_9;
-#line 168
+#line 169
 undef($memory_9);
-#line 168
+#line 169
 $memory_6 = generator_java_priv::print_register_setter($memory_7, $memory_8);
-#line 168
+#line 169
 undef($memory_8);
-#line 168
+#line 169
 undef($memory_7);
-#line 168
+#line 169
 $memory_7 = ";";
-#line 168
+#line 169
 $memory_6 = $memory_6 . $memory_7;
-#line 168
+#line 169
 undef($memory_7);
-#line 168
+#line 169
 $memory_2 = $memory_6;
-#line 168
+#line 169
 undef($memory_6);
-#line 168
+#line 169
 undef($memory_5);
-#line 169
-goto label_1;
-#line 169
-label_10:
-#line 169
+#line 170
+goto label_473;
+#line 170
+label_202:
+#line 170
 $memory_5 = c_rt_lib::ov_as($memory_3, 'return');
-#line 170
+#line 171
 $memory_6 = generator_java_priv::print_return($memory_5);
-#line 170
+#line 171
 $memory_2 = $memory_6;
-#line 170
+#line 171
 undef($memory_6);
-#line 170
+#line 171
 undef($memory_5);
-#line 171
-goto label_1;
-#line 171
-label_11:
-#line 171
+#line 172
+goto label_473;
+#line 172
+label_209:
+#line 172
 $memory_5 = c_rt_lib::ov_as($memory_3, 'die');
-#line 172
+#line 173
 $memory_6 = "c_rt_lib_NL.die_nl();";
-#line 172
+#line 173
 $memory_2 = $memory_6;
-#line 172
+#line 173
 undef($memory_6);
-#line 172
+#line 173
 undef($memory_5);
-#line 173
-goto label_1;
-#line 173
-label_12:
-#line 173
+#line 174
+goto label_473;
+#line 174
+label_216:
+#line 174
 $memory_5 = c_rt_lib::ov_as($memory_3, 'move');
-#line 174
+#line 175
 $memory_7 = $memory_5->{'dest'};
-#line 174
+#line 175
 $memory_9 = $memory_5->{'src'};
-#line 174
+#line 175
 $memory_8 = generator_java_priv::print_register_getter($memory_9);
-#line 174
+#line 175
 undef($memory_9);
-#line 174
+#line 175
 $memory_6 = generator_java_priv::print_register_setter($memory_7, $memory_8);
-#line 174
+#line 175
 undef($memory_8);
-#line 174
+#line 175
 undef($memory_7);
-#line 174
+#line 175
 $memory_7 = ";";
-#line 174
+#line 175
 $memory_6 = $memory_6 . $memory_7;
-#line 174
+#line 175
 undef($memory_7);
-#line 174
+#line 175
 $memory_2 = $memory_6;
-#line 174
+#line 175
 undef($memory_6);
-#line 174
+#line 175
 undef($memory_5);
-#line 175
-goto label_1;
-#line 175
-label_13:
-#line 175
+#line 176
+goto label_473;
+#line 176
+label_232:
+#line 176
 $memory_5 = c_rt_lib::ov_as($memory_3, 'load_const');
-#line 176
+#line 177
 $memory_7 = $memory_5->{'dest'};
-#line 176
+#line 177
 $memory_10 = $memory_5->{'dest'};
-#line 176
+#line 177
 $memory_9 = generator_java_priv::print_register($memory_10);
-#line 176
+#line 177
 undef($memory_10);
-#line 176
+#line 177
 $memory_10 = $memory_5->{'val'};
-#line 176
+#line 177
 $memory_8 = generator_java_priv::print_const_value($memory_9, $memory_10);
-#line 176
+#line 177
 undef($memory_10);
-#line 176
+#line 177
 undef($memory_9);
-#line 176
+#line 177
 $memory_6 = generator_java_priv::print_register_setter($memory_7, $memory_8);
-#line 176
+#line 177
 undef($memory_8);
-#line 176
+#line 177
 undef($memory_7);
-#line 176
+#line 177
 $memory_7 = ";";
-#line 176
+#line 177
 $memory_6 = $memory_6 . $memory_7;
-#line 176
+#line 177
 undef($memory_7);
-#line 176
+#line 177
 $memory_2 = $memory_6;
-#line 176
+#line 177
 undef($memory_6);
-#line 176
+#line 177
 undef($memory_5);
-#line 177
-goto label_1;
-#line 177
-label_14:
-#line 177
+#line 178
+goto label_473;
+#line 178
+label_252:
+#line 178
 $memory_5 = c_rt_lib::ov_as($memory_3, 'get_frm_idx');
-#line 178
-$memory_6 = "((ImmArray)";
-#line 178
-$memory_8 = $memory_5->{'src'};
-#line 178
-$memory_7 = generator_java_priv::print_register_getter($memory_8);
-#line 178
-undef($memory_8);
-#line 178
-$memory_6 = $memory_6 . $memory_7;
-#line 178
-undef($memory_7);
-#line 178
-$memory_7 = ")";
-#line 178
-$memory_6 = $memory_6 . $memory_7;
-#line 178
-undef($memory_7);
-#line 178
-$memory_7 = generator_java_priv::print_getter();
-#line 178
-$memory_6 = $memory_6 . $memory_7;
-#line 178
-undef($memory_7);
-#line 178
-$memory_2 = $memory_6;
-#line 178
-undef($memory_6);
 #line 179
+$memory_6 = "((ImmArray)";
+#line 179
+$memory_8 = $memory_5->{'src'};
+#line 179
+$memory_7 = generator_java_priv::print_register_getter($memory_8);
+#line 179
+undef($memory_8);
+#line 179
+$memory_6 = $memory_6 . $memory_7;
+#line 179
+undef($memory_7);
+#line 179
+$memory_7 = ")";
+#line 179
+$memory_6 = $memory_6 . $memory_7;
+#line 179
+undef($memory_7);
+#line 179
+$memory_7 = generator_java_priv::print_getter();
+#line 179
+$memory_6 = $memory_6 . $memory_7;
+#line 179
+undef($memory_7);
+#line 179
+$memory_2 = $memory_6;
+#line 179
+undef($memory_6);
+#line 180
 $memory_6 = "[((ImmDouble)(";
-#line 179
+#line 180
 $memory_8 = $memory_5->{'idx'};
-#line 179
+#line 180
 $memory_7 = generator_java_priv::print_register_getter($memory_8);
-#line 179
+#line 180
 undef($memory_8);
-#line 179
+#line 180
 $memory_6 = $memory_6 . $memory_7;
-#line 179
+#line 180
 undef($memory_7);
-#line 179
+#line 180
 $memory_7 = "))";
-#line 179
+#line 180
 $memory_6 = $memory_6 . $memory_7;
-#line 179
+#line 180
 undef($memory_7);
-#line 179
+#line 180
 $memory_7 = generator_java_priv::print_getter();
-#line 179
+#line 180
 $memory_6 = $memory_6 . $memory_7;
-#line 179
+#line 180
 undef($memory_7);
-#line 179
+#line 180
 $memory_7 = generator_java_priv::print_int_value();
-#line 179
+#line 180
 $memory_6 = $memory_6 . $memory_7;
-#line 179
+#line 180
 undef($memory_7);
-#line 179
+#line 181
 $memory_7 = "]";
-#line 179
+#line 181
 $memory_6 = $memory_6 . $memory_7;
-#line 179
+#line 181
 undef($memory_7);
-#line 179
+#line 181
 $memory_2 = $memory_2 . $memory_6;
-#line 179
+#line 181
 undef($memory_6);
-#line 180
+#line 182
 $memory_7 = $memory_5->{'dest'};
-#line 180
+#line 182
 $memory_6 = generator_java_priv::print_register_setter($memory_7, $memory_2);
-#line 180
+#line 182
 undef($memory_7);
-#line 180
+#line 182
 $memory_7 = ";";
-#line 180
+#line 182
 $memory_6 = $memory_6 . $memory_7;
-#line 180
+#line 182
 undef($memory_7);
-#line 180
+#line 182
 $memory_2 = $memory_6;
-#line 180
+#line 182
 undef($memory_6);
-#line 180
+#line 182
 undef($memory_5);
-#line 181
-goto label_1;
-#line 181
-label_15:
-#line 181
+#line 183
+goto label_473;
+#line 183
+label_298:
+#line 183
 $memory_5 = c_rt_lib::ov_as($memory_3, 'set_at_idx');
-#line 182
+#line 184
 $memory_7 = $memory_5->{'src'};
-#line 182
+#line 184
 $memory_8 = "c_rt_lib_NL.clone_nl(";
-#line 182
+#line 184
 $memory_10 = $memory_5->{'src'};
-#line 182
+#line 184
 $memory_9 = generator_java_priv::print_register_getter($memory_10);
-#line 182
+#line 184
 undef($memory_10);
-#line 182
+#line 184
 $memory_8 = $memory_8 . $memory_9;
-#line 182
+#line 184
 undef($memory_9);
-#line 182
+#line 185
 $memory_9 = ")";
-#line 182
+#line 185
 $memory_8 = $memory_8 . $memory_9;
-#line 182
+#line 185
 undef($memory_9);
-#line 182
+#line 185
 $memory_6 = generator_java_priv::print_register_setter($memory_7, $memory_8);
-#line 182
+#line 185
 undef($memory_8);
-#line 182
+#line 185
 undef($memory_7);
-#line 182
+#line 185
 $memory_7 = ";";
-#line 182
+#line 185
 $memory_6 = $memory_6 . $memory_7;
-#line 182
+#line 185
 undef($memory_7);
-#line 182
+#line 185
 $memory_7 = string::lf();
-#line 182
+#line 185
 $memory_6 = $memory_6 . $memory_7;
-#line 182
+#line 185
 undef($memory_7);
-#line 182
+#line 185
 $memory_2 = $memory_6;
-#line 182
+#line 185
 undef($memory_6);
-#line 183
+#line 186
 $memory_6 = "((ImmArray)";
-#line 183
+#line 186
 $memory_8 = $memory_5->{'src'};
-#line 183
+#line 186
 $memory_7 = generator_java_priv::print_register_getter($memory_8);
-#line 183
+#line 186
 undef($memory_8);
-#line 183
+#line 186
 $memory_6 = $memory_6 . $memory_7;
-#line 183
+#line 186
 undef($memory_7);
-#line 183
+#line 186
 $memory_7 = ")";
-#line 183
+#line 186
 $memory_6 = $memory_6 . $memory_7;
-#line 183
+#line 186
 undef($memory_7);
-#line 183
+#line 186
 $memory_7 = generator_java_priv::print_getter();
-#line 183
+#line 186
 $memory_6 = $memory_6 . $memory_7;
-#line 183
+#line 186
 undef($memory_7);
-#line 183
+#line 186
 $memory_7 = "[";
-#line 183
+#line 186
 $memory_6 = $memory_6 . $memory_7;
-#line 183
+#line 186
 undef($memory_7);
-#line 183
+#line 186
 $memory_2 = $memory_2 . $memory_6;
-#line 183
+#line 186
 undef($memory_6);
-#line 184
+#line 187
 $memory_6 = "((ImmDouble)";
-#line 184
+#line 187
 $memory_8 = $memory_5->{'idx'};
-#line 184
+#line 187
 $memory_7 = generator_java_priv::print_register_getter($memory_8);
-#line 184
+#line 187
 undef($memory_8);
-#line 184
+#line 187
 $memory_6 = $memory_6 . $memory_7;
-#line 184
+#line 187
 undef($memory_7);
-#line 184
+#line 187
 $memory_7 = ")";
-#line 184
+#line 187
 $memory_6 = $memory_6 . $memory_7;
-#line 184
+#line 187
 undef($memory_7);
-#line 184
+#line 187
 $memory_7 = generator_java_priv::print_getter();
-#line 184
+#line 187
 $memory_6 = $memory_6 . $memory_7;
-#line 184
+#line 187
 undef($memory_7);
-#line 184
+#line 187
 $memory_7 = generator_java_priv::print_int_value();
-#line 184
+#line 187
 $memory_6 = $memory_6 . $memory_7;
-#line 184
+#line 187
 undef($memory_7);
-#line 184
+#line 188
 $memory_7 = "] = ";
-#line 184
+#line 188
 $memory_6 = $memory_6 . $memory_7;
-#line 184
+#line 188
 undef($memory_7);
-#line 184
+#line 188
 $memory_8 = $memory_5->{'val'};
-#line 184
+#line 188
 $memory_7 = generator_java_priv::print_register_getter($memory_8);
-#line 184
+#line 188
 undef($memory_8);
-#line 184
+#line 188
 $memory_6 = $memory_6 . $memory_7;
-#line 184
+#line 188
 undef($memory_7);
-#line 184
+#line 188
 $memory_7 = ";";
-#line 184
+#line 188
 $memory_6 = $memory_6 . $memory_7;
-#line 184
+#line 188
 undef($memory_7);
-#line 184
+#line 188
 $memory_2 = $memory_2 . $memory_6;
-#line 184
+#line 188
 undef($memory_6);
-#line 184
+#line 188
 undef($memory_5);
-#line 185
-goto label_1;
-#line 185
-label_16:
-#line 185
+#line 189
+goto label_473;
+#line 189
+label_368:
+#line 189
 $memory_5 = c_rt_lib::ov_as($memory_3, 'get_val');
-#line 186
+#line 190
 $memory_7 = $memory_5->{'dest'};
-#line 186
+#line 190
 $memory_8 = generator_java_priv::print_get_hash_value($memory_5);
-#line 186
+#line 190
 $memory_6 = generator_java_priv::print_register_setter($memory_7, $memory_8);
-#line 186
+#line 190
 undef($memory_8);
-#line 186
+#line 190
 undef($memory_7);
-#line 186
+#line 190
 $memory_7 = ";";
-#line 186
+#line 190
 $memory_6 = $memory_6 . $memory_7;
-#line 186
+#line 190
 undef($memory_7);
-#line 186
+#line 190
 $memory_2 = $memory_6;
-#line 186
+#line 190
 undef($memory_6);
-#line 186
+#line 190
 undef($memory_5);
-#line 187
-goto label_1;
-#line 187
-label_17:
-#line 187
+#line 191
+goto label_473;
+#line 191
+label_382:
+#line 191
 $memory_5 = c_rt_lib::ov_as($memory_3, 'set_val');
-#line 188
+#line 192
 $memory_7 = $memory_5->{'src'};
-#line 188
+#line 192
 $memory_8 = "c_rt_lib_NL.clone_nl(";
-#line 188
+#line 192
 $memory_10 = $memory_5->{'src'};
-#line 188
+#line 192
 $memory_9 = generator_java_priv::print_register_getter($memory_10);
-#line 188
+#line 192
 undef($memory_10);
-#line 188
+#line 192
 $memory_8 = $memory_8 . $memory_9;
-#line 188
+#line 192
 undef($memory_9);
-#line 188
+#line 192
 $memory_9 = ")";
-#line 188
+#line 192
 $memory_8 = $memory_8 . $memory_9;
-#line 188
+#line 192
 undef($memory_9);
-#line 188
+#line 192
 $memory_6 = generator_java_priv::print_register_setter($memory_7, $memory_8);
-#line 188
+#line 192
 undef($memory_8);
-#line 188
+#line 192
 undef($memory_7);
-#line 188
+#line 193
 $memory_7 = ";";
-#line 188
+#line 193
 $memory_6 = $memory_6 . $memory_7;
-#line 188
+#line 193
 undef($memory_7);
-#line 188
+#line 193
 $memory_7 = string::lf();
-#line 188
+#line 193
 $memory_6 = $memory_6 . $memory_7;
-#line 188
+#line 193
 undef($memory_7);
-#line 188
+#line 193
 $memory_2 = $memory_6;
-#line 188
+#line 193
 undef($memory_6);
-#line 189
+#line 194
 $memory_6 = generator_java_priv::print_set_hash_value($memory_5);
-#line 189
+#line 194
 $memory_7 = ";";
-#line 189
+#line 194
 $memory_6 = $memory_6 . $memory_7;
-#line 189
+#line 194
 undef($memory_7);
-#line 189
+#line 194
 $memory_2 = $memory_2 . $memory_6;
-#line 189
+#line 194
 undef($memory_6);
-#line 189
+#line 194
 undef($memory_5);
-#line 190
-goto label_1;
-#line 190
-label_18:
-#line 190
+#line 195
+goto label_473;
+#line 195
+label_413:
+#line 195
 $memory_5 = c_rt_lib::ov_as($memory_3, 'ov_mk');
-#line 191
+#line 196
 $memory_6 = generator_java_priv::print_ov_mk($memory_5);
-#line 191
+#line 196
 $memory_2 = $memory_6;
-#line 191
+#line 196
 undef($memory_6);
-#line 191
+#line 196
 undef($memory_5);
-#line 192
-goto label_1;
-#line 192
-label_19:
-#line 192
+#line 197
+goto label_473;
+#line 197
+label_420:
+#line 197
 $memory_5 = c_rt_lib::ov_as($memory_3, 'prt_lbl');
-#line 193
-$memory_6 = "case \"";
-#line 193
+#line 198
+$memory_6 = "case \"label_";
+#line 198
 $memory_6 = $memory_6 . $memory_5;
-#line 193
+#line 198
 $memory_7 = "\":";
-#line 193
+#line 198
 $memory_6 = $memory_6 . $memory_7;
-#line 193
+#line 198
 undef($memory_7);
-#line 193
+#line 198
 $memory_2 = $memory_6;
-#line 193
+#line 198
 undef($memory_6);
-#line 193
+#line 198
 undef($memory_5);
-#line 194
-goto label_1;
-#line 194
-label_20:
-#line 194
+#line 199
+goto label_473;
+#line 199
+label_431:
+#line 199
 $memory_5 = c_rt_lib::ov_as($memory_3, 'if_goto');
-#line 195
+#line 200
 $memory_6 = "if (c_rt_lib_NL.check_true_native_nl(";
-#line 195
+#line 200
 $memory_8 = $memory_5->{'src'};
-#line 195
+#line 200
 $memory_7 = generator_java_priv::print_register($memory_8);
-#line 195
+#line 200
 undef($memory_8);
-#line 195
+#line 200
 $memory_6 = $memory_6 . $memory_7;
-#line 195
+#line 200
 undef($memory_7);
-#line 195
+#line 200
 $memory_7 = ")) {";
-#line 195
+#line 200
 $memory_6 = $memory_6 . $memory_7;
-#line 195
+#line 200
 undef($memory_7);
-#line 195
+#line 201
 $memory_8 = $memory_5->{'dest'};
-#line 195
+#line 201
 $memory_7 = generator_java_priv::print_goto($memory_8);
-#line 195
+#line 201
 undef($memory_8);
-#line 195
+#line 201
 $memory_6 = $memory_6 . $memory_7;
-#line 195
+#line 201
 undef($memory_7);
-#line 195
+#line 201
 $memory_7 = "}";
-#line 195
+#line 201
 $memory_6 = $memory_6 . $memory_7;
-#line 195
+#line 201
 undef($memory_7);
-#line 195
+#line 201
 $memory_2 = $memory_6;
-#line 195
+#line 201
 undef($memory_6);
-#line 195
+#line 201
 undef($memory_5);
-#line 196
-goto label_1;
-#line 196
-label_21:
-#line 196
+#line 202
+goto label_473;
+#line 202
+label_454:
+#line 202
 $memory_5 = c_rt_lib::ov_as($memory_3, 'goto');
-#line 197
+#line 203
 $memory_6 = generator_java_priv::print_goto($memory_5);
-#line 197
+#line 203
 $memory_2 = $memory_6;
-#line 197
+#line 203
 undef($memory_6);
-#line 197
+#line 203
 undef($memory_5);
-#line 198
-goto label_1;
-#line 198
-label_22:
-#line 198
+#line 204
+goto label_473;
+#line 204
+label_461:
+#line 204
 $memory_5 = c_rt_lib::ov_as($memory_3, 'clear');
-#line 199
+#line 205
 $memory_7 = "null";
-#line 199
+#line 205
 $memory_6 = generator_java_priv::print_register_setter($memory_5, $memory_7);
-#line 199
+#line 205
 undef($memory_7);
-#line 199
+#line 205
 $memory_7 = ";";
-#line 199
+#line 205
 $memory_6 = $memory_6 . $memory_7;
-#line 199
+#line 205
 undef($memory_7);
-#line 199
+#line 205
 $memory_2 = $memory_6;
-#line 199
+#line 205
 undef($memory_6);
-#line 199
+#line 205
 undef($memory_5);
-#line 200
-goto label_1;
-#line 200
-label_1:
-#line 200
+#line 206
+goto label_473;
+#line 206
+label_473:
+#line 206
 undef($memory_3);
-#line 200
+#line 206
 undef($memory_4);
-#line 201
+#line 207
 $memory_3 = "//line ";
-#line 201
+#line 207
 $memory_4 = $memory_1->{'debug'};
-#line 201
+#line 207
 $memory_4 = $memory_4->{'nast_debug'};
-#line 201
+#line 207
 $memory_4 = $memory_4->{'begin'};
-#line 201
+#line 207
 $memory_4 = $memory_4->{'line'};
-#line 201
+#line 207
 $memory_3 = $memory_3 . $memory_4;
-#line 201
+#line 207
 undef($memory_4);
-#line 201
+#line 207
 $memory_4 = string::lf();
-#line 201
+#line 207
 $memory_3 = $memory_3 . $memory_4;
-#line 201
+#line 207
 undef($memory_4);
-#line 201
+#line 207
 $memory_3 = $memory_3 . $memory_2;
-#line 201
+#line 207
 $memory_4 = string::lf();
-#line 201
+#line 207
 $memory_3 = $memory_3 . $memory_4;
-#line 201
+#line 207
 undef($memory_4);
-#line 201
+#line 207
 undef($memory_0);
-#line 201
+#line 207
 undef($memory_1);
-#line 201
+#line 207
 undef($memory_2);
-#line 201
+#line 207
 return $memory_3;
-#line 201
+#line 207
 undef($memory_3);
-#line 201
+#line 207
 undef($memory_2);
-#line 201
+#line 207
 undef($memory_0);
-#line 201
+#line 207
 undef($memory_1);
-#line 201
+#line 207
 return;
 }
 
 sub generator_java_priv::print_arr($) {
 my $memory_0;my $memory_1;my $memory_2;my $memory_3;my $memory_4;my $memory_5;my $memory_6;my $memory_7;my $memory_8;my $memory_9;$memory_0 = $_[0];
-#line 205
+#line 211
 $memory_1 = "new ImmArray(new Imm[";
-#line 206
+#line 212
 $memory_2 = array::len($memory_0);
-#line 206
+#line 212
 $memory_3 = 0;
-#line 206
+#line 212
 $memory_2 = c_rt_lib::to_nl($memory_2 == $memory_3);
-#line 206
+#line 212
 undef($memory_3);
-#line 206
+#line 212
 $memory_2 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_2));
-#line 206
-if (c_rt_lib::check_true($memory_2)) {goto label_2;}
-#line 207
+#line 212
+if (c_rt_lib::check_true($memory_2)) {goto label_11;}
+#line 213
 $memory_3 = "0]";
-#line 207
+#line 213
 $memory_1 = $memory_1 . $memory_3;
-#line 207
+#line 213
 undef($memory_3);
-#line 208
-goto label_1;
-#line 208
-label_2:
-#line 209
+#line 214
+goto label_40;
+#line 214
+label_11:
+#line 215
 $memory_3 = "] {";
-#line 209
+#line 215
 $memory_1 = $memory_1 . $memory_3;
-#line 209
+#line 215
 undef($memory_3);
-#line 210
+#line 216
 $memory_4 = 0;
-#line 210
+#line 216
 $memory_5 = 1;
-#line 210
+#line 216
 $memory_6 = c_rt_lib::array_len($memory_0);
-#line 210
-label_5:
-#line 210
+#line 216
+label_18:
+#line 216
 $memory_7 = c_rt_lib::to_nl($memory_4 >= $memory_6);
-#line 210
-if (c_rt_lib::check_true($memory_7)) {goto label_3;}
-#line 210
+#line 216
+if (c_rt_lib::check_true($memory_7)) {goto label_30;}
+#line 216
 $memory_3 = $memory_0->[$memory_4];
-#line 210
+#line 216
 $memory_8 = generator_java_priv::print_register_getter($memory_3);
-#line 210
+#line 216
 $memory_9 = ",";
-#line 210
+#line 216
 $memory_8 = $memory_8 . $memory_9;
-#line 210
+#line 216
 undef($memory_9);
-#line 210
+#line 216
 $memory_1 = $memory_1 . $memory_8;
-#line 210
+#line 216
 undef($memory_8);
-#line 210
+#line 216
 $memory_4 = $memory_4 + $memory_5;
-#line 210
-goto label_5;
-#line 210
-label_3:
-#line 210
+#line 216
+goto label_18;
+#line 216
+label_30:
+#line 216
 undef($memory_3);
-#line 210
+#line 216
 undef($memory_4);
-#line 210
+#line 216
 undef($memory_5);
-#line 210
+#line 216
 undef($memory_6);
-#line 210
+#line 216
 undef($memory_7);
-#line 211
+#line 217
 $memory_3 = "}";
-#line 211
+#line 217
 $memory_1 = $memory_1 . $memory_3;
-#line 211
+#line 217
 undef($memory_3);
-#line 212
-goto label_1;
-#line 212
-label_1:
-#line 212
+#line 218
+goto label_40;
+#line 218
+label_40:
+#line 218
 undef($memory_2);
-#line 213
+#line 219
 $memory_2 = ")";
-#line 213
+#line 219
 $memory_2 = $memory_1 . $memory_2;
-#line 213
+#line 219
 undef($memory_0);
-#line 213
+#line 219
 undef($memory_1);
-#line 213
+#line 219
 return $memory_2;
-#line 213
+#line 219
 undef($memory_2);
-#line 213
+#line 219
 undef($memory_1);
-#line 213
+#line 219
 undef($memory_0);
-#line 213
+#line 219
 return;
 }
 
 sub generator_java_priv::print_bin_op($) {
 my $memory_0;my $memory_1;my $memory_2;my $memory_3;my $memory_4;my $memory_5;$memory_0 = $_[0];
-#line 217
+#line 223
 $memory_1 = "";
-#line 218
+#line 224
 $memory_2 = $memory_0->{'op'};
-#line 218
+#line 224
 $memory_3 = ">=";
-#line 218
+#line 224
 $memory_2 = c_rt_lib::to_nl($memory_2 eq $memory_3);
-#line 218
+#line 224
 undef($memory_3);
-#line 218
-if (c_rt_lib::check_true($memory_2)) {goto label_7;}
-#line 218
+#line 224
+if (c_rt_lib::check_true($memory_2)) {goto label_10;}
+#line 224
 $memory_2 = $memory_0->{'op'};
-#line 218
+#line 224
 $memory_3 = "<=";
-#line 218
+#line 224
 $memory_2 = c_rt_lib::to_nl($memory_2 eq $memory_3);
-#line 218
+#line 224
 undef($memory_3);
-#line 218
-label_7:
-#line 218
-if (c_rt_lib::check_true($memory_2)) {goto label_6;}
-#line 218
+#line 224
+label_10:
+#line 224
+if (c_rt_lib::check_true($memory_2)) {goto label_16;}
+#line 224
 $memory_2 = $memory_0->{'op'};
-#line 218
+#line 224
 $memory_3 = "<";
-#line 218
+#line 224
 $memory_2 = c_rt_lib::to_nl($memory_2 eq $memory_3);
-#line 218
+#line 224
 undef($memory_3);
-#line 218
-label_6:
-#line 218
-if (c_rt_lib::check_true($memory_2)) {goto label_5;}
-#line 218
+#line 224
+label_16:
+#line 224
+if (c_rt_lib::check_true($memory_2)) {goto label_22;}
+#line 224
 $memory_2 = $memory_0->{'op'};
-#line 218
+#line 224
 $memory_3 = ">";
-#line 218
+#line 224
 $memory_2 = c_rt_lib::to_nl($memory_2 eq $memory_3);
-#line 218
+#line 224
 undef($memory_3);
-#line 218
-label_5:
-#line 218
-if (c_rt_lib::check_true($memory_2)) {goto label_4;}
-#line 218
+#line 224
+label_22:
+#line 224
+if (c_rt_lib::check_true($memory_2)) {goto label_28;}
+#line 224
 $memory_2 = $memory_0->{'op'};
-#line 218
+#line 224
 $memory_3 = "==";
-#line 218
+#line 224
 $memory_2 = c_rt_lib::to_nl($memory_2 eq $memory_3);
-#line 218
+#line 224
 undef($memory_3);
-#line 218
-label_4:
-#line 218
-if (c_rt_lib::check_true($memory_2)) {goto label_3;}
-#line 218
+#line 224
+label_28:
+#line 224
+if (c_rt_lib::check_true($memory_2)) {goto label_34;}
+#line 225
 $memory_2 = $memory_0->{'op'};
-#line 218
+#line 225
 $memory_3 = "!=";
-#line 218
+#line 225
 $memory_2 = c_rt_lib::to_nl($memory_2 eq $memory_3);
-#line 218
+#line 225
 undef($memory_3);
-#line 218
-label_3:
-#line 218
+#line 225
+label_34:
+#line 225
 $memory_2 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_2));
-#line 218
-if (c_rt_lib::check_true($memory_2)) {goto label_2;}
-#line 220
+#line 225
+if (c_rt_lib::check_true($memory_2)) {goto label_47;}
+#line 226
 $memory_3 = "c_rt_lib_NL.native_to_nl_nl(";
-#line 220
+#line 226
 $memory_4 = generator_java_priv::print_imm_double_operation($memory_0);
-#line 220
+#line 226
 $memory_3 = $memory_3 . $memory_4;
-#line 220
+#line 226
 undef($memory_4);
-#line 220
+#line 226
 $memory_4 = " )";
-#line 220
+#line 226
 $memory_3 = $memory_3 . $memory_4;
-#line 220
+#line 226
 undef($memory_4);
-#line 220
+#line 226
 $memory_1 = $memory_1 . $memory_3;
-#line 220
+#line 226
 undef($memory_3);
-#line 221
-goto label_1;
-#line 221
-label_2:
-#line 221
+#line 227
+goto label_130;
+#line 227
+label_47:
+#line 227
 $memory_2 = $memory_0->{'op'};
-#line 221
+#line 227
 $memory_3 = "eq";
-#line 221
+#line 227
 $memory_2 = c_rt_lib::to_nl($memory_2 eq $memory_3);
-#line 221
+#line 227
 undef($memory_3);
-#line 221
-if (c_rt_lib::check_true($memory_2)) {goto label_9;}
-#line 221
+#line 227
+if (c_rt_lib::check_true($memory_2)) {goto label_57;}
+#line 227
 $memory_2 = $memory_0->{'op'};
-#line 221
+#line 227
 $memory_3 = "ne";
-#line 221
+#line 227
 $memory_2 = c_rt_lib::to_nl($memory_2 eq $memory_3);
-#line 221
+#line 227
 undef($memory_3);
-#line 221
-label_9:
-#line 221
+#line 227
+label_57:
+#line 227
 $memory_2 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_2));
-#line 221
-if (c_rt_lib::check_true($memory_2)) {goto label_8;}
-#line 222
+#line 227
+if (c_rt_lib::check_true($memory_2)) {goto label_92;}
+#line 228
 $memory_3 = "c_rt_lib_NL.native_to_nl_nl(";
-#line 222
+#line 228
 $memory_1 = $memory_1 . $memory_3;
-#line 222
+#line 228
 undef($memory_3);
-#line 223
+#line 229
 $memory_3 = $memory_0->{'op'};
-#line 223
+#line 229
 $memory_4 = "ne";
-#line 223
+#line 229
 $memory_3 = c_rt_lib::to_nl($memory_3 eq $memory_4);
-#line 223
+#line 229
 undef($memory_4);
-#line 223
+#line 229
 $memory_3 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_3));
-#line 223
-if (c_rt_lib::check_true($memory_3)) {goto label_11;}
-#line 224
+#line 229
+if (c_rt_lib::check_true($memory_3)) {goto label_73;}
+#line 230
 $memory_4 = "!";
-#line 224
+#line 230
 $memory_1 = $memory_1 . $memory_4;
-#line 224
+#line 230
 undef($memory_4);
-#line 225
-goto label_11;
-#line 225
-label_11:
-#line 225
+#line 231
+goto label_73;
+#line 231
+label_73:
+#line 231
 undef($memory_3);
-#line 226
+#line 232
 $memory_4 = $memory_0->{'left'};
-#line 226
+#line 232
 $memory_3 = generator_java_priv::print_register_getter($memory_4);
-#line 226
+#line 232
 undef($memory_4);
-#line 226
+#line 232
 $memory_4 = ".toString().equals(";
-#line 226
+#line 232
 $memory_3 = $memory_3 . $memory_4;
-#line 226
+#line 232
 undef($memory_4);
-#line 226
+#line 232
 $memory_1 = $memory_1 . $memory_3;
-#line 226
+#line 232
 undef($memory_3);
-#line 227
+#line 233
 $memory_4 = $memory_0->{'right'};
-#line 227
+#line 233
 $memory_3 = generator_java_priv::print_register_getter($memory_4);
-#line 227
+#line 233
 undef($memory_4);
-#line 227
+#line 233
 $memory_4 = ".toString()))";
-#line 227
+#line 233
 $memory_3 = $memory_3 . $memory_4;
-#line 227
+#line 233
 undef($memory_4);
-#line 227
+#line 233
 $memory_1 = $memory_1 . $memory_3;
-#line 227
+#line 233
 undef($memory_3);
-#line 228
-goto label_1;
-#line 228
-label_8:
-#line 228
+#line 234
+goto label_130;
+#line 234
+label_92:
+#line 234
 $memory_2 = $memory_0->{'op'};
-#line 228
+#line 234
 $memory_3 = ".";
-#line 228
+#line 234
 $memory_2 = c_rt_lib::to_nl($memory_2 eq $memory_3);
-#line 228
+#line 234
 undef($memory_3);
-#line 228
+#line 234
 $memory_2 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_2));
-#line 228
-if (c_rt_lib::check_true($memory_2)) {goto label_12;}
-#line 229
+#line 234
+if (c_rt_lib::check_true($memory_2)) {goto label_119;}
+#line 235
 $memory_3 = "new ImmString(";
-#line 229
+#line 235
 $memory_5 = $memory_0->{'left'};
-#line 229
+#line 235
 $memory_4 = generator_java_priv::print_register_getter($memory_5);
-#line 229
+#line 235
 undef($memory_5);
-#line 229
+#line 235
 $memory_3 = $memory_3 . $memory_4;
-#line 229
+#line 235
 undef($memory_4);
-#line 229
+#line 235
 $memory_4 = ".toString() + ";
-#line 229
+#line 235
 $memory_3 = $memory_3 . $memory_4;
-#line 229
+#line 235
 undef($memory_4);
-#line 229
+#line 236
 $memory_5 = $memory_0->{'right'};
-#line 229
+#line 236
 $memory_4 = generator_java_priv::print_register_getter($memory_5);
-#line 229
+#line 236
 undef($memory_5);
-#line 229
+#line 236
 $memory_3 = $memory_3 . $memory_4;
-#line 229
+#line 236
 undef($memory_4);
-#line 229
+#line 236
 $memory_4 = ".toString())";
-#line 229
+#line 236
 $memory_3 = $memory_3 . $memory_4;
-#line 229
+#line 236
 undef($memory_4);
-#line 229
+#line 236
 $memory_1 = $memory_1 . $memory_3;
-#line 229
+#line 236
 undef($memory_3);
-#line 230
-goto label_1;
-#line 230
-label_12:
-#line 231
+#line 237
+goto label_130;
+#line 237
+label_119:
+#line 238
 $memory_3 = "new ImmDouble(";
-#line 231
+#line 238
 $memory_4 = generator_java_priv::print_imm_double_operation($memory_0);
-#line 231
+#line 238
 $memory_3 = $memory_3 . $memory_4;
-#line 231
+#line 238
 undef($memory_4);
-#line 231
+#line 238
 $memory_4 = ")";
-#line 231
+#line 238
 $memory_3 = $memory_3 . $memory_4;
-#line 231
+#line 238
 undef($memory_4);
-#line 231
+#line 238
 $memory_1 = $memory_1 . $memory_3;
-#line 231
+#line 238
 undef($memory_3);
-#line 232
-goto label_1;
-#line 232
-label_1:
-#line 232
+#line 239
+goto label_130;
+#line 239
+label_130:
+#line 239
 undef($memory_2);
-#line 233
+#line 240
 $memory_3 = $memory_0->{'dest'};
-#line 233
+#line 240
 $memory_2 = generator_java_priv::print_register_setter($memory_3, $memory_1);
-#line 233
+#line 240
 undef($memory_3);
-#line 233
+#line 240
 $memory_3 = ";";
-#line 233
+#line 240
 $memory_2 = $memory_2 . $memory_3;
-#line 233
+#line 240
 undef($memory_3);
-#line 233
+#line 240
 undef($memory_0);
-#line 233
+#line 240
 undef($memory_1);
-#line 233
+#line 240
 return $memory_2;
-#line 233
+#line 240
 undef($memory_2);
-#line 233
+#line 240
 undef($memory_1);
-#line 233
+#line 240
 undef($memory_0);
-#line 233
+#line 240
 return;
 }
 
 sub generator_java_priv::print_imm_double_operation($) {
 my $memory_0;my $memory_1;my $memory_2;my $memory_3;my $memory_4;my $memory_5;$memory_0 = $_[0];
-#line 237
+#line 244
 $memory_2 = $memory_0->{'left'};
-#line 237
+#line 244
 $memory_1 = generator_java_priv::print_register_as_number($memory_2);
-#line 237
+#line 244
 undef($memory_2);
-#line 238
+#line 245
 $memory_2 = $memory_0->{'op'};
-#line 238
+#line 245
 $memory_3 = "==";
-#line 238
+#line 245
 $memory_2 = c_rt_lib::to_nl($memory_2 eq $memory_3);
-#line 238
+#line 245
 undef($memory_3);
-#line 238
-if (c_rt_lib::check_true($memory_2)) {goto label_3;}
-#line 238
+#line 245
+if (c_rt_lib::check_true($memory_2)) {goto label_12;}
+#line 245
 $memory_2 = $memory_0->{'op'};
-#line 238
+#line 245
 $memory_3 = "!=";
-#line 238
+#line 245
 $memory_2 = c_rt_lib::to_nl($memory_2 eq $memory_3);
-#line 238
+#line 245
 undef($memory_3);
-#line 238
-label_3:
-#line 238
+#line 245
+label_12:
+#line 245
 $memory_2 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_2));
-#line 238
-if (c_rt_lib::check_true($memory_2)) {goto label_2;}
-#line 239
+#line 245
+if (c_rt_lib::check_true($memory_2)) {goto label_33;}
+#line 246
 $memory_3 = ".compareTo(";
-#line 239
+#line 246
 $memory_5 = $memory_0->{'right'};
-#line 239
+#line 246
 $memory_4 = generator_java_priv::print_register_as_number($memory_5);
-#line 239
+#line 246
 undef($memory_5);
-#line 239
+#line 246
 $memory_3 = $memory_3 . $memory_4;
-#line 239
+#line 246
 undef($memory_4);
-#line 239
+#line 246
 $memory_4 = ") ";
-#line 239
+#line 246
 $memory_3 = $memory_3 . $memory_4;
-#line 239
+#line 246
 undef($memory_4);
-#line 239
+#line 246
 $memory_4 = $memory_0->{'op'};
-#line 239
+#line 246
 $memory_3 = $memory_3 . $memory_4;
-#line 239
+#line 246
 undef($memory_4);
-#line 239
+#line 246
 $memory_4 = " 0";
-#line 239
+#line 246
 $memory_3 = $memory_3 . $memory_4;
-#line 239
+#line 246
 undef($memory_4);
-#line 239
+#line 246
 $memory_1 = $memory_1 . $memory_3;
-#line 239
+#line 246
 undef($memory_3);
-#line 240
-goto label_1;
-#line 240
-label_2:
-#line 241
+#line 247
+goto label_43;
+#line 247
+label_33:
+#line 248
 $memory_3 = $memory_0->{'op'};
-#line 241
+#line 248
 $memory_5 = $memory_0->{'right'};
-#line 241
+#line 248
 $memory_4 = generator_java_priv::print_register_as_number($memory_5);
-#line 241
+#line 248
 undef($memory_5);
-#line 241
+#line 248
 $memory_3 = $memory_3 . $memory_4;
-#line 241
+#line 248
 undef($memory_4);
-#line 241
+#line 248
 $memory_1 = $memory_1 . $memory_3;
-#line 241
+#line 248
 undef($memory_3);
-#line 242
-goto label_1;
-#line 242
-label_1:
-#line 242
+#line 249
+goto label_43;
+#line 249
+label_43:
+#line 249
 undef($memory_2);
-#line 243
+#line 250
 undef($memory_0);
-#line 243
+#line 250
 return $memory_1;
-#line 243
+#line 250
 undef($memory_1);
-#line 243
+#line 250
 undef($memory_0);
-#line 243
+#line 250
 return;
 }
 
 sub generator_java_priv::print_register_as_number($) {
 my $memory_0;my $memory_1;my $memory_2;$memory_0 = $_[0];
-#line 247
+#line 254
 $memory_1 = "(Double.valueOf(String.valueOf(";
-#line 247
+#line 254
 $memory_2 = generator_java_priv::print_register_getter($memory_0);
-#line 247
+#line 254
 $memory_1 = $memory_1 . $memory_2;
-#line 247
+#line 254
 undef($memory_2);
-#line 247
+#line 254
 $memory_2 = generator_java_priv::print_getter();
-#line 247
+#line 254
 $memory_1 = $memory_1 . $memory_2;
-#line 247
+#line 254
 undef($memory_2);
-#line 247
+#line 254
 $memory_2 = ")))";
-#line 247
+#line 254
 $memory_1 = $memory_1 . $memory_2;
-#line 247
+#line 254
 undef($memory_2);
-#line 247
+#line 254
 undef($memory_0);
-#line 247
+#line 254
 return $memory_1;
-#line 247
+#line 254
 undef($memory_1);
-#line 247
+#line 254
 undef($memory_0);
-#line 247
+#line 254
 return;
 }
 
 sub generator_java_priv::__print_int_value() {
 my $memory_0;
-#line 251
+#line 258
 $memory_0 = ".intValue()";
-#line 251
+#line 258
 return $memory_0;
-#line 251
+#line 258
 undef($memory_0);
-#line 251
+#line 258
 return;
 }
 
@@ -3056,821 +3056,821 @@ sub generator_java_priv::print_int_value() {
 
 sub generator_java_priv::print_call($$$$) {
 my $memory_0;my $memory_1;my $memory_2;my $memory_3;my $memory_4;my $memory_5;my $memory_6;my $memory_7;my $memory_8;my $memory_9;my $memory_10;my $memory_11;my $memory_12;my $memory_13;$memory_0 = $_[0];$memory_1 = $_[1];$memory_2 = $_[2];$memory_3 = $_[3];
-#line 255
+#line 262
 $memory_4 = "";
-#line 255
+#line 262
 $memory_4 = c_rt_lib::to_nl($memory_1 eq $memory_4);
-#line 255
+#line 262
 $memory_4 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_4));
-#line 255
-if (c_rt_lib::check_true($memory_4)) {goto label_2;}
-#line 255
+#line 262
+if (c_rt_lib::check_true($memory_4)) {goto label_9;}
+#line 262
 $memory_5 = "_priv";
-#line 255
+#line 262
 $memory_5 = $memory_2 . $memory_5;
-#line 255
+#line 262
 $memory_2 = $memory_5;
-#line 255
+#line 262
 undef($memory_5);
-#line 255
-goto label_2;
-#line 255
-label_2:
-#line 255
-undef($memory_4);
-#line 256
-$memory_4 = "";
-#line 256
-$memory_4 = c_rt_lib::to_nl($memory_1 eq $memory_4);
-#line 256
-$memory_4 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_4));
-#line 256
-if (c_rt_lib::check_true($memory_4)) {goto label_4;}
-#line 256
-$memory_1 = $memory_0;
-#line 256
-goto label_4;
-#line 256
-label_4:
-#line 256
-undef($memory_4);
-#line 257
-$memory_4 = generator_java_priv::get_class_name($memory_1);
-#line 257
-$memory_5 = ".";
-#line 257
-$memory_4 = $memory_4 . $memory_5;
-#line 257
-undef($memory_5);
-#line 257
-$memory_5 = $memory_2;
-#line 257
-$memory_4 = $memory_4 . $memory_5;
-#line 257
-undef($memory_5);
-#line 257
-$memory_5 = "_nl(";
-#line 257
-$memory_4 = $memory_4 . $memory_5;
-#line 257
-undef($memory_5);
-#line 258
-$memory_5 = 0;
-#line 259
-$memory_7 = 0;
-#line 259
-$memory_8 = 1;
-#line 259
-$memory_9 = c_rt_lib::array_len($memory_3);
-#line 259
-label_7:
-#line 259
-$memory_10 = c_rt_lib::to_nl($memory_7 >= $memory_9);
-#line 259
-if (c_rt_lib::check_true($memory_10)) {goto label_5;}
-#line 259
-$memory_6 = $memory_3->[$memory_7];
-#line 260
-$memory_11 = 0;
-#line 260
-$memory_11 = c_rt_lib::to_nl($memory_5 == $memory_11);
-#line 260
-$memory_11 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_11));
-#line 260
-$memory_11 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_11));
-#line 260
-if (c_rt_lib::check_true($memory_11)) {goto label_9;}
-#line 260
-$memory_12 = ",";
-#line 260
-$memory_4 = $memory_4 . $memory_12;
-#line 260
-undef($memory_12);
-#line 260
+#line 262
 goto label_9;
-#line 260
+#line 262
 label_9:
-#line 260
+#line 262
+undef($memory_4);
+#line 263
+$memory_4 = "";
+#line 263
+$memory_4 = c_rt_lib::to_nl($memory_1 eq $memory_4);
+#line 263
+$memory_4 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_4));
+#line 263
+if (c_rt_lib::check_true($memory_4)) {goto label_17;}
+#line 263
+$memory_1 = $memory_0;
+#line 263
+goto label_17;
+#line 263
+label_17:
+#line 263
+undef($memory_4);
+#line 264
+$memory_4 = generator_java_priv::get_class_name($memory_1);
+#line 264
+$memory_5 = ".";
+#line 264
+$memory_4 = $memory_4 . $memory_5;
+#line 264
+undef($memory_5);
+#line 264
+$memory_5 = $memory_2;
+#line 264
+$memory_4 = $memory_4 . $memory_5;
+#line 264
+undef($memory_5);
+#line 264
+$memory_5 = "_nl(";
+#line 264
+$memory_4 = $memory_4 . $memory_5;
+#line 264
+undef($memory_5);
+#line 265
+$memory_5 = 0;
+#line 266
+$memory_7 = 0;
+#line 266
+$memory_8 = 1;
+#line 266
+$memory_9 = c_rt_lib::array_len($memory_3);
+#line 266
+label_33:
+#line 266
+$memory_10 = c_rt_lib::to_nl($memory_7 >= $memory_9);
+#line 266
+if (c_rt_lib::check_true($memory_10)) {goto label_76;}
+#line 266
+$memory_6 = $memory_3->[$memory_7];
+#line 267
+$memory_11 = 0;
+#line 267
+$memory_11 = c_rt_lib::to_nl($memory_5 == $memory_11);
+#line 267
+$memory_11 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_11));
+#line 267
+$memory_11 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_11));
+#line 267
+if (c_rt_lib::check_true($memory_11)) {goto label_46;}
+#line 267
+$memory_12 = ",";
+#line 267
+$memory_4 = $memory_4 . $memory_12;
+#line 267
+undef($memory_12);
+#line 267
+goto label_46;
+#line 267
+label_46:
+#line 267
 undef($memory_11);
-#line 261
+#line 268
 $memory_11 = 1;
-#line 261
+#line 268
 $memory_5 = $memory_5 + $memory_11;
-#line 261
+#line 268
 undef($memory_11);
-#line 262
+#line 269
 $memory_11 = c_rt_lib::ov_is($memory_6, 'ref');
-#line 262
-if (c_rt_lib::check_true($memory_11)) {goto label_11;}
-#line 264
+#line 269
+if (c_rt_lib::check_true($memory_11)) {goto label_58;}
+#line 271
 $memory_11 = c_rt_lib::ov_is($memory_6, 'val');
-#line 264
-if (c_rt_lib::check_true($memory_11)) {goto label_12;}
-#line 264
+#line 271
+if (c_rt_lib::check_true($memory_11)) {goto label_65;}
+#line 271
 $memory_11 = "NOMATCHALERT";
-#line 264
+#line 271
 $memory_11 = [$memory_11,$memory_6];
-#line 264
+#line 271
 die(dfile::ssave($memory_11));
-#line 262
-label_11:
-#line 262
+#line 269
+label_58:
+#line 269
 $memory_12 = c_rt_lib::ov_as($memory_6, 'ref');
-#line 263
+#line 270
 $memory_13 = generator_java_priv::print_register($memory_12);
-#line 263
+#line 270
 $memory_4 = $memory_4 . $memory_13;
-#line 263
+#line 270
 undef($memory_13);
-#line 263
+#line 270
 undef($memory_12);
-#line 264
-goto label_10;
-#line 264
-label_12:
-#line 264
+#line 271
+goto label_72;
+#line 271
+label_65:
+#line 271
 $memory_12 = c_rt_lib::ov_as($memory_6, 'val');
-#line 265
+#line 272
 $memory_13 = generator_java_priv::print_register($memory_12);
-#line 265
+#line 272
 $memory_4 = $memory_4 . $memory_13;
-#line 265
+#line 272
 undef($memory_13);
-#line 265
+#line 272
 undef($memory_12);
-#line 266
-goto label_10;
-#line 266
-label_10:
-#line 266
+#line 273
+goto label_72;
+#line 273
+label_72:
+#line 273
 undef($memory_11);
-#line 267
+#line 274
 $memory_7 = $memory_7 + $memory_8;
-#line 267
-goto label_7;
-#line 267
-label_5:
-#line 267
+#line 274
+goto label_33;
+#line 274
+label_76:
+#line 274
 undef($memory_6);
-#line 267
+#line 274
 undef($memory_7);
-#line 267
+#line 274
 undef($memory_8);
-#line 267
+#line 274
 undef($memory_9);
-#line 267
+#line 274
 undef($memory_10);
-#line 268
+#line 275
 $memory_6 = ")";
-#line 268
+#line 275
 $memory_6 = $memory_4 . $memory_6;
-#line 268
+#line 275
 undef($memory_0);
-#line 268
+#line 275
 undef($memory_1);
-#line 268
+#line 275
 undef($memory_2);
-#line 268
+#line 275
 undef($memory_3);
-#line 268
+#line 275
 undef($memory_4);
-#line 268
+#line 275
 undef($memory_5);
-#line 268
+#line 275
 return $memory_6;
-#line 268
+#line 275
 undef($memory_6);
-#line 268
+#line 275
 undef($memory_4);
-#line 268
+#line 275
 undef($memory_5);
-#line 268
+#line 275
 undef($memory_0);
-#line 268
+#line 275
 undef($memory_1);
-#line 268
+#line 275
 undef($memory_2);
-#line 268
+#line 275
 undef($memory_3);
-#line 268
+#line 275
 return;
 }
 
 sub generator_java_priv::print_const_arr($$) {
 my $memory_0;my $memory_1;my $memory_2;my $memory_3;my $memory_4;my $memory_5;my $memory_6;my $memory_7;my $memory_8;my $memory_9;$memory_0 = $_[0];$memory_1 = $_[1];
-#line 272
+#line 279
 $memory_2 = "new Imm[] {";
-#line 273
+#line 280
 $memory_4 = 0;
-#line 273
+#line 280
 $memory_5 = 1;
-#line 273
+#line 280
 $memory_6 = c_rt_lib::array_len($memory_1);
-#line 273
-label_3:
-#line 273
+#line 280
+label_4:
+#line 280
 $memory_7 = c_rt_lib::to_nl($memory_4 >= $memory_6);
-#line 273
-if (c_rt_lib::check_true($memory_7)) {goto label_1;}
-#line 273
+#line 280
+if (c_rt_lib::check_true($memory_7)) {goto label_16;}
+#line 280
 $memory_3 = $memory_1->[$memory_4];
-#line 273
+#line 280
 $memory_8 = generator_java_priv::print_const_value($memory_0, $memory_3);
-#line 273
+#line 280
 $memory_9 = ",";
-#line 273
+#line 280
 $memory_8 = $memory_8 . $memory_9;
-#line 273
+#line 280
 undef($memory_9);
-#line 273
+#line 280
 $memory_2 = $memory_2 . $memory_8;
-#line 273
+#line 280
 undef($memory_8);
-#line 273
+#line 280
 $memory_4 = $memory_4 + $memory_5;
-#line 273
-goto label_3;
-#line 273
-label_1:
-#line 273
+#line 280
+goto label_4;
+#line 280
+label_16:
+#line 280
 undef($memory_3);
-#line 273
+#line 280
 undef($memory_4);
-#line 273
+#line 280
 undef($memory_5);
-#line 273
+#line 280
 undef($memory_6);
-#line 273
+#line 280
 undef($memory_7);
-#line 274
+#line 281
 $memory_3 = "}";
-#line 274
+#line 281
 $memory_3 = $memory_2 . $memory_3;
-#line 274
+#line 281
 undef($memory_0);
-#line 274
+#line 281
 undef($memory_1);
-#line 274
+#line 281
 undef($memory_2);
-#line 274
+#line 281
 return $memory_3;
-#line 274
+#line 281
 undef($memory_3);
-#line 274
+#line 281
 undef($memory_2);
-#line 274
+#line 281
 undef($memory_0);
-#line 274
+#line 281
 undef($memory_1);
-#line 274
+#line 281
 return;
 }
 
 sub generator_java_priv::print_const_hash($$) {
 my $memory_0;my $memory_1;my $memory_2;my $memory_3;my $memory_4;my $memory_5;my $memory_6;my $memory_7;$memory_0 = $_[0];$memory_1 = $_[1];
-#line 278
+#line 285
 $memory_2 = generator_java_priv::print_hash_name();
-#line 278
+#line 285
 $memory_3 = " = new HashMap<ImmString, Imm>();";
-#line 278
+#line 285
 $memory_2 = $memory_2 . $memory_3;
-#line 278
+#line 285
 undef($memory_3);
-#line 278
+#line 285
 $memory_3 = string::lf();
-#line 278
+#line 285
 $memory_2 = $memory_2 . $memory_3;
-#line 278
+#line 285
 undef($memory_3);
-#line 279
+#line 286
 $memory_5 = c_rt_lib::init_iter($memory_1);
-#line 279
-label_3:
-#line 279
+#line 286
+label_8:
+#line 286
 $memory_3 = c_rt_lib::is_end_hash($memory_5);
-#line 279
-if (c_rt_lib::check_true($memory_3)) {goto label_1;}
-#line 279
+#line 286
+if (c_rt_lib::check_true($memory_3)) {goto label_36;}
+#line 286
 $memory_3 = c_rt_lib::get_key_iter($memory_5);
-#line 279
+#line 286
 $memory_4 = c_rt_lib::hash_get_value($memory_1, $memory_3);
-#line 279
+#line 286
 $memory_6 = generator_java_priv::print_hash_name();
-#line 279
+#line 286
 $memory_7 = ".put(new ImmString(\"";
-#line 279
+#line 286
 $memory_6 = $memory_6 . $memory_7;
-#line 279
+#line 286
 undef($memory_7);
-#line 279
+#line 286
 $memory_7 = generator_java_priv::escape_string($memory_3);
-#line 279
+#line 286
 $memory_6 = $memory_6 . $memory_7;
-#line 279
+#line 286
 undef($memory_7);
-#line 279
+#line 286
 $memory_7 = "\"),";
-#line 279
+#line 286
 $memory_6 = $memory_6 . $memory_7;
-#line 279
+#line 286
 undef($memory_7);
-#line 279
+#line 286
 $memory_7 = generator_java_priv::print_const_value($memory_0, $memory_4);
-#line 279
+#line 286
 $memory_6 = $memory_6 . $memory_7;
-#line 279
+#line 286
 undef($memory_7);
-#line 279
+#line 287
 $memory_7 = ");";
-#line 279
+#line 287
 $memory_6 = $memory_6 . $memory_7;
-#line 279
+#line 287
 undef($memory_7);
-#line 279
+#line 287
 $memory_7 = string::lf();
-#line 279
+#line 287
 $memory_6 = $memory_6 . $memory_7;
-#line 279
+#line 287
 undef($memory_7);
-#line 279
+#line 287
 $memory_2 = $memory_2 . $memory_6;
-#line 279
+#line 287
 undef($memory_6);
-#line 279
+#line 287
 $memory_5 = c_rt_lib::next_iter($memory_5);
-#line 279
-goto label_3;
-#line 279
-label_1:
-#line 279
+#line 287
+goto label_8;
+#line 287
+label_36:
+#line 287
 undef($memory_3);
-#line 279
+#line 287
 undef($memory_4);
-#line 279
+#line 287
 undef($memory_5);
-#line 280
+#line 289
 $memory_4 = "new ImmMap(";
-#line 280
+#line 289
 $memory_5 = generator_java_priv::print_hash_name();
-#line 280
+#line 289
 $memory_4 = $memory_4 . $memory_5;
-#line 280
+#line 289
 undef($memory_5);
-#line 280
+#line 289
 $memory_5 = ")";
-#line 280
+#line 289
 $memory_4 = $memory_4 . $memory_5;
-#line 280
+#line 289
 undef($memory_5);
-#line 280
+#line 289
 $memory_3 = generator_java_priv::print_register_setter($memory_0, $memory_4);
-#line 280
+#line 289
 undef($memory_4);
-#line 280
+#line 289
 $memory_3 = $memory_2 . $memory_3;
-#line 280
+#line 289
 undef($memory_0);
-#line 280
+#line 289
 undef($memory_1);
-#line 280
+#line 289
 undef($memory_2);
-#line 280
+#line 289
 return $memory_3;
-#line 280
+#line 289
 undef($memory_3);
-#line 280
+#line 289
 undef($memory_2);
-#line 280
+#line 289
 undef($memory_0);
-#line 280
+#line 289
 undef($memory_1);
-#line 280
+#line 289
 return;
 }
 
 sub generator_java_priv::print_const_ov($$) {
 my $memory_0;my $memory_1;my $memory_2;my $memory_3;my $memory_4;my $memory_5;my $memory_6;$memory_0 = $_[0];$memory_1 = $_[1];
-#line 284
+#line 293
 $memory_2 = "";
-#line 285
+#line 294
 $memory_3 = ov::has_value($memory_1);
-#line 285
+#line 294
 $memory_3 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_3));
-#line 285
-if (c_rt_lib::check_true($memory_3)) {goto label_2;}
-#line 286
+#line 294
+if (c_rt_lib::check_true($memory_3)) {goto label_24;}
+#line 295
 $memory_4 = "new OV(\"";
-#line 286
+#line 295
 $memory_6 = ov::get_element($memory_1);
-#line 286
+#line 295
 $memory_5 = generator_java_priv::escape_string($memory_6);
-#line 286
+#line 295
 undef($memory_6);
-#line 286
+#line 295
 $memory_4 = $memory_4 . $memory_5;
-#line 286
+#line 295
 undef($memory_5);
-#line 286
+#line 295
 $memory_5 = "\", ";
-#line 286
+#line 295
 $memory_4 = $memory_4 . $memory_5;
-#line 286
+#line 295
 undef($memory_5);
-#line 286
+#line 296
 $memory_6 = ov::get_value($memory_1);
-#line 286
+#line 296
 $memory_5 = generator_java_priv::print_const_value($memory_0, $memory_6);
-#line 286
+#line 296
 undef($memory_6);
-#line 286
+#line 296
 $memory_4 = $memory_4 . $memory_5;
-#line 286
+#line 296
 undef($memory_5);
-#line 286
+#line 296
 $memory_5 = ")";
-#line 286
+#line 296
 $memory_4 = $memory_4 . $memory_5;
-#line 286
+#line 296
 undef($memory_5);
-#line 286
+#line 296
 $memory_2 = $memory_4;
-#line 286
+#line 296
 undef($memory_4);
-#line 287
-goto label_1;
-#line 287
-label_2:
-#line 288
+#line 297
+goto label_37;
+#line 297
+label_24:
+#line 298
 $memory_4 = "new OV(\"";
-#line 288
+#line 298
 $memory_6 = ov::get_element($memory_1);
-#line 288
+#line 298
 $memory_5 = generator_java_priv::escape_string($memory_6);
-#line 288
+#line 298
 undef($memory_6);
-#line 288
+#line 298
 $memory_4 = $memory_4 . $memory_5;
-#line 288
+#line 298
 undef($memory_5);
-#line 288
+#line 298
 $memory_5 = "\", null)";
-#line 288
+#line 298
 $memory_4 = $memory_4 . $memory_5;
-#line 288
+#line 298
 undef($memory_5);
-#line 288
+#line 298
 $memory_2 = $memory_4;
-#line 288
+#line 298
 undef($memory_4);
-#line 289
-goto label_1;
-#line 289
-label_1:
-#line 289
+#line 299
+goto label_37;
+#line 299
+label_37:
+#line 299
 undef($memory_3);
-#line 290
+#line 300
 undef($memory_0);
-#line 290
+#line 300
 undef($memory_1);
-#line 290
+#line 300
 return $memory_2;
-#line 290
+#line 300
 undef($memory_2);
-#line 290
+#line 300
 undef($memory_0);
-#line 290
+#line 300
 undef($memory_1);
-#line 290
+#line 300
 return;
 }
 
 sub generator_java_priv::print_const_value($$) {
 my $memory_0;my $memory_1;my $memory_2;my $memory_3;my $memory_4;my $memory_5;$memory_0 = $_[0];$memory_1 = $_[1];
-#line 294
+#line 304
 $memory_2 = nl::is_sim($memory_1);
-#line 294
+#line 304
 $memory_3 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_2));
-#line 294
-if (c_rt_lib::check_true($memory_3)) {goto label_4;}
-#line 294
+#line 304
+if (c_rt_lib::check_true($memory_3)) {goto label_14;}
+#line 304
 $memory_5 = ptd::sim();
-#line 294
+#line 304
 $memory_4 = ptd::ensure($memory_5, $memory_1);
-#line 294
+#line 304
 undef($memory_5);
-#line 294
+#line 304
 $memory_2 = string_utils::is_integer($memory_4);
-#line 294
+#line 304
 undef($memory_4);
-#line 294
-if (c_rt_lib::check_true($memory_2)) {goto label_4;}
-#line 294
+#line 304
+if (c_rt_lib::check_true($memory_2)) {goto label_14;}
+#line 305
 $memory_5 = ptd::sim();
-#line 294
+#line 305
 $memory_4 = ptd::ensure($memory_5, $memory_1);
-#line 294
+#line 305
 undef($memory_5);
-#line 294
+#line 305
 $memory_2 = string_utils::is_float($memory_4);
-#line 294
+#line 305
 undef($memory_4);
-#line 294
-label_4:
-#line 294
+#line 305
+label_14:
+#line 305
 undef($memory_3);
-#line 294
+#line 305
 $memory_2 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_2));
-#line 294
-if (c_rt_lib::check_true($memory_2)) {goto label_2;}
-#line 296
+#line 305
+if (c_rt_lib::check_true($memory_2)) {goto label_29;}
+#line 306
 $memory_3 = "new ImmDouble(";
-#line 296
+#line 306
 $memory_3 = $memory_3 . $memory_1;
-#line 296
+#line 306
 $memory_4 = ")";
-#line 296
+#line 306
 $memory_3 = $memory_3 . $memory_4;
-#line 296
+#line 306
 undef($memory_4);
-#line 296
+#line 306
 undef($memory_0);
-#line 296
+#line 306
 undef($memory_1);
-#line 296
+#line 306
 undef($memory_2);
-#line 296
+#line 306
 return $memory_3;
-#line 296
+#line 306
 undef($memory_3);
-#line 297
-goto label_1;
-#line 297
-label_2:
-#line 297
+#line 307
+goto label_84;
+#line 307
+label_29:
+#line 307
 $memory_2 = nl::is_sim($memory_1);
-#line 297
+#line 307
 $memory_2 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_2));
-#line 297
-if (c_rt_lib::check_true($memory_2)) {goto label_5;}
-#line 298
+#line 307
+if (c_rt_lib::check_true($memory_2)) {goto label_46;}
+#line 308
 $memory_3 = "new ImmString(\"";
-#line 298
+#line 308
 $memory_4 = generator_java_priv::escape_string($memory_1);
-#line 298
+#line 308
 $memory_3 = $memory_3 . $memory_4;
-#line 298
+#line 308
 undef($memory_4);
-#line 298
+#line 308
 $memory_4 = "\")";
-#line 298
+#line 308
 $memory_3 = $memory_3 . $memory_4;
-#line 298
+#line 308
 undef($memory_4);
-#line 298
+#line 308
 undef($memory_0);
-#line 298
+#line 308
 undef($memory_1);
-#line 298
+#line 308
 undef($memory_2);
-#line 298
+#line 308
 return $memory_3;
-#line 298
+#line 308
 undef($memory_3);
-#line 299
-goto label_1;
-#line 299
-label_5:
-#line 299
+#line 309
+goto label_84;
+#line 309
+label_46:
+#line 309
 $memory_2 = nl::is_array($memory_1);
-#line 299
+#line 309
 $memory_2 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_2));
-#line 299
-if (c_rt_lib::check_true($memory_2)) {goto label_6;}
-#line 300
+#line 309
+if (c_rt_lib::check_true($memory_2)) {goto label_57;}
+#line 310
 $memory_3 = generator_java_priv::print_const_arr($memory_0, $memory_1);
-#line 300
+#line 310
 undef($memory_0);
-#line 300
+#line 310
 undef($memory_1);
-#line 300
+#line 310
 undef($memory_2);
-#line 300
+#line 310
 return $memory_3;
-#line 300
+#line 310
 undef($memory_3);
-#line 301
-goto label_1;
-#line 301
-label_6:
-#line 301
+#line 311
+goto label_84;
+#line 311
+label_57:
+#line 311
 $memory_2 = nl::is_hash($memory_1);
-#line 301
+#line 311
 $memory_2 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_2));
-#line 301
-if (c_rt_lib::check_true($memory_2)) {goto label_7;}
-#line 302
+#line 311
+if (c_rt_lib::check_true($memory_2)) {goto label_68;}
+#line 312
 $memory_3 = generator_java_priv::print_const_hash($memory_0, $memory_1);
-#line 302
+#line 312
 undef($memory_0);
-#line 302
+#line 312
 undef($memory_1);
-#line 302
+#line 312
 undef($memory_2);
-#line 302
+#line 312
 return $memory_3;
-#line 302
+#line 312
 undef($memory_3);
-#line 303
-goto label_1;
-#line 303
-label_7:
-#line 303
+#line 313
+goto label_84;
+#line 313
+label_68:
+#line 313
 $memory_2 = nl::is_variant($memory_1);
-#line 303
+#line 313
 $memory_2 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_2));
-#line 303
-if (c_rt_lib::check_true($memory_2)) {goto label_8;}
-#line 304
+#line 313
+if (c_rt_lib::check_true($memory_2)) {goto label_79;}
+#line 314
 $memory_3 = generator_java_priv::print_const_ov($memory_0, $memory_1);
-#line 304
+#line 314
 undef($memory_0);
-#line 304
+#line 314
 undef($memory_1);
-#line 304
+#line 314
 undef($memory_2);
-#line 304
+#line 314
 return $memory_3;
-#line 304
+#line 314
 undef($memory_3);
-#line 305
-goto label_1;
-#line 305
-label_8:
-#line 306
+#line 315
+goto label_84;
+#line 315
+label_79:
+#line 316
 $memory_3 = [];
-#line 306
+#line 316
 die(dfile::ssave($memory_3));
-#line 306
+#line 316
 undef($memory_3);
-#line 307
-goto label_1;
-#line 307
-label_1:
-#line 307
+#line 317
+goto label_84;
+#line 317
+label_84:
+#line 317
 undef($memory_2);
-#line 307
+#line 317
 undef($memory_0);
-#line 307
+#line 317
 undef($memory_1);
-#line 307
+#line 317
 return;
 }
 
 sub generator_java_priv::print_goto($) {
 my $memory_0;my $memory_1;my $memory_2;$memory_0 = $_[0];
-#line 311
-$memory_1 = "if (true) {label = \"";
-#line 311
+#line 321
+$memory_1 = "if (true) {label = \"label_";
+#line 321
 $memory_1 = $memory_1 . $memory_0;
-#line 311
+#line 321
 $memory_2 = "\"; continue; }";
-#line 311
+#line 321
 $memory_1 = $memory_1 . $memory_2;
-#line 311
+#line 321
 undef($memory_2);
-#line 311
+#line 321
 undef($memory_0);
-#line 311
+#line 321
 return $memory_1;
-#line 311
+#line 321
 undef($memory_1);
-#line 311
+#line 321
 undef($memory_0);
-#line 311
+#line 321
 return;
 }
 
 sub generator_java_priv::print_hash($) {
 my $memory_0;my $memory_1;my $memory_2;my $memory_3;my $memory_4;my $memory_5;my $memory_6;my $memory_7;my $memory_8;my $memory_9;my $memory_10;$memory_0 = $_[0];
-#line 315
+#line 325
 $memory_1 = generator_java_priv::print_hash_name();
-#line 315
+#line 325
 $memory_2 = " = new HashMap<ImmString, Imm>();";
-#line 315
+#line 325
 $memory_1 = $memory_1 . $memory_2;
-#line 315
+#line 325
 undef($memory_2);
-#line 315
+#line 325
 $memory_2 = string::lf();
-#line 315
+#line 325
 $memory_1 = $memory_1 . $memory_2;
-#line 315
+#line 325
 undef($memory_2);
-#line 316
+#line 328
 $memory_2 = $memory_0->{'src'};
-#line 316
+#line 328
 $memory_4 = 0;
-#line 316
+#line 328
 $memory_5 = 1;
-#line 316
+#line 328
 $memory_6 = c_rt_lib::array_len($memory_2);
-#line 316
-label_3:
-#line 316
+#line 328
+label_11:
+#line 328
 $memory_7 = c_rt_lib::to_nl($memory_4 >= $memory_6);
-#line 316
-if (c_rt_lib::check_true($memory_7)) {goto label_1;}
-#line 316
+#line 328
+if (c_rt_lib::check_true($memory_7)) {goto label_42;}
+#line 328
 $memory_3 = $memory_2->[$memory_4];
-#line 316
+#line 326
 $memory_8 = generator_java_priv::print_hash_name();
-#line 316
+#line 326
 $memory_9 = ".put(new ImmString(\"";
-#line 316
+#line 326
 $memory_8 = $memory_8 . $memory_9;
-#line 316
+#line 326
 undef($memory_9);
-#line 316
+#line 326
 $memory_10 = $memory_3->{'key'};
-#line 316
+#line 326
 $memory_9 = generator_java_priv::escape_string($memory_10);
-#line 316
+#line 326
 undef($memory_10);
-#line 316
+#line 326
 $memory_8 = $memory_8 . $memory_9;
-#line 316
+#line 326
 undef($memory_9);
-#line 316
+#line 326
 $memory_9 = "\"),";
-#line 316
+#line 326
 $memory_8 = $memory_8 . $memory_9;
-#line 316
+#line 326
 undef($memory_9);
-#line 316
+#line 327
 $memory_10 = $memory_3->{'val'};
-#line 316
+#line 327
 $memory_9 = generator_java_priv::print_register_getter($memory_10);
-#line 316
+#line 327
 undef($memory_10);
-#line 316
+#line 327
 $memory_8 = $memory_8 . $memory_9;
-#line 316
+#line 327
 undef($memory_9);
-#line 316
+#line 327
 $memory_9 = ");";
-#line 316
+#line 327
 $memory_8 = $memory_8 . $memory_9;
-#line 316
+#line 327
 undef($memory_9);
-#line 316
+#line 327
 $memory_9 = string::lf();
-#line 316
+#line 327
 $memory_8 = $memory_8 . $memory_9;
-#line 316
+#line 327
 undef($memory_9);
-#line 316
+#line 327
 $memory_1 = $memory_1 . $memory_8;
-#line 316
+#line 327
 undef($memory_8);
-#line 316
+#line 327
 $memory_4 = $memory_4 + $memory_5;
-#line 316
-goto label_3;
-#line 316
-label_1:
-#line 316
+#line 327
+goto label_11;
+#line 327
+label_42:
+#line 327
 undef($memory_2);
-#line 316
+#line 327
 undef($memory_3);
-#line 316
+#line 327
 undef($memory_4);
-#line 316
+#line 327
 undef($memory_5);
-#line 316
+#line 327
 undef($memory_6);
-#line 316
+#line 327
 undef($memory_7);
-#line 317
+#line 329
 undef($memory_0);
-#line 317
+#line 329
 return $memory_1;
-#line 317
+#line 329
 undef($memory_1);
-#line 317
+#line 329
 undef($memory_0);
-#line 317
+#line 329
 return;
 }
 
 sub generator_java_priv::__print_hash_name() {
 my $memory_0;
-#line 321
+#line 333
 $memory_0 = "__function_map";
-#line 321
+#line 333
 return $memory_0;
-#line 321
+#line 333
 undef($memory_0);
-#line 321
+#line 333
 return;
 }
 
@@ -3882,385 +3882,385 @@ sub generator_java_priv::print_hash_name() {
 
 sub generator_java_priv::print_get_hash_value($) {
 my $memory_0;my $memory_1;my $memory_2;my $memory_3;$memory_0 = $_[0];
-#line 325
+#line 337
 $memory_1 = "((ImmMap)";
-#line 325
+#line 337
 $memory_3 = $memory_0->{'src'};
-#line 325
+#line 337
 $memory_2 = generator_java_priv::print_register_getter($memory_3);
-#line 325
+#line 337
 undef($memory_3);
-#line 325
+#line 337
 $memory_1 = $memory_1 . $memory_2;
-#line 325
+#line 337
 undef($memory_2);
-#line 325
+#line 337
 $memory_2 = ")";
-#line 325
+#line 337
 $memory_1 = $memory_1 . $memory_2;
-#line 325
+#line 337
 undef($memory_2);
-#line 325
+#line 337
 $memory_2 = generator_java_priv::print_getter();
-#line 325
+#line 337
 $memory_1 = $memory_1 . $memory_2;
-#line 325
+#line 337
 undef($memory_2);
-#line 325
+#line 337
 $memory_2 = ".get(new ImmString(\"";
-#line 325
+#line 337
 $memory_1 = $memory_1 . $memory_2;
-#line 325
+#line 337
 undef($memory_2);
-#line 325
+#line 338
 $memory_3 = $memory_0->{'key'};
-#line 325
+#line 338
 $memory_2 = generator_java_priv::escape_string($memory_3);
-#line 325
+#line 338
 undef($memory_3);
-#line 325
+#line 338
 $memory_1 = $memory_1 . $memory_2;
-#line 325
+#line 338
 undef($memory_2);
-#line 325
+#line 338
 $memory_2 = "\"))";
-#line 325
+#line 338
 $memory_1 = $memory_1 . $memory_2;
-#line 325
+#line 338
 undef($memory_2);
-#line 325
+#line 338
 undef($memory_0);
-#line 325
+#line 338
 return $memory_1;
-#line 325
+#line 338
 undef($memory_1);
-#line 325
+#line 338
 undef($memory_0);
-#line 325
+#line 338
 return;
 }
 
 sub generator_java_priv::print_set_hash_value($) {
 my $memory_0;my $memory_1;my $memory_2;my $memory_3;$memory_0 = $_[0];
-#line 329
+#line 342
 $memory_1 = "((ImmMap)";
-#line 329
+#line 342
 $memory_3 = $memory_0->{'src'};
-#line 329
+#line 342
 $memory_2 = generator_java_priv::print_register_getter($memory_3);
-#line 329
+#line 342
 undef($memory_3);
-#line 329
+#line 342
 $memory_1 = $memory_1 . $memory_2;
-#line 329
+#line 342
 undef($memory_2);
-#line 329
+#line 342
 $memory_2 = ")";
-#line 329
+#line 342
 $memory_1 = $memory_1 . $memory_2;
-#line 329
+#line 342
 undef($memory_2);
-#line 329
+#line 342
 $memory_2 = generator_java_priv::print_getter();
-#line 329
+#line 342
 $memory_1 = $memory_1 . $memory_2;
-#line 329
+#line 342
 undef($memory_2);
-#line 329
+#line 342
 $memory_2 = ".put(new ImmString(\"";
-#line 329
+#line 342
 $memory_1 = $memory_1 . $memory_2;
-#line 329
+#line 342
 undef($memory_2);
-#line 329
+#line 343
 $memory_3 = $memory_0->{'key'};
-#line 329
+#line 343
 $memory_2 = generator_java_priv::escape_string($memory_3);
-#line 329
+#line 343
 undef($memory_3);
-#line 329
+#line 343
 $memory_1 = $memory_1 . $memory_2;
-#line 329
+#line 343
 undef($memory_2);
-#line 329
+#line 343
 $memory_2 = "\"), ";
-#line 329
+#line 343
 $memory_1 = $memory_1 . $memory_2;
-#line 329
+#line 343
 undef($memory_2);
-#line 330
+#line 344
 $memory_3 = $memory_0->{'val'};
-#line 330
+#line 344
 $memory_2 = generator_java_priv::print_register_getter($memory_3);
-#line 330
+#line 344
 undef($memory_3);
-#line 330
+#line 344
 $memory_3 = ")";
-#line 330
+#line 344
 $memory_2 = $memory_2 . $memory_3;
-#line 330
+#line 344
 undef($memory_3);
-#line 330
+#line 344
 $memory_1 = $memory_1 . $memory_2;
-#line 330
+#line 344
 undef($memory_2);
-#line 331
+#line 345
 undef($memory_0);
-#line 331
+#line 345
 return $memory_1;
-#line 331
+#line 345
 undef($memory_1);
-#line 331
+#line 345
 undef($memory_0);
-#line 331
+#line 345
 return;
 }
 
 sub generator_java_priv::print_ov_mk($) {
 my $memory_0;my $memory_1;my $memory_2;my $memory_3;my $memory_4;my $memory_5;my $memory_6;my $memory_7;my $memory_8;$memory_0 = $_[0];
-#line 335
+#line 349
 $memory_1 = "";
-#line 336
+#line 350
 $memory_2 = $memory_0->{'src'};
-#line 336
+#line 350
 $memory_2 = c_rt_lib::ov_is($memory_2, 'emp');
-#line 336
+#line 350
 $memory_3 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_2));
-#line 336
-if (c_rt_lib::check_true($memory_3)) {goto label_3;}
-#line 336
+#line 350
+if (c_rt_lib::check_true($memory_3)) {goto label_9;}
+#line 350
 $memory_2 = $memory_0->{'name'};
-#line 336
+#line 350
 $memory_4 = "TRUE";
-#line 336
+#line 350
 $memory_2 = c_rt_lib::to_nl($memory_2 eq $memory_4);
-#line 336
+#line 350
 undef($memory_4);
-#line 336
-label_3:
-#line 336
+#line 350
+label_9:
+#line 350
 undef($memory_3);
-#line 336
+#line 350
 $memory_2 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_2));
-#line 336
-if (c_rt_lib::check_true($memory_2)) {goto label_2;}
-#line 337
+#line 350
+if (c_rt_lib::check_true($memory_2)) {goto label_17;}
+#line 351
 $memory_3 = "c_rt_lib_NL.get_true_nl()";
-#line 337
+#line 351
 $memory_1 = $memory_3;
-#line 337
+#line 351
 undef($memory_3);
-#line 338
-goto label_1;
-#line 338
-label_2:
-#line 338
+#line 352
+goto label_81;
+#line 352
+label_17:
+#line 352
 $memory_2 = $memory_0->{'src'};
-#line 338
+#line 352
 $memory_2 = c_rt_lib::ov_is($memory_2, 'emp');
-#line 338
+#line 352
 $memory_3 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_2));
-#line 338
-if (c_rt_lib::check_true($memory_3)) {goto label_5;}
-#line 338
+#line 352
+if (c_rt_lib::check_true($memory_3)) {goto label_26;}
+#line 352
 $memory_2 = $memory_0->{'name'};
-#line 338
+#line 352
 $memory_4 = "FALSE";
-#line 338
+#line 352
 $memory_2 = c_rt_lib::to_nl($memory_2 eq $memory_4);
-#line 338
+#line 352
 undef($memory_4);
-#line 338
-label_5:
-#line 338
+#line 352
+label_26:
+#line 352
 undef($memory_3);
-#line 338
+#line 352
 $memory_2 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_2));
-#line 338
-if (c_rt_lib::check_true($memory_2)) {goto label_4;}
-#line 339
+#line 352
+if (c_rt_lib::check_true($memory_2)) {goto label_34;}
+#line 353
 $memory_3 = "c_rt_lib_NL.get_false_nl()";
-#line 339
+#line 353
 $memory_1 = $memory_3;
-#line 339
+#line 353
 undef($memory_3);
-#line 340
-goto label_1;
-#line 340
-label_4:
-#line 341
+#line 354
+goto label_81;
+#line 354
+label_34:
+#line 355
 $memory_3 = $memory_0->{'src'};
-#line 341
+#line 355
 $memory_4 = c_rt_lib::ov_is($memory_3, 'arg');
-#line 341
-if (c_rt_lib::check_true($memory_4)) {goto label_7;}
-#line 343
+#line 355
+if (c_rt_lib::check_true($memory_4)) {goto label_43;}
+#line 358
 $memory_4 = c_rt_lib::ov_is($memory_3, 'emp');
-#line 343
-if (c_rt_lib::check_true($memory_4)) {goto label_8;}
-#line 343
+#line 358
+if (c_rt_lib::check_true($memory_4)) {goto label_64;}
+#line 358
 $memory_4 = "NOMATCHALERT";
-#line 343
+#line 358
 $memory_4 = [$memory_4,$memory_3];
-#line 343
+#line 358
 die(dfile::ssave($memory_4));
-#line 341
-label_7:
-#line 341
+#line 355
+label_43:
+#line 355
 $memory_5 = c_rt_lib::ov_as($memory_3, 'arg');
-#line 342
+#line 356
 $memory_6 = "c_rt_lib_NL.ov_mk_arg_nl(new ImmString(\"";
-#line 342
+#line 356
 $memory_8 = $memory_0->{'name'};
-#line 342
+#line 356
 $memory_7 = generator_java_priv::escape_string($memory_8);
-#line 342
+#line 356
 undef($memory_8);
-#line 342
+#line 356
 $memory_6 = $memory_6 . $memory_7;
-#line 342
+#line 356
 undef($memory_7);
-#line 342
+#line 356
 $memory_7 = "\"), ";
-#line 342
+#line 356
 $memory_6 = $memory_6 . $memory_7;
-#line 342
+#line 356
 undef($memory_7);
-#line 342
+#line 357
 $memory_7 = generator_java_priv::print_register($memory_5);
-#line 342
+#line 357
 $memory_6 = $memory_6 . $memory_7;
-#line 342
+#line 357
 undef($memory_7);
-#line 342
+#line 357
 $memory_7 = ")";
-#line 342
+#line 357
 $memory_6 = $memory_6 . $memory_7;
-#line 342
+#line 357
 undef($memory_7);
-#line 342
+#line 357
 $memory_1 = $memory_6;
-#line 342
+#line 357
 undef($memory_6);
-#line 342
+#line 357
 undef($memory_5);
-#line 343
-goto label_6;
-#line 343
-label_8:
-#line 344
+#line 358
+goto label_77;
+#line 358
+label_64:
+#line 359
 $memory_5 = "c_rt_lib_NL.ov_mk_none_nl(new ImmString(\"";
-#line 344
+#line 359
 $memory_7 = $memory_0->{'name'};
-#line 344
+#line 359
 $memory_6 = generator_java_priv::escape_string($memory_7);
-#line 344
+#line 359
 undef($memory_7);
-#line 344
+#line 359
 $memory_5 = $memory_5 . $memory_6;
-#line 344
+#line 359
 undef($memory_6);
-#line 344
+#line 359
 $memory_6 = "\"))";
-#line 344
+#line 359
 $memory_5 = $memory_5 . $memory_6;
-#line 344
+#line 359
 undef($memory_6);
-#line 344
+#line 359
 $memory_1 = $memory_5;
-#line 344
+#line 359
 undef($memory_5);
-#line 345
-goto label_6;
-#line 345
-label_6:
-#line 345
+#line 360
+goto label_77;
+#line 360
+label_77:
+#line 360
 undef($memory_3);
-#line 345
+#line 360
 undef($memory_4);
-#line 346
-goto label_1;
-#line 346
-label_1:
-#line 346
+#line 361
+goto label_81;
+#line 361
+label_81:
+#line 361
 undef($memory_2);
-#line 347
+#line 362
 $memory_3 = $memory_0->{'dest'};
-#line 347
+#line 362
 $memory_2 = generator_java_priv::print_register_setter($memory_3, $memory_1);
-#line 347
+#line 362
 undef($memory_3);
-#line 347
+#line 362
 $memory_3 = ";";
-#line 347
+#line 362
 $memory_2 = $memory_2 . $memory_3;
-#line 347
+#line 362
 undef($memory_3);
-#line 347
+#line 362
 undef($memory_0);
-#line 347
+#line 362
 undef($memory_1);
-#line 347
+#line 362
 return $memory_2;
-#line 347
+#line 362
 undef($memory_2);
-#line 347
+#line 362
 undef($memory_1);
-#line 347
+#line 362
 undef($memory_0);
-#line 347
+#line 362
 return;
 }
 
 sub generator_java_priv::print_register($) {
 my $memory_0;my $memory_1;$memory_0 = $_[0];
-#line 351
+#line 366
 $memory_1 = "___nl__";
-#line 351
+#line 366
 $memory_1 = $memory_1 . $memory_0;
-#line 351
+#line 366
 undef($memory_0);
-#line 351
+#line 366
 return $memory_1;
-#line 351
+#line 366
 undef($memory_1);
-#line 351
+#line 366
 undef($memory_0);
-#line 351
+#line 366
 return;
 }
 
 sub generator_java_priv::print_register_getter($) {
 my $memory_0;my $memory_1;my $memory_2;$memory_0 = $_[0];
-#line 355
+#line 370
 $memory_1 = generator_java_priv::print_register($memory_0);
-#line 355
+#line 370
 $memory_2 = generator_java_priv::print_getter();
-#line 355
+#line 370
 $memory_1 = $memory_1 . $memory_2;
-#line 355
+#line 370
 undef($memory_2);
-#line 355
+#line 370
 undef($memory_0);
-#line 355
+#line 370
 return $memory_1;
-#line 355
+#line 370
 undef($memory_1);
-#line 355
+#line 370
 undef($memory_0);
-#line 355
+#line 370
 return;
 }
 
 sub generator_java_priv::__print_getter() {
 my $memory_0;
-#line 359
+#line 374
 $memory_0 = ".getValue()";
-#line 359
+#line 374
 return $memory_0;
-#line 359
+#line 374
 undef($memory_0);
-#line 359
+#line 374
 return;
 }
 
@@ -4272,262 +4272,262 @@ sub generator_java_priv::print_getter() {
 
 sub generator_java_priv::print_register_setter($$) {
 my $memory_0;my $memory_1;my $memory_2;my $memory_3;$memory_0 = $_[0];$memory_1 = $_[1];
-#line 363
+#line 378
 $memory_2 = "";
-#line 363
+#line 378
 $memory_2 = c_rt_lib::to_nl($memory_0 eq $memory_2);
-#line 363
+#line 378
 $memory_2 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_2));
-#line 363
-if (c_rt_lib::check_true($memory_2)) {goto label_2;}
-#line 363
+#line 378
+if (c_rt_lib::check_true($memory_2)) {goto label_12;}
+#line 378
 $memory_3 = "";
-#line 363
+#line 378
 $memory_3 = $memory_1 . $memory_3;
-#line 363
+#line 378
 undef($memory_0);
-#line 363
+#line 378
 undef($memory_1);
-#line 363
+#line 378
 undef($memory_2);
-#line 363
+#line 378
 return $memory_3;
-#line 363
+#line 378
 undef($memory_3);
-#line 363
-goto label_2;
-#line 363
-label_2:
-#line 363
+#line 378
+goto label_12;
+#line 378
+label_12:
+#line 378
 undef($memory_2);
-#line 364
+#line 379
 $memory_2 = generator_java_priv::print_register($memory_0);
-#line 364
+#line 379
 $memory_3 = ".setValue(";
-#line 364
+#line 379
 $memory_2 = $memory_2 . $memory_3;
-#line 364
+#line 379
 undef($memory_3);
-#line 364
+#line 379
 $memory_2 = $memory_2 . $memory_1;
-#line 364
+#line 379
 $memory_3 = ")";
-#line 364
+#line 379
 $memory_2 = $memory_2 . $memory_3;
-#line 364
+#line 379
 undef($memory_3);
-#line 364
+#line 379
 undef($memory_0);
-#line 364
+#line 379
 undef($memory_1);
-#line 364
+#line 379
 return $memory_2;
-#line 364
+#line 379
 undef($memory_2);
-#line 364
+#line 379
 undef($memory_0);
-#line 364
+#line 379
 undef($memory_1);
-#line 364
+#line 379
 return;
 }
 
 sub generator_java_priv::print_return($) {
 my $memory_0;my $memory_1;my $memory_2;my $memory_3;my $memory_4;my $memory_5;$memory_0 = $_[0];
-#line 368
+#line 383
 $memory_1 = "";
-#line 369
+#line 384
 $memory_2 = c_rt_lib::ov_is($memory_0, 'val');
-#line 369
-if (c_rt_lib::check_true($memory_2)) {goto label_2;}
-#line 371
+#line 384
+if (c_rt_lib::check_true($memory_2)) {goto label_8;}
+#line 386
 $memory_2 = c_rt_lib::ov_is($memory_0, 'emp');
-#line 371
-if (c_rt_lib::check_true($memory_2)) {goto label_3;}
-#line 371
+#line 386
+if (c_rt_lib::check_true($memory_2)) {goto label_21;}
+#line 386
 $memory_2 = "NOMATCHALERT";
-#line 371
+#line 386
 $memory_2 = [$memory_2,$memory_0];
-#line 371
+#line 386
 die(dfile::ssave($memory_2));
-#line 369
-label_2:
-#line 369
+#line 384
+label_8:
+#line 384
 $memory_3 = c_rt_lib::ov_as($memory_0, 'val');
-#line 370
+#line 385
 $memory_4 = "return ";
-#line 370
+#line 385
 $memory_5 = generator_java_priv::print_register_getter($memory_3);
-#line 370
+#line 385
 $memory_4 = $memory_4 . $memory_5;
-#line 370
+#line 385
 undef($memory_5);
-#line 370
+#line 385
 $memory_5 = ";";
-#line 370
+#line 385
 $memory_4 = $memory_4 . $memory_5;
-#line 370
+#line 385
 undef($memory_5);
-#line 370
+#line 385
 $memory_1 = $memory_4;
-#line 370
+#line 385
 undef($memory_4);
-#line 370
+#line 385
 undef($memory_3);
-#line 371
-goto label_1;
-#line 371
-label_3:
-#line 372
+#line 386
+goto label_26;
+#line 386
+label_21:
+#line 387
 $memory_3 = "return null;";
-#line 372
+#line 387
 $memory_1 = $memory_3;
-#line 372
+#line 387
 undef($memory_3);
-#line 373
-goto label_1;
-#line 373
-label_1:
-#line 373
+#line 388
+goto label_26;
+#line 388
+label_26:
+#line 388
 undef($memory_2);
-#line 374
+#line 389
 $memory_2 = "if(true) ";
-#line 374
+#line 389
 $memory_2 = $memory_2 . $memory_1;
-#line 374
+#line 389
 undef($memory_0);
-#line 374
+#line 389
 undef($memory_1);
-#line 374
+#line 389
 return $memory_2;
-#line 374
+#line 389
 undef($memory_2);
-#line 374
+#line 389
 undef($memory_1);
-#line 374
+#line 389
 undef($memory_0);
-#line 374
+#line 389
 return;
 }
 
 sub generator_java_priv::print_una_op($) {
 my $memory_0;my $memory_1;my $memory_2;my $memory_3;my $memory_4;my $memory_5;$memory_0 = $_[0];
-#line 378
+#line 393
 $memory_1 = "";
-#line 379
+#line 394
 $memory_2 = $memory_0->{'op'};
-#line 379
+#line 394
 $memory_3 = "!";
-#line 379
+#line 394
 $memory_2 = c_rt_lib::to_nl($memory_2 eq $memory_3);
-#line 379
+#line 394
 undef($memory_3);
-#line 379
+#line 394
 $memory_2 = c_rt_lib::to_nl(!c_rt_lib::check_true($memory_2));
-#line 379
-if (c_rt_lib::check_true($memory_2)) {goto label_2;}
-#line 380
+#line 394
+if (c_rt_lib::check_true($memory_2)) {goto label_19;}
+#line 395
 $memory_3 = "c_rt_lib_NL.native_to_nl_nl(!c_rt_lib_NL.check_true_native_nl(";
-#line 380
+#line 395
 $memory_5 = $memory_0->{'src'};
-#line 380
+#line 395
 $memory_4 = generator_java_priv::print_register($memory_5);
-#line 380
+#line 395
 undef($memory_5);
-#line 380
+#line 395
 $memory_3 = $memory_3 . $memory_4;
-#line 380
+#line 395
 undef($memory_4);
-#line 380
+#line 395
 $memory_4 = "))";
-#line 380
+#line 395
 $memory_3 = $memory_3 . $memory_4;
-#line 380
+#line 395
 undef($memory_4);
-#line 380
+#line 395
 $memory_1 = $memory_1 . $memory_3;
-#line 380
+#line 395
 undef($memory_3);
-#line 381
-goto label_1;
-#line 381
-label_2:
-#line 382
+#line 396
+goto label_44;
+#line 396
+label_19:
+#line 397
 $memory_3 = "new ImmDouble(";
-#line 382
+#line 397
 $memory_4 = $memory_0->{'op'};
-#line 382
+#line 397
 $memory_3 = $memory_3 . $memory_4;
-#line 382
+#line 397
 undef($memory_4);
-#line 382
+#line 397
 $memory_4 = "((ImmDouble)";
-#line 382
+#line 397
 $memory_3 = $memory_3 . $memory_4;
-#line 382
+#line 397
 undef($memory_4);
-#line 382
+#line 397
 $memory_5 = $memory_0->{'src'};
-#line 382
+#line 397
 $memory_4 = generator_java_priv::print_register_getter($memory_5);
-#line 382
+#line 397
 undef($memory_5);
-#line 382
+#line 397
 $memory_3 = $memory_3 . $memory_4;
-#line 382
+#line 397
 undef($memory_4);
-#line 382
+#line 397
 $memory_4 = ")";
-#line 382
+#line 397
 $memory_3 = $memory_3 . $memory_4;
-#line 382
+#line 397
 undef($memory_4);
-#line 382
+#line 398
 $memory_4 = generator_java_priv::print_getter();
-#line 382
+#line 398
 $memory_3 = $memory_3 . $memory_4;
-#line 382
+#line 398
 undef($memory_4);
-#line 382
+#line 398
 $memory_4 = ")";
-#line 382
+#line 398
 $memory_3 = $memory_3 . $memory_4;
-#line 382
+#line 398
 undef($memory_4);
-#line 382
+#line 398
 $memory_1 = $memory_1 . $memory_3;
-#line 382
+#line 398
 undef($memory_3);
-#line 383
-goto label_1;
-#line 383
-label_1:
-#line 383
+#line 399
+goto label_44;
+#line 399
+label_44:
+#line 399
 undef($memory_2);
-#line 384
+#line 400
 $memory_3 = $memory_0->{'dest'};
-#line 384
+#line 400
 $memory_2 = generator_java_priv::print_register_setter($memory_3, $memory_1);
-#line 384
+#line 400
 undef($memory_3);
-#line 384
+#line 400
 $memory_3 = ";";
-#line 384
+#line 400
 $memory_2 = $memory_2 . $memory_3;
-#line 384
+#line 400
 undef($memory_3);
-#line 384
+#line 400
 undef($memory_0);
-#line 384
+#line 400
 undef($memory_1);
-#line 384
+#line 400
 return $memory_2;
-#line 384
+#line 400
 undef($memory_2);
-#line 384
+#line 400
 undef($memory_1);
-#line 384
+#line 400
 undef($memory_0);
-#line 384
+#line 400
 return;
 }

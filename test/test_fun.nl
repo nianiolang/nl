@@ -6,11 +6,11 @@
 use func;
 use nassert;
 
-def test_fun::change(ref a, b, ref c){
+def test_fun::change(ref a, b, ref c) {
 	a += 10;
 	b += 20;
 	c = 20;
-	return a if(a<10);
+	return a if (a < 10);
 	return c;
 }
 
@@ -25,5 +25,4 @@ def test_fun::test() {
 	nassert::a(arg[1], 3);
 	nassert::a(arg[2], 20);
 }
-
 

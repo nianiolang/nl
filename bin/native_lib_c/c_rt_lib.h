@@ -79,6 +79,7 @@ typedef struct {
 } NlFloat;
 
 void c_rt_lib0init();
+void c_rt_lib0init_advanced(int catch_signals, char * (*die_f)(), char * (*logs_f)());
 void c_rt_lib0register_const(ImmT *,int);
 void c_rt_lib0register_global_const(ImmT begin, ImmT end);
 void c_rt_lib0finish();
@@ -104,8 +105,8 @@ ImmT c_rt_lib0hash_mk_dec(int nargs, ...);
 ImmT c_rt_lib0hash_size(ImmT hashI);
 ImmT c_rt_lib0hash_get_value_dec(ImmT hash, ImmT key);
 ImmT c_rt_lib0hash_get_value(ImmT hash, ImmT key);
-void c_rt_lib0hash_set_value_dec(ImmT *hash, ImmT key, ImmT val);
-void c_rt_lib0hash_set_value(ImmT *hash, ImmT key, ImmT val);
+ImmT c_rt_lib0hash_set_value_dec(ImmT *hash, ImmT key, ImmT val);
+ImmT c_rt_lib0hash_set_value(ImmT *hash, ImmT key, ImmT val);
 ImmT c_rt_lib0hash_delete(ImmT *hash, ImmT key);
 ImmT c_rt_lib0hash_has_key(ImmT hash, ImmT key);
 
@@ -121,6 +122,7 @@ ImmT c_rt_lib0ov_none_new(ImmT name);
 ImmT c_rt_lib0ov_mk_arg(ImmT name, ImmT arg);
 ImmT c_rt_lib0ov_mk_arg_dec(ImmT name, ImmT arg);
 ImmT c_rt_lib0ov_mk_none(ImmT name);
+ImmT c_rt_lib0mk_ov(const char * var, ImmT val);
 ImmT c_rt_lib0ov_is(ImmT variant, ImmT is_val);
 ImmT c_rt_lib0ov_as(ImmT variant, ImmT as_val);
 ImmT c_rt_lib0ov_get_element(ImmT variant);
@@ -138,10 +140,13 @@ void c_rt_lib0int_new_to_memory(INT i, ImmT memory);
 FLOAT getFloatFromImm(ImmT num);
 ImmT c_rt_lib0float_new(FLOAT f);
 void c_rt_lib0float_new_to_memory(FLOAT f, ImmT memory);
+ImmT c_rt_lib0float_round(ImmT f);
 //string
 NlString* toStringIfSim(ImmT sim);
 NlString* toStringIfImm(ImmT imm);
+int compare_strings(NlString* left, NlString* right);
 ImmT c_rt_lib0string_new(const char *ss);
+ImmT c_rt_lib0string_new_from_bytes(const void *mem_loc, int bytes_count);
 void c_rt_lib0string_new_to_memory(const char *ss, ImmT memory);
 ImmT c_rt_lib0string_new_alloc(char *ss, int length, int capacity);
 ImmT c_rt_lib0string_chr(ImmT sI);
@@ -218,3 +223,6 @@ void c_rt_lib0clear(ImmT *arg);
 void c_rt_lib0delete(ImmT arg);
 void c_rt_lib0arg_val(ImmT arg);
 ImmT c_rt_lib0gen_imm(ImmT imm);
+
+char *c_rt_lib0get_die_additional_info();
+char *c_rt_lib0get_logs_dir();

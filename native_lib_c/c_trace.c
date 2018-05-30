@@ -83,7 +83,8 @@ void gdb_save_stacktrace(const char *text_in, const char *text_out){
 		char *func = read_name();
 		poz += 1;
 		int tmppoz = poz;
-		if(number == 0 && strcmp(func, "gdb_die") == 0){
+		if (strcmp(func, "gdb_die") == 0) {
+			fprintf(fout, "%s\n", c_rt_lib0get_die_additional_info());
 			while(get_char(tmppoz) != '"' && get_char(tmppoz) != '\0') ++tmppoz;
 			fprintf(fout, "\"");
 			while(1){
@@ -102,18 +103,18 @@ void gdb_save_stacktrace(const char *text_in, const char *text_out){
 		int line = atoi(str+tmppoz+1);
 		if(get_char(tmppoz) == ':') str[tmppoz] = '\0';
 		while(get_char(tmppoz)!=')') --tmppoz;
-		tmppoz +=5;
+		tmppoz += 5;
 		fprintf(fout, "%d	%s	%s	%d", number, func, str+tmppoz, line);
 		int param = 0;
-		while(1){
-			if(get_char(poz) == ','){
+		while(1) {
+			if(get_char(poz) == ',') {
 				poz +=2;
-			} else if(get_char(poz) == '('){
+			} else if(get_char(poz) == '(') {
 				poz +=1;
 				if(get_char(poz) == ')') break;
-			} else if(get_char(poz) == ')'){
+			} else if(get_char(poz) == ')') {
 				break;
-			} else{
+			} else {
 				break;
 			}
 			char *name = read_name();
@@ -134,7 +135,7 @@ void gdb_save_stacktrace(const char *text_in, const char *text_out){
 				fprintf(fout, "	\"p%d REF ", param);
 				fprintString(fout, p->s, p->length);
 				fprintf(fout, "\"");
-			} else{
+			} else {
 				fprintf(fout, "	p%d %s=%p", param, name, ptr);
 			}
 			fflush(fout);
@@ -148,9 +149,3 @@ void gdb_save_stacktrace(const char *text_in, const char *text_out){
 	fclose(fin);
 	fclose(fout);
 }
-void gdb_save_stacktrace_sim(const char *text){
-	char buf[300];
-	sprintf(buf, "%s.log", text);
-	gdb_save_stacktrace(text, buf);
-}
-
