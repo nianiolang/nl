@@ -1691,7 +1691,7 @@ void gdb_die(const char *msg){
 		}
 		close(token_pipe[0]);
 		
-		char cmd[10024], cpath[1000], gdbpath[1000], time_part[1000];
+		char cmd[10024], cpath[1100], gdbpath[1100], time_part[1000];
 		cpath[0] = '\0';
 		gdbpath[0] = '\0';
 		time_part[0] = '\0';
