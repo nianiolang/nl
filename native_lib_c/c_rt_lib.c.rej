@@ -1,0 +1,11 @@
+--- native_lib_c/c_rt_lib.c	2016-09-28 18:25:28.000000000 +0200
++++ native_lib_c/c_rt_lib.c	2019-02-01 10:40:28.466004989 +0100
+@@ -1691,7 +1691,7 @@
+ 		}
+ 		close(token_pipe[0]);
+ 		
+-		char cmd[10024], cpath[1000], gdbpath[1000], time_part[1000];
++		char cmd[10024], cpath[1100], gdbpath[1100], time_part[1000];
+ 		cpath[0] = '\0';
+ 		gdbpath[0] = '\0';
+ 		time_part[0] = '\0';
