@@ -553,7 +553,7 @@ def print_cmd(ref state : @wprinter::state_t, cmd : @nast::cmd_t, ind : ptd::sim
 			start = print_var_decl(var_decl);
 		}
 		wprinter::print_t(ref state, wprinter::build_pretty_a([
-				wprinter::build_sim('for('),
+				wprinter::build_sim('for ('),
 				start,
 				wprinter::build_sim(';'),
 				wprinter::get_sep(),
