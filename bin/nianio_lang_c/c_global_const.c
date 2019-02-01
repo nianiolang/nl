@@ -1025,7 +1025,7 @@ c_rt_lib0string_new_to_memory("? ",___global_const__ + ___global_const_offset * 
 c_rt_lib0string_new_to_memory(": ",___global_const__ + ___global_const_offset * 1009);
 c_rt_lib0string_new_to_memory("el",___global_const__ + ___global_const_offset * 1010);
 c_rt_lib0string_new_to_memory(" else",___global_const__ + ___global_const_offset * 1011);
-c_rt_lib0string_new_to_memory("for(",___global_const__ + ___global_const_offset * 1012);
+c_rt_lib0string_new_to_memory("for (",___global_const__ + ___global_const_offset * 1012);
 c_rt_lib0string_new_to_memory("match (",___global_const__ + ___global_const_offset * 1013);
 c_rt_lib0string_new_to_memory(" case ",___global_const__ + ___global_const_offset * 1014);
 c_rt_lib0int_new_to_memory(1000000,___global_const__ + ___global_const_offset * 1015);
