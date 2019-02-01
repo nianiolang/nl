@@ -720,11 +720,13 @@ def handle_extern_call(call : @nlasm::call_t, ref state : @interpreter::state_t)
 	var func = hash::get_value(state->known_exec_func, call->mod . '::' . call->fun_name);
 	if (array::len(func->args) != array::len(args)) {
 		state->rstate = :error('incorrect console call');
+		return;
 	}
 	rep var i (array::len(args)) {
 		match(ptd::try_dynamic_cast(func->args[i], args[i])) case :ok(var ok){
 		} case :err(var err){
 			state->rstate = :error('incorrect type');
+			return;
 		}
 	}
 	match (func->type) case :sequential {
