@@ -157,9 +157,7 @@ def join_print_hash_elem(aval : ptd::arr(@nast::hash_elem_t)) : @wprinter::prett
 def print_hash_elem(elem : @nast::hash_elem_t) : @wprinter::pretty_t {
 	if (elem->val->value is :hash_decl || elem->val->value is :arr_decl) {
 		var key = elem->key->value as :hash_key;
-		if (string::index2(key, ' ') > 0) {
-			key = '''' . key . '''';
-		}
+		key = '''' . key . '''' unless is_proper_hash_key(key);
 		return get_compressed_fun_val(elem->val, key . ' => ', '');
 	}
 	return wprinter::build_pretty_l([
@@ -301,9 +299,7 @@ def print_val(val : @nast::value_t) : @wprinter::pretty_t {
 		}
 		return wprinter::build_str_arr(arr, str_arr->last);
 	} case :hash_key(var hash_key) {
-		if (string::index2(hash_key, ' ') >= 0) {
-			hash_key = '''' . hash_key . '''';
-		}
+		hash_key = '''' . hash_key . '''' unless is_proper_hash_key(hash_key);
 		return wprinter::build_sim(hash_key);
 	} case :variant(var variant) {
 		return print_variant(variant);
@@ -615,5 +611,12 @@ def print_cmd(ref state : @wprinter::state_t, cmd : @nast::cmd_t, ind : ptd::sim
 	} case :var_decl(var var_decl) {
 		flush_sim_statement(ref state, print_var_decl(var_decl), ind);
 	}
+}
+
+def is_proper_hash_key(string : ptd::sim()) : @boolean_t::type {
+	fora var char (string::to_array(string)) {
+		return false unless string::is_letter(char) || string::is_digit(char) || char eq '_';
+	}
+	return true;
 }
 
