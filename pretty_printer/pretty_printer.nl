@@ -614,6 +614,8 @@ def print_cmd(ref state : @wprinter::state_t, cmd : @nast::cmd_t, ind : ptd::sim
 }
 
 def is_proper_hash_key(string : ptd::sim()) : @boolean_t::type {
+	return false if string::length(string) == 0;
+	return false unless string::is_letter(string::substr(string, 0, 1));
 	fora var char (string::to_array(string)) {
 		return false unless string::is_letter(char) || string::is_digit(char) || char eq '_';
 	}
